@@ -52,7 +52,7 @@ public class Main {
             System.out.println(content.toString());
 
             Gson g = new Gson();
-            ResponseSignUp rp = g.fromJson(content.toString(), ResponseSignUp.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(rp.code);
             System.out.println(rp.message);
