@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import com.google.gson.Gson;
@@ -26,12 +27,12 @@ public class Main {
             if (postData.length() != 0) {
                 postData.append('&');
             }
-            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
             postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
         }
 
-        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+        byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
         connection.setDoOutput(true);
         try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {
             writer.write(postDataBytes);
@@ -53,9 +54,6 @@ public class Main {
 
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
-
-            System.out.println(rp.code);
-            System.out.println(rp.message);
 
             System.out.println("Unit test 1: Should be successful with correct params");
 
