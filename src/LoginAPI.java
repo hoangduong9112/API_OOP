@@ -49,8 +49,7 @@ public class LoginAPI {
                     content.append(System.lineSeparator());
                 }
             }
-            System.out.println(content.toString());
-
+//            System.out.println(content.toString());
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -62,7 +61,6 @@ public class LoginAPI {
                assert rp.message.equals(messageExpectation);
            }
             System.out.println(colorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
-            System.out.println();
             System.out.println();
         } finally {
             connection.disconnect();
@@ -85,6 +83,7 @@ public class LoginAPI {
 
     public static void main() throws MalformedURLException, ProtocolException,
             IOException{
+        ColorTerminal colorTerminal = new ColorTerminal();
         List<TestCase> listTestCase = new ArrayList<TestCase>();
 
         LoginParams params1 = new LoginParams("email", "thanh12345@gmail.com", "password", "123456");
@@ -98,6 +97,7 @@ public class LoginAPI {
         LoginParams params3 = new LoginParams("email", "", "password", "123456");
         TestCase testCase3 = new TestCase<LoginParams>("1001", "", "Unit test 3: Should throw error 1001 with empty params", params3);
         listTestCase.add(testCase3);
+        System.out.println(colorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase testCase : listTestCase){
             new LoginAPI((LoginParams) testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation );
