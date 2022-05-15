@@ -12,6 +12,15 @@ import java.util.List;
 import java.util.Map;
 
 public class LoginAPI {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
     public LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws MalformedURLException, ProtocolException,
             IOException {
 
@@ -54,32 +63,19 @@ public class LoginAPI {
             Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
-
-            assert rp.code.equals(codeExpectation);
-            assert rp.message.equals(messageExpectation);
-            System.out.println("Pass");
+            if (codeExpectation.length() > 0) {
+                assert rp.code.equals(codeExpectation);
+            }
+           if (messageExpectation.length() > 0) {
+               assert rp.message.equals(messageExpectation);
+           }
+            System.out.println(ANSI_GREEN + "Pass" + ANSI_RESET);
             System.out.println();
             System.out.println();
         } finally {
             connection.disconnect();
         }
     }
-
-    public static class TestCase {
-        LoginParams params;
-        String testDescription;
-        String codeExpectation;
-        String messageExpectation;
-
-        public TestCase(String codeExpectation, String messageExpectation, String testDescription, LoginParams params) {
-            this.codeExpectation = codeExpectation;
-            this.messageExpectation = messageExpectation;
-            this.testDescription = testDescription;
-            this.params = params;
-
-        }
-    }
-
     public static class LoginParams {
         String key1;
         String value1;
@@ -100,20 +96,20 @@ public class LoginAPI {
         List<TestCase> listTestCase = new ArrayList<TestCase>();
 
         LoginParams params1 = new LoginParams("email", "thanh12345@gmail.com", "password", "123456");
-        TestCase testCase1 = new TestCase("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase testCase1 = new TestCase<LoginParams>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         LoginParams params2 = new LoginParams("email", "12345@gmail.com", "password", "123456");
-        TestCase testCase2 = new TestCase("1002", "メールとパスワードは違いました", "Unit test 2: Should throw error 1002 with incorrect params", params2);
+        TestCase testCase2 = new TestCase<LoginParams>("1002", "", "Unit test 2: Should throw error 1002 with incorrect params", params2);
         listTestCase.add(testCase2);
 
+        LoginParams params3 = new LoginParams("email", "", "password", "123456");
+        TestCase testCase3 = new TestCase<LoginParams>("1001", "", "Unit test 3: Should throw error 1001 with empty params", params3);
+        listTestCase.add(testCase3);
+
         for (TestCase testCase : listTestCase){
-            new LoginAPI(testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation );
+            new LoginAPI((LoginParams) testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation );
         };
     }
-
-
-
-
 }
 
