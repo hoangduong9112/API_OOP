@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class LoginAPI {
 
-    public LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws MalformedURLException, ProtocolException,
+    public LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         ColorTerminal colorTerminal = new ColorTerminal();
         URL url = new URL(APIPath.LOGIN);
@@ -54,35 +54,17 @@ public class LoginAPI {
             Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
-            if (codeExpectation.length() > 0) {
-                assert rp.code.equals(codeExpectation);
-            }
-           if (messageExpectation.length() > 0) {
-               assert rp.message.equals(messageExpectation);
-           }
-            System.out.println(colorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
+            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
+            System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
             System.out.println();
         } finally {
             connection.disconnect();
         }
     }
-    public static class LoginParams {
-        String key1;
-        String value1;
-        String key2;
-        String value2;
 
-        public LoginParams(String key1, String value1, String key2, String value2) {
-            this.key1 = key1;
-            this.value1 = value1;
-            this.key2 = key2;
-            this.value2 = value2;
-
-        }
-    }
-
-    public static void main() throws MalformedURLException, ProtocolException,
-            IOException{
+    public static void main() throws
+            IOException {
         ColorTerminal colorTerminal = new ColorTerminal();
         List<TestCase> listTestCase = new ArrayList<TestCase>();
 
@@ -110,11 +92,26 @@ public class LoginAPI {
         TestCase testCase6 = new TestCase<LoginParams>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
         listTestCase.add(testCase6);
 
-        System.out.println(colorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
+        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
 
-        for (TestCase testCase : listTestCase){
-            new LoginAPI((LoginParams) testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation );
-        };
+        for (TestCase testCase : listTestCase) {
+            new LoginAPI((LoginParams) testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation);
+        }
+    }
+
+    public static class LoginParams {
+        String key1;
+        String value1;
+        String key2;
+        String value2;
+
+        public LoginParams(String key1, String value1, String key2, String value2) {
+            this.key1 = key1;
+            this.value1 = value1;
+            this.key2 = key2;
+            this.value2 = value2;
+
+        }
     }
 }
 
