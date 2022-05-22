@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +15,7 @@ import java.util.Map;
 
 public class LoginAPI {
 
-    public LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.LOGIN);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -64,46 +66,46 @@ public class LoginAPI {
 
     public static void main() throws
             IOException {
-        List<TestCase> listTestCase = new ArrayList<TestCase>();
+        List<TestCase<LoginParams>> listTestCase = new ArrayList<>();
 
         LoginParams params1 = new LoginParams("email", "thanh12345@gmail.com", "password", "123456");
-        TestCase testCase1 = new TestCase<LoginParams>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase<LoginParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         LoginParams params2 = new LoginParams("email", "12345@gmail.com", "password", "123456");
-        TestCase testCase2 = new TestCase<LoginParams>("1002", "", "Unit test 2: Should throw error 1002 with incorrect email", params2);
+        TestCase<LoginParams> testCase2 = new TestCase<>("1002", "", "Unit test 2: Should throw error 1002 with incorrect email", params2);
         listTestCase.add(testCase2);
 
         LoginParams params3 = new LoginParams("email", "thanh12345@gmail.com", "password", "1234567");
-        TestCase testCase3 = new TestCase<LoginParams>("1002", "", "Unit test 3: Should throw error 1002 with incorrect password", params3);
+        TestCase<LoginParams> testCase3 = new TestCase<>("1002", "", "Unit test 3: Should throw error 1002 with incorrect password", params3);
         listTestCase.add(testCase3);
 
         LoginParams params4 = new LoginParams("email", "1234", "password", "123456");
-        TestCase testCase4 = new TestCase<LoginParams>("1001", "", "Unit test 4: Should throw error 1001 with incorrect email", params4);
+        TestCase<LoginParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with incorrect email", params4);
         listTestCase.add(testCase4);
 
         LoginParams params5 = new LoginParams("email", "", "password", "123456");
-        TestCase testCase5 = new TestCase<LoginParams>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
+        TestCase<LoginParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
         listTestCase.add(testCase5);
 
         LoginParams params6 = new LoginParams("email", "thanh12345@gmail.com", "password", "");
-        TestCase testCase6 = new TestCase<LoginParams>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
+        TestCase<LoginParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
         listTestCase.add(testCase6);
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
 
-        for (TestCase testCase : listTestCase) {
-            new LoginAPI((LoginParams) testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation);
+        for (TestCase<LoginParams> testCase : listTestCase) {
+            new LoginAPI(testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation);
         }
     }
 
-    public static class LoginParams {
+    private static class LoginParams {
         String key1;
         String value1;
         String key2;
         String value2;
 
-        public LoginParams(String key1, String value1, String key2, String value2) {
+        private LoginParams(String key1, String value1, String key2, String value2) {
             this.key1 = key1;
             this.value1 = value1;
             this.key2 = key2;
