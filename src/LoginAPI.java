@@ -15,7 +15,6 @@ public class LoginAPI {
 
     public LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
-        ColorTerminal colorTerminal = new ColorTerminal();
         URL url = new URL(APIPath.LOGIN);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -65,7 +64,6 @@ public class LoginAPI {
 
     public static void main() throws
             IOException {
-        ColorTerminal colorTerminal = new ColorTerminal();
         List<TestCase> listTestCase = new ArrayList<TestCase>();
 
         LoginParams params1 = new LoginParams("email", "thanh12345@gmail.com", "password", "123456");
