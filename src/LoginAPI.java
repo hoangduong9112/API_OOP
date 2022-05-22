@@ -50,7 +50,7 @@ public class LoginAPI {
                     content.append(System.lineSeparator());
                 }
             }
-//            System.out.println(content.toString());
+
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -95,7 +95,7 @@ public class LoginAPI {
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<LoginParams> testCase : listTestCase) {
-            new LoginAPI(testCase.params, testCase.testDescription, testCase.codeExpectation, testCase.messageExpectation);
+            new LoginAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
@@ -113,5 +113,6 @@ public class LoginAPI {
 
         }
     }
+
 }
 
