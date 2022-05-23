@@ -15,31 +15,16 @@ public class TestCase<T> {
         return params;
     }
 
-    public void setParams(T params) {
-        this.params = params;
-    }
-
     public String getTestDescription() {
         return testDescription;
-    }
-
-    public void setTestDescription(String testDescription) {
-        this.testDescription = testDescription;
     }
 
     public String getCodeExpectation() {
         return codeExpectation;
     }
 
-    public void setCodeExpectation(String codeExpectation) {
-        this.codeExpectation = codeExpectation;
-    }
-
     public String getMessageExpectation() {
         return messageExpectation;
     }
 
-    public void setMessageExpectation(String messageExpectation) {
-        this.messageExpectation = messageExpectation;
-    }
 }
