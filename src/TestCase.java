@@ -1,21 +1,21 @@
-public class TestCase<ParamsType> {
-    private ParamsType params;
+public class TestCase<T> {
+    private T params;
     private String testDescription;
     private String codeExpectation;
     private String messageExpectation;
 
-    public TestCase(String codeExpectation, String messageExpectation, String testDescription, ParamsType params) {
+    public TestCase(String codeExpectation, String messageExpectation, String testDescription, T params) {
         this.codeExpectation = codeExpectation;
         this.messageExpectation = messageExpectation;
         this.testDescription = testDescription;
         this.params = params;
     }
 
-    public ParamsType getParams() {
+    public T getParams() {
         return params;
     }
 
-    public void setParams(ParamsType params) {
+    public void setParams(T params) {
         this.params = params;
     }
 

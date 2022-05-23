@@ -39,7 +39,6 @@ public class LoginAPI {
         try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {
             writer.write(postDataBytes);
             writer.flush();
-            writer.close();
             StringBuilder content;
             try (BufferedReader in = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()))) {
@@ -68,27 +67,32 @@ public class LoginAPI {
             IOException {
         List<TestCase<LoginParams>> listTestCase = new ArrayList<>();
 
-        LoginParams params1 = new LoginParams("email", "thanh12345@gmail.com", "password", "123456");
+        final String emailKey = "email";
+        final String passwordKey = "password";
+        final String correctEmail = "thanh12345@gmail.com";
+        final String correctPassword = "123456";
+
+        LoginParams params1 = new LoginParams(emailKey, correctEmail, passwordKey, correctPassword);
         TestCase<LoginParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
-        LoginParams params2 = new LoginParams("email", "12345@gmail.com", "password", "123456");
+        LoginParams params2 = new LoginParams(emailKey, "12345@gmail.com", passwordKey, correctPassword);
         TestCase<LoginParams> testCase2 = new TestCase<>("1002", "", "Unit test 2: Should throw error 1002 with incorrect email", params2);
         listTestCase.add(testCase2);
 
-        LoginParams params3 = new LoginParams("email", "thanh12345@gmail.com", "password", "1234567");
+        LoginParams params3 = new LoginParams(emailKey, correctEmail, passwordKey, "1234567");
         TestCase<LoginParams> testCase3 = new TestCase<>("1002", "", "Unit test 3: Should throw error 1002 with incorrect password", params3);
         listTestCase.add(testCase3);
 
-        LoginParams params4 = new LoginParams("email", "1234", "password", "123456");
+        LoginParams params4 = new LoginParams(emailKey, "1234", passwordKey, correctPassword);
         TestCase<LoginParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with incorrect email", params4);
         listTestCase.add(testCase4);
 
-        LoginParams params5 = new LoginParams("email", "", "password", "123456");
+        LoginParams params5 = new LoginParams(emailKey, "", passwordKey, correctPassword);
         TestCase<LoginParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
         listTestCase.add(testCase5);
 
-        LoginParams params6 = new LoginParams("email", "thanh12345@gmail.com", "password", "");
+        LoginParams params6 = new LoginParams(emailKey, correctEmail, passwordKey, "");
         TestCase<LoginParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
         listTestCase.add(testCase6);
 
