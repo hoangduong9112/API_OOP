@@ -116,7 +116,6 @@ public class LoginAPI {
             this.value1 = value1;
             this.key2 = key2;
             this.value2 = value2;
-`
         }
     }
 

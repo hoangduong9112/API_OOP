@@ -17,8 +17,12 @@ public class ChangePasswordAPI {
 
     private ChangePasswordAPI(ChangePasswordParams changePasswordParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
-        URL url = new URL(APIPath.CHANGEPASS);
+        URL url = new URL(APIPath.CHANGE_PASS);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        if (!changePasswordParams.accessToken.equals("")) {
+            connection.addRequestProperty("Authorization", "Bearer " + changePasswordParams.accessToken);
+        }
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -69,33 +73,35 @@ public class ChangePasswordAPI {
             IOException {
         List<TestCase<ChangePasswordParams>> listTestCase = new ArrayList<>();
 
-        final String oldPasswordKey = "123456789";
+        final String oldPass = "old_pass";
+        final String newPass = "new_pass";
+        final String rePass = "re_pass";
 
-        ChangePasswordParams params1 = new ChangePasswordParams("old_pass", oldPasswordKey, "new_pass", "0987654321", "re_pass", "0987654321");
+        ChangePasswordParams params1 = new ChangePasswordParams(oldPass, "1234", newPass, "1234", rePass, "1234");
         TestCase<ChangePasswordParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
-        ChangePasswordParams params2 = new ChangePasswordParams("old_pass", oldPasswordKey, "new_pass", "0987654321", "re_pass", "");
+        ChangePasswordParams params2 = new ChangePasswordParams(oldPass, "1234", newPass, "12345", rePass, "");
         TestCase<ChangePasswordParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty re_pass", params2);
         listTestCase.add(testCase2);
 
-        ChangePasswordParams params3 = new ChangePasswordParams("old_pass", "1234", "new_pass", "123456", "re_pass", "123456");
-        TestCase<ChangePasswordParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should be successful with correct old_pass", params3);
+        ChangePasswordParams params3 = new ChangePasswordParams(oldPass, "123456", newPass, "123456", rePass, "123456");
+        TestCase<ChangePasswordParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with correct oldPass", params3);
         listTestCase.add(testCase3);
 
-        ChangePasswordParams params4 = new ChangePasswordParams("old_pass", oldPasswordKey, "new_pass", "", "re_pass", "0987654321");
+        ChangePasswordParams params4 = new ChangePasswordParams(oldPass, "1234", newPass, "", rePass, "0987654321");
         TestCase<ChangePasswordParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with empty new_pass", params4);
         listTestCase.add(testCase4);
 
-        ChangePasswordParams params5 = new ChangePasswordParams("old_pass", oldPasswordKey, "new_pass", "0987654321", "re_pass", "abcd");
-        TestCase<ChangePasswordParams> testCase5 = new TestCase<>("1000", "", "Unit test 5: Should throw error 1001 with re_pass is not similar to new_pass", params5);
+        ChangePasswordParams params5 = new ChangePasswordParams(oldPass, "1234", newPass, "0987654321", rePass, "abcd");
+        TestCase<ChangePasswordParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with re_pass is not similar to new_pass", params5);
         listTestCase.add(testCase5);
 
-        ChangePasswordParams params6 = new ChangePasswordParams("old_pass", "", "new_pass", "0987654321", "re_pass", "0987654321");
-        TestCase<ChangePasswordParams> testCase6 = new TestCase<>("1000", "", "Unit test 6: Should throw error 1001 with empty old_pass", params6);
+        ChangePasswordParams params6 = new ChangePasswordParams(oldPass, "", newPass, "0987654321", rePass, "0987654321");
+        TestCase<ChangePasswordParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty old_pass", params6);
         listTestCase.add(testCase6);
 
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing SignUp API" + ColorTerminal.ANSI_RESET);
+        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Change Password API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<ChangePasswordParams>testCase : listTestCase) {
             new ChangePasswordAPI (testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
@@ -110,6 +116,8 @@ public class ChangePasswordAPI {
         String key3;
         String value3;
 
+        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzNDA1MjIyLCJleHAiOjE2NTM3NjUyMjIsIm5iZiI6MTY1MzQwNTIyMiwianRpIjoiT05XZ3pNZ2VmS0MyQXU2OSIsInN1YiI6MjYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.CAYRjUHSDxnCH1_rgrmR2-DqysA4h9G2wbBF6-4gnLc";
+
         private ChangePasswordParams(String key1, String value1, String key2, String value2, String key3, String value3) {
             this.key1 = key1;
             this.value1 = value1;
@@ -117,6 +125,10 @@ public class ChangePasswordAPI {
             this.value2 = value2;
             this.key3 = key3;
             this.value3 = value3;
+        }
+
+        public void setAccessToken(String accessToken) {
+            this.accessToken = accessToken;
         }
     }
 
