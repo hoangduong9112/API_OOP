@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007867e5-7ebf-487a-a238-a0bf488dc672" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIPath.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ColorTerminal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginAPI$LoginParams.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginAPI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LoginAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EditAccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EditAccountAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +46,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />

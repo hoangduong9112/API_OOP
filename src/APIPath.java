@@ -28,4 +28,6 @@ public class APIPath {
     public static void setGetListComments(int auctionID) {
         GetListComments = String.format("https://auctions-app-2.herokuapp.com/api/comments/%d", auctionID);
     }
+    public static final String SIGNUP = "https://auctions-app-2.herokuapp.com/api/signup";
+    public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
 }

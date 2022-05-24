@@ -1,0 +1,14 @@
+
+\
+java:S1192S"FDefine a constant instead of duplicating this literal "hanoi" 9 times.(Šƒ”Ï
+\
+java:S1192S"FDefine a constant instead of duplicating this literal "duong" 9 times.(Šƒ”Ï
+^
+java:S1192S"HDefine a constant instead of duplicating this literal "123456" 17 times.(Šƒ”Ï
+\
+java:S1192S"FDefine a constant instead of duplicating this literal "09123" 9 times.(Šƒ”Ï
+X	java:S107‘"BConstructor has 12 parameters, which is greater than 7 authorized.(Éƒ¤°
+N	java:S106<"9Replace this use of System.out or System.err by a logger.(„ùµý
+N	java:S106?"9Replace this use of System.out or System.err by a logger.(à°£ò
+S	java:S106@"9Replace this use of System.out or System.err by a logger.(ªÓ¼áþÿÿÿÿ
+S	java:S106|"9Replace this use of System.out or System.err by a logger.(ÚŒÔøÿÿÿÿ
