@@ -12,11 +12,12 @@ import java.util.Map;
 
 public class GetListAuctionsByTypeAPI {
 
-    private GetListAuctionsByTypeAPI(APIParams APIParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
+    private GetListAuctionsByTypeAPI(APIParams apiParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
 
         Map<String, String> params = new HashMap<>();
-        params.put(APIParams.index, APIParams.indexValue);
-        params.put(APIParams.count, APIParams.countValue);
+        params.put(apiParams.index, apiParams.indexValue);
+        params.put(apiParams.count, apiParams.countValue);
+        System.out.println("TypeID: "+apiParams.typeID+ ", StatusID: "+apiParams.statusID+ ", Index: "+apiParams.indexValue +", Count: "+apiParams.countValue);
         StringBuilder query = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             if (query.length() != 0) {
@@ -26,12 +27,12 @@ public class GetListAuctionsByTypeAPI {
             query.append('=');
             query.append(param.getValue());
         }
-        APIPath.setGetListAuctionsByType(APIParams.typeID, APIParams.statusID);
+        APIPath.setGetListAuctionsByType(apiParams.typeID, apiParams.statusID);
         URL url = new URL(APIPath.getGetListAuctionsByType() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!APIParams.access_token_value.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + APIParams.access_token_value);
+        if (!apiParams.accessToken.equals("")) {
+            connection.addRequestProperty("Authorization", "Bearer " + apiParams.accessToken);
         }
         connection.setRequestMethod("GET");
 
@@ -67,6 +68,18 @@ public class GetListAuctionsByTypeAPI {
         TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
+        APIParams params2 = new APIParams(1, 0, index, "", count, "2");
+        TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+        listTestCase.add(testCase2);
+
+        APIParams params3 = new APIParams(2, 0, index, "1", count, "");
+        TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+        listTestCase.add(testCase3);
+
+        APIParams params4 = new APIParams(4, 0, index, "", count, "");
+        TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
+        listTestCase.add(testCase4);
+
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List Auctions By Type API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<APIParams> testCase : listTestCase) {
@@ -77,7 +90,7 @@ public class GetListAuctionsByTypeAPI {
     private static class APIParams {
         int typeID;
         int statusID;
-        String access_token_value = "";
+        String accessToken = "";
         String index;
         String indexValue;
         String count;
@@ -93,8 +106,8 @@ public class GetListAuctionsByTypeAPI {
         }
 
         //this func can use when user login success
-        public void setAccess_token_value(String access_token_value) {
-            this.access_token_value = access_token_value;
+        public void setAccessToken(String accessToken) {
+            this.accessToken = accessToken;
         }
     }
 

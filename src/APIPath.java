@@ -1,33 +1,33 @@
 public class APIPath {
     public static final String LOGIN = "https://auctions-app-2.herokuapp.com/api/login";
-    private static String GetListAuctionsByType;
-    private static String GetDetailAuction;
-
-    private static String GetListComments;
+    public static final String SIGNUP = "https://auctions-app-2.herokuapp.com/api/signup";
+    public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
+    private static String getListAuctionsByType;
+    private static String getDetailAuction;
+    private static String getListComments;
 
     public static String getGetListAuctionsByType() {
-        return GetListAuctionsByType;
+        return getListAuctionsByType;
     }
 
     public static void setGetListAuctionsByType(int typeId, int statusID) {
-        GetListAuctionsByType = String.format("https://auctions-app-2.herokuapp.com/api/auctions/listAuctions/%d/%d", typeId, statusID);
+        getListAuctionsByType = String.format("https://auctions-app-2.herokuapp.com/api/auctions/listAuctions/%d/%d", typeId, statusID);
     }
 
     public static String getGetDetailAuction() {
-        return GetDetailAuction;
+        return getDetailAuction;
     }
 
     public static void setGetDetailAuction(int auctionID) {
-        GetDetailAuction = String.format("https://auctions-app-2.herokuapp.com/api/auctions/detail/%d", auctionID);
+        getDetailAuction = String.format("https://auctions-app-2.herokuapp.com/api/auctions/detail/%d", auctionID);
     }
 
     public static String getGetListComments() {
-        return GetListComments;
+        return getListComments;
     }
 
     public static void setGetListComments(int auctionID) {
-        GetListComments = String.format("https://auctions-app-2.herokuapp.com/api/comments/%d", auctionID);
+        getListComments = String.format("https://auctions-app-2.herokuapp.com/api/comments/%d", auctionID);
     }
-    public static final String SIGNUP = "https://auctions-app-2.herokuapp.com/api/signup";
-    public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
+
 }
