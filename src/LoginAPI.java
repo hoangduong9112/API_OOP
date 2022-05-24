@@ -24,6 +24,8 @@ public class LoginAPI {
         Map<String, String> params = new HashMap<>();
         params.put(loginParams.key1, loginParams.value1);
         params.put(loginParams.key2, loginParams.value2);
+        System.out.println(params);
+
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             if (postData.length() != 0) {
