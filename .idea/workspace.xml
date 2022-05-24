@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007867e5-7ebf-487a-a238-a0bf488dc672" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SignUpAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/0/10e6eaaf61b58fb1beb979b4631c74dcce807f19" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/c/fcd4b80d1757190095eb4d6718439d3efea17ab9" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/APIPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignUpAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SignUpAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
