@@ -71,7 +71,7 @@ public class LoginAPI {
 
         final String emailKey = "email";
         final String passwordKey = "password";
-        final String correctEmail = "thanh12345@gmail.com";
+        final String correctEmail = "duonghoang@gmail.com";
         final String correctPassword = "123456";
 
         LoginParams params1 = new LoginParams(emailKey, correctEmail, passwordKey, correctPassword);
