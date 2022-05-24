@@ -20,8 +20,8 @@ public class EditAccountAPI {
         URL url = new URL(APIPath.EDIT_ACCOUNT);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!editAccountParams.access_token_value.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + editAccountParams.access_token_value);
+        if (!editAccountParams.accessToken.equals("")) {
+            connection.addRequestProperty("Authorization", "Bearer " + editAccountParams.accessToken);
         }
 
         connection.setRequestMethod("POST");
@@ -74,38 +74,36 @@ public class EditAccountAPI {
         List<TestCase<EditAccountParams>> listTestCase = new ArrayList<>();
 
         final String email = "email";
-        final String password = "password";
-        final String re_pass = "re_pass";
         final String address = "address";
         final String name = "name";
         final String phone = "phone";
         //Need to update new email to run test in Unit test 1
 
-        EditAccountParams params1 = new EditAccountParams(email, "duonghoang132@gmail.com", "address", "hanoi1", "name", "duong1", "phone", "091231");
+        EditAccountParams params1 = new EditAccountParams(email, "duonghoang132@gmail.com", address, "hanoi1", name, "duong1", phone, "091231");
         TestCase<EditAccountParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
-        EditAccountParams params2 = new EditAccountParams(email, "duonghoang123@gmail.com", "address", "hanoi", "name", "", "phone", "09123");
+        EditAccountParams params2 = new EditAccountParams(email, "duonghoang123@gmail.com", address, "hanoi", name, "", phone, "09123");
         TestCase<EditAccountParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty name", params2);
         listTestCase.add(testCase2);
 
-        EditAccountParams params3 = new EditAccountParams(email, "duonghoang124@gmail.com", "address", "hanoi", "name", "duong", "phone", "");
+        EditAccountParams params3 = new EditAccountParams(email, "duonghoang124@gmail.com", address, "hanoi", name, "duong", phone, "");
         TestCase<EditAccountParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
-        EditAccountParams params4 = new EditAccountParams(email, "duonghoang103@gmail.com", "address", "", "name", "duong", "phone", "09123");
+        EditAccountParams params4 = new EditAccountParams(email, "duonghoang103@gmail.com", address, "", name, "duong", phone, "09123");
         TestCase<EditAccountParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with with empty address", params4);
         listTestCase.add(testCase4);
 
-        EditAccountParams params5 = new EditAccountParams(email, "", "address", "hanoi", "name", "duong", "phone", "09123");
+        EditAccountParams params5 = new EditAccountParams(email, "", address, "hanoi", name, "duong", phone, "09123");
         TestCase<EditAccountParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
         listTestCase.add(testCase5);
 
-        EditAccountParams params6 = new EditAccountParams(email, "123", "address", "hanoi", "name", "duong", "phone", "09123");
+        EditAccountParams params6 = new EditAccountParams(email, "123", address, "hanoi", name, "duong", phone, "09123");
         TestCase<EditAccountParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with incorrect format email", params6);
         listTestCase.add(testCase6);
 
-        EditAccountParams params7 = new EditAccountParams(email, "duonghoang100@gmail.com", "address", "hanoi", "name", "duong", "phone", "09123");
+        EditAccountParams params7 = new EditAccountParams(email, "duonghoang100@gmail.com", address, "hanoi", name, "duong", phone, "09123");
         TestCase<EditAccountParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error 1001 with duplicated email", params7);
         listTestCase.add(testCase7);
 
@@ -127,7 +125,7 @@ public class EditAccountAPI {
         String value4;
 
 
-        String access_token_value = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzMzc1MTI4LCJleHAiOjE2NTM3MzUxMjgsIm5iZiI6MTY1MzM3NTEyOCwianRpIjoiRHNkUmMzNWhHWlZEbzV4ZCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.gCgcP2xedGxH7OMDSIrbRj2KgzEjVyOxs-n_StiXkI8";
+        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzMzc1MTI4LCJleHAiOjE2NTM3MzUxMjgsIm5iZiI6MTY1MzM3NTEyOCwianRpIjoiRHNkUmMzNWhHWlZEbzV4ZCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.gCgcP2xedGxH7OMDSIrbRj2KgzEjVyOxs-n_StiXkI8";
 
 
         private EditAccountParams(String key1, String value1, String key2, String value2, String key3, String value3, String key4, String value4) {
@@ -142,8 +140,8 @@ public class EditAccountAPI {
 
         }
 
-        public void setAccess_token_value(String access_token_value) {
-            this.access_token_value = access_token_value;
+        public void setAccessToken(String accessToken) {
+            this.accessToken = accessToken;
         }
     }
 
