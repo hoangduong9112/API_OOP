@@ -1,8 +1,8 @@
 public class TestCase<T> {
-    private T params;
-    private String testDescription;
-    private String codeExpectation;
-    private String messageExpectation;
+    private final T params;
+    private final String testDescription;
+    private final String codeExpectation;
+    private final String messageExpectation;
 
     public TestCase(String codeExpectation, String messageExpectation, String testDescription, T params) {
         this.codeExpectation = codeExpectation;
