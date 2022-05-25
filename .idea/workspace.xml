@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="007867e5-7ebf-487a-a238-a0bf488dc672" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GetListAuctionsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GetListAuctionsAPI.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/EditAccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EditAccountAPI.java" afterDir="false" />
+>>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

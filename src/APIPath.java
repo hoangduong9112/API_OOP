@@ -13,4 +13,7 @@ public class APIPath {
     }
 
 
+    public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
+
+
 }

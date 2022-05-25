@@ -5,7 +5,11 @@ public class Main {
         try {
             LoginAPI.main();
 //            SignUpAPI.main();
+
 //            GetListAuctionsAPI.main();
+
+//            EditAccountAPI.main();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
