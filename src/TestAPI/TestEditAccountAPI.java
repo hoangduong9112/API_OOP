@@ -60,7 +60,6 @@ public class TestEditAccountAPI {
                     content.append(System.lineSeparator());
                 }
             }
-            System.out.println(content.toString());
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -96,7 +95,7 @@ public class TestEditAccountAPI {
         TestCase<EditAccountParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
-//        EditAccountParams params4 = new EditAccountParams(email, "duonghoang@gmail.com", address, "", name, "duong", phone, "09123");
+//        EditAccountParams params4 = new EditAccountParams(email, "duonghoang123@gmail.com", address, "", name, "duong", phone, "09123");
 //        TestCase<EditAccountParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
 //        listTestCase.add(testCase4);
 

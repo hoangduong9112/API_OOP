@@ -55,7 +55,6 @@ public class LoginAPI {
 
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
-            System.out.println(rp.code);
             String accessToken = rp.data.access_token;
             return accessToken;
         } finally {
