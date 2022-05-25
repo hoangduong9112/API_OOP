@@ -1,3 +1,10 @@
+package TestAPI;
+
+import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -13,16 +20,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EditAccountAPI {
+public class TestEditAccountAPI {
 
-    private EditAccountAPI(EditAccountParams editAccountParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestEditAccountAPI(EditAccountParams editAccountParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.EDIT_ACCOUNT);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!editAccountParams.accessToken.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + editAccountParams.accessToken);
-        }
+        editAccountParams.setAccessToken();
+        connection.addRequestProperty("Authorization", "Bearer " + editAccountParams.accessToken);
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -55,7 +61,6 @@ public class EditAccountAPI {
                     content.append(System.lineSeparator());
                 }
             }
-
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -77,11 +82,11 @@ public class EditAccountAPI {
         final String address = "address";
         final String name = "name";
         final String phone = "phone";
-        //Need to update new email to run test in Unit test 1
+        //Test case 1 and 4 should be run independently with 1 other email
 
-        EditAccountParams params1 = new EditAccountParams(email, "duonghoang132@gmail.com", address, "hanoi1", name, "duong1", phone, "091231");
-        TestCase<EditAccountParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
-        listTestCase.add(testCase1);
+//        EditAccountParams params1 = new EditAccountParams(email, "duonghoang120@gmail.com", address, "hanoi1", name, "duong1", phone, "091231");
+//        TestCase<EditAccountParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+//        listTestCase.add(testCase1);
 
         EditAccountParams params2 = new EditAccountParams(email, "duonghoang123@gmail.com", address, "hanoi", name, "", phone, "09123");
         TestCase<EditAccountParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty name", params2);
@@ -91,9 +96,9 @@ public class EditAccountAPI {
         TestCase<EditAccountParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
-        EditAccountParams params4 = new EditAccountParams(email, "duonghoang103@gmail.com", address, "", name, "duong", phone, "09123");
-        TestCase<EditAccountParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with with empty address", params4);
-        listTestCase.add(testCase4);
+//        EditAccountParams params4 = new EditAccountParams(email, "duonghoang123@gmail.com", address, "", name, "duong", phone, "09123");
+//        TestCase<EditAccountParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
+//        listTestCase.add(testCase4);
 
         EditAccountParams params5 = new EditAccountParams(email, "", address, "hanoi", name, "duong", phone, "09123");
         TestCase<EditAccountParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
@@ -110,7 +115,7 @@ public class EditAccountAPI {
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Edit Account API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<EditAccountParams> testCase : listTestCase) {
-            new EditAccountAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestEditAccountAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
@@ -123,10 +128,7 @@ public class EditAccountAPI {
         String value3;
         String key4;
         String value4;
-
-
-        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzMzc1MTI4LCJleHAiOjE2NTM3MzUxMjgsIm5iZiI6MTY1MzM3NTEyOCwianRpIjoiRHNkUmMzNWhHWlZEbzV4ZCIsInN1YiI6MywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.gCgcP2xedGxH7OMDSIrbRj2KgzEjVyOxs-n_StiXkI8";
-
+        String accessToken;
 
         private EditAccountParams(String key1, String value1, String key2, String value2, String key3, String value3, String key4, String value4) {
             this.key1 = key1;
@@ -140,9 +142,17 @@ public class EditAccountAPI {
 
         }
 
-        public void setAccessToken(String accessToken) {
+        public void setAccessToken() {
+            String accessToken;
+            try {
+                accessToken = LoginAPI.call();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             this.accessToken = accessToken;
         }
+
+
     }
 
 }
