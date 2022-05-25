@@ -87,11 +87,11 @@ public class GetListAuctionsAPI {
         listTestCase.add(testCase6);
 
         GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "","user_id","");
-        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should be successful with correct param", params7);
+        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1000", "", "Unit test 7: Should be successful with correct param", params7);
         listTestCase.add(testCase7);
 
         GetListAuctionsParams params8 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should be successful with correct param", params8);
+        TestCase<GetListAuctionsParams> testCase8 = new TestCase<>("1000", "", "Unit test 8: Should be successful with correct param", params8);
         listTestCase.add(testCase8);
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List Auction API" + ColorTerminal.ANSI_RESET);

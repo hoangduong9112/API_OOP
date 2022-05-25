@@ -73,7 +73,7 @@ public class LoginAPI {
         final String correctPassword = "123456";
 
         LoginParams params1 = new LoginParams(emailKey, correctEmail, passwordKey, correctPassword);
-        TestCase<LoginParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should throw error 1002 with incorrect email", params1);
+        TestCase<LoginParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         LoginParams params2 = new LoginParams(emailKey, "12345@gmail.com", passwordKey, correctPassword);
