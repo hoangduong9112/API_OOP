@@ -1,3 +1,6 @@
+package TestAPI;
+
+import Utils.*;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -13,9 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SignUpAPI {
+public class TestSignUpAPI {
 
-    private SignUpAPI(SignUpParams signUpParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestSignUpAPI(SignUpParams signUpParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.SIGNUP);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -80,7 +83,7 @@ public class SignUpAPI {
 
         //Need to update new email to run test
 
-        SignUpParams params1 = new SignUpParams(email, "duonghoang120@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
+        SignUpParams params1 = new SignUpParams(email, "duonghoang@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
         TestCase<SignUpParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
@@ -92,7 +95,7 @@ public class SignUpAPI {
         TestCase<SignUpParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
-        SignUpParams params4 = new SignUpParams(email, "duonghoang103@gmail.com", password, "123456", re_pass, "123456", address, "", name, "duong", phone, "09123");
+        SignUpParams params4 = new SignUpParams(email, "duonghoang1@gmail.com", password, "123456", re_pass, "123456", address, "", name, "duong", phone, "09123");
         TestCase<SignUpParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
         listTestCase.add(testCase4);
 
@@ -117,14 +120,14 @@ public class SignUpAPI {
         listTestCase.add(testCase9);
 
         SignUpParams params10 = new SignUpParams(email, "duonghoang15@gmail.com", password, "123456", re_pass, "123", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase10 = new TestCase<>("1001", "", "Unit test 9: Should throw error 1001 with wrong repass", params10);
+        TestCase<SignUpParams> testCase10 = new TestCase<>("1001", "", "Unit test 10: Should throw error 1001 with wrong repass", params10);
         listTestCase.add(testCase10);
 
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing SignUp API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<SignUpParams> testCase : listTestCase) {
-            new SignUpAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestSignUpAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
