@@ -1,3 +1,7 @@
+package TestAPI;
+
+import Utils.*;
+import Utils.API.LoginAPI;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -13,17 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateBidAPI {
+public class TestCreateBidAPI {
 
-    private CreateBidAPI(CreateBidParams createBidParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestCreateBidAPI(CreateBidParams createBidParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         APIPath.setCreateBid(createBidParams.auctionID);
         URL url = new URL(APIPath.getCreateBid());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!createBidParams.accessToken.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + createBidParams.accessToken);
-        }
+        createBidParams.setAccessToken();
+        connection.addRequestProperty("Authorization", "Bearer " + createBidParams.accessToken);
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -75,8 +78,8 @@ public class CreateBidAPI {
         final String price = "price";
         final String bidLastID = "bidLastID";
 
-        // NEED TO INCREASE THE PRICE AFTER EACH TEST
-        CreateBidParams params1 = new CreateBidParams(5, price, "80000000005", bidLastID, "39");
+
+        CreateBidParams params1 = new CreateBidParams(5, price, "80000000006", bidLastID, "39");
         TestCase<CreateBidParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
@@ -91,10 +94,10 @@ public class CreateBidAPI {
         CreateBidParams params4 = new CreateBidParams(5, price, "", bidLastID, "");
         TestCase<CreateBidParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with empty price and bidLastID", params4);
         listTestCase.add(testCase4);
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Edit Account API" + ColorTerminal.ANSI_RESET);
+        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Create Bid API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<CreateBidParams> testCase : listTestCase) {
-            new CreateBidAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestCreateBidAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
@@ -106,7 +109,7 @@ public class CreateBidAPI {
         int auctionID;
 
 
-        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzNDQwMjkxLCJleHAiOjE2NTM4MDAyOTEsIm5iZiI6MTY1MzQ0MDI5MSwianRpIjoia2lQWVZQVTZ6SmFubGJnYyIsInN1YiI6MzksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.VCE9L_EsFQBOCz24nEa1yRlDLbby0SFXEOKMUcr8rPI";
+        String accessToken;
 
 
         private CreateBidParams(int auctionID, String price, String priceValue, String bidLastID, String bidLastIDValue) {
@@ -117,7 +120,13 @@ public class CreateBidAPI {
             this.bidLastIDValue = bidLastIDValue;
         }
 
-        public void setAccessToken(String accessToken) {
+        public void setAccessToken() {
+            String accessToken;
+            try {
+                accessToken = LoginAPI.call();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             this.accessToken = accessToken;
         }
     }

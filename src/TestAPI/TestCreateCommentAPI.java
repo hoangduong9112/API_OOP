@@ -1,3 +1,7 @@
+package TestAPI;
+
+import Utils.*;
+import Utils.API.LoginAPI;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -13,17 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateCommentAPI {
+public class TestCreateCommentAPI {
 
-    private CreateCommentAPI(CreateCommentParams createCommentParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestCreateCommentAPI(CreateCommentParams createCommentParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         APIPath.setCreateComment(createCommentParams.auctionID);
         URL url = new URL(APIPath.getCreateComment());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!createCommentParams.accessToken.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + createCommentParams.accessToken);
-        }
+        createCommentParams.setAccessToken();
+        connection.addRequestProperty("Authorization", "Bearer " + createCommentParams.accessToken);
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -87,10 +90,11 @@ public class CreateCommentAPI {
         TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
         listTestCase.add(testCase3);
 
+
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Create Comment API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<CreateCommentParams> testCase : listTestCase) {
-            new CreateCommentAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestCreateCommentAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
@@ -100,7 +104,8 @@ public class CreateCommentAPI {
         String contentValue;
         String commentLastID;
         String commentLastIDValue;
-        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzNDQwMjkxLCJleHAiOjE2NTM4MDAyOTEsIm5iZiI6MTY1MzQ0MDI5MSwianRpIjoia2lQWVZQVTZ6SmFubGJnYyIsInN1YiI6MzksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.VCE9L_EsFQBOCz24nEa1yRlDLbby0SFXEOKMUcr8rPI";
+        String accessToken;
+
         private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue) {
             this.auctionID = auctionID;
             this.content = content;
@@ -109,7 +114,13 @@ public class CreateCommentAPI {
             this.commentLastIDValue = commentLastIDValue;
         }
 
-        public void setAccessToken(String accessToken) {
+        public void setAccessToken() {
+            String accessToken;
+            try {
+                accessToken = LoginAPI.call();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             this.accessToken = accessToken;
         }
     }
