@@ -3,8 +3,7 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +14,10 @@ public class GetListAuctionsAPI {
         Map<String, String> params = new HashMap<>();
         params.put(getListAuctionsParams.index, getListAuctionsParams.indexValue);
         params.put(getListAuctionsParams.count, getListAuctionsParams.countValue);
+        if(getListAuctionsParams.optinal.equals("category_id") || getListAuctionsParams.optinal.equals("type")){
+            params.put(getListAuctionsParams.optinal,getListAuctionsParams.optionalValue);
+        }
+
         StringBuilder query = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
             if (query.length() != 0) {
@@ -28,13 +31,12 @@ public class GetListAuctionsAPI {
         URL url = new URL(APIPath.getGetListAuctions() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!getListAuctionsParams.access_token_value.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + getListAuctionsParams.access_token_value);
+        if(getListAuctionsParams.optinal.equals("user_id")) {
+            connection.addRequestProperty("" + getListAuctionsParams.optinal, "" + getListAuctionsParams.optionalValue);
+            connection.addRequestProperty("Authorization", "Bearer " + getListAuctionsParams.acessToken);
         }
         connection.setRequestMethod("GET");
-        if(!getListAuctionsParams.remainder.isEmpty()){
-            connection.addRequestProperty("" + getListAuctionsParams.remainder, "" + getListAuctionsParams.remainderValue);
-        }
+
         try (BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()))) {
             String line;
@@ -80,16 +82,16 @@ public class GetListAuctionsAPI {
         TestCase<GetListAuctionsParams> testCase5 = new TestCase<>("1000", "OK", "Unit test 5: Should be successful with correct param", params5);
         listTestCase.add(testCase5);
 
-        GetListAuctionsParams params6 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase6 = new TestCase<>("1001", "Lỗi khi validate", "Unit test 6: Should be successful with correct param", params6);
+        GetListAuctionsParams params6 = new GetListAuctionsParams(3, "index", "", "count", "");
+        TestCase<GetListAuctionsParams> testCase6 = new TestCase<>("1000", "OK", "Unit test 6: Should be successful with correct param", params6);
         listTestCase.add(testCase6);
 
         GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "","user_id","");
-        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1001", "Lỗi khi validate", "Unit test 7: Should be successful with correct param", params7);
+        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should be successful with correct param", params7);
         listTestCase.add(testCase7);
 
         GetListAuctionsParams params8 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase8 = new TestCase<>("1001", "Lỗi khi validate", "Unit test 8: Should be successful with correct param", params8);
+        TestCase<GetListAuctionsParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should be successful with correct param", params8);
         listTestCase.add(testCase8);
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List Auction API" + ColorTerminal.ANSI_RESET);
@@ -100,13 +102,13 @@ public class GetListAuctionsAPI {
 
     private static class GetListAuctionsParams {
         int statusID;
-        String access_token_value = "";
+        String acessToken = "";
         String index;
         String indexValue;
         String count;
         String countValue;
-        String remainder = "";
-        String remainderValue;
+        String optinal = "";
+        String optionalValue;
         private GetListAuctionsParams(int statusID, String index, String indexValue, String count, String countValue) {
             this.statusID = statusID;
             this.index = index;
@@ -114,17 +116,17 @@ public class GetListAuctionsAPI {
             this.count = count;
             this.countValue = countValue;
         }
-        private GetListAuctionsParams(int statusID, String index, String indexValue, String count, String countValue, String remainder, String remainderValue) {
+        private GetListAuctionsParams(int statusID, String index, String indexValue, String count, String countValue, String optinal, String optionalValue) {
             this.statusID = statusID;
             this.index = index;
             this.indexValue = indexValue;
             this.count = count;
             this.countValue = countValue;
-            this.remainder = remainder;
-            this.remainderValue = remainderValue;
+            this.optinal = optinal;
+            this.optionalValue = optionalValue;
         }
-        public void setAccess_token_value(String access_token_value) {
-            this.access_token_value = access_token_value;
+        public void setAccessToken(String acessToken) {
+            this.acessToken = acessToken;
         }
     }
 
