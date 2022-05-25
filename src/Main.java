@@ -6,6 +6,8 @@ public class Main {
             LoginAPI.main();
 //            SignUpAPI.main();
 //            EditAccountAPI.main();
+//            CreateCommentAPI.main();
+//            CreateBidAPI.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
