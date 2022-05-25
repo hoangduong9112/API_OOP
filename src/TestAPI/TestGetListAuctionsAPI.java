@@ -1,3 +1,6 @@
+package TestAPI;
+
+import Utils.*;
 import com.google.gson.Gson;
 
 import java.io.*;
@@ -9,8 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GetListAuctionsAPI {
-    private GetListAuctionsAPI(GetListAuctionsParams getListAuctionsParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
+public class TestGetListAuctionsAPI {
+    private TestGetListAuctionsAPI(GetListAuctionsParams getListAuctionsParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
         Map<String, String> params = new HashMap<>();
         params.put(getListAuctionsParams.index, getListAuctionsParams.indexValue);
         params.put(getListAuctionsParams.count, getListAuctionsParams.countValue);
@@ -95,7 +98,7 @@ public class GetListAuctionsAPI {
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List Auction API" + ColorTerminal.ANSI_RESET);
         for (TestCase<GetListAuctionsParams> testCase : listTestCase) {
-            new GetListAuctionsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestGetListAuctionsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
