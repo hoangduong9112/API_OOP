@@ -14,7 +14,7 @@ public class GetListAuctionsAPI {
         Map<String, String> params = new HashMap<>();
         params.put(getListAuctionsParams.index, getListAuctionsParams.indexValue);
         params.put(getListAuctionsParams.count, getListAuctionsParams.countValue);
-        if(getListAuctionsParams.optinal.equals("category_id") || getListAuctionsParams.optinal.equals("type")){
+        if(!getListAuctionsParams.optinal.equals("")){
             params.put(getListAuctionsParams.optinal,getListAuctionsParams.optionalValue);
         }
 
@@ -31,9 +31,8 @@ public class GetListAuctionsAPI {
         URL url = new URL(APIPath.getGetListAuctions() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if(getListAuctionsParams.optinal.equals("user_id")) {
-            connection.addRequestProperty("" + getListAuctionsParams.optinal, "" + getListAuctionsParams.optionalValue);
-            connection.addRequestProperty("Authorization", "Bearer " + getListAuctionsParams.acessToken);
+        if (!getListAuctionsParams.accessToken.equals("")) {
+            connection.addRequestProperty("Authorization", "Bearer " + getListAuctionsParams.accessToken);
         }
         connection.setRequestMethod("GET");
 
@@ -102,7 +101,7 @@ public class GetListAuctionsAPI {
 
     private static class GetListAuctionsParams {
         int statusID;
-        String acessToken = "";
+        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzNDQwMjkxLCJleHAiOjE2NTM4MDAyOTEsIm5iZiI6MTY1MzQ0MDI5MSwianRpIjoia2lQWVZQVTZ6SmFubGJnYyIsInN1YiI6MzksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.VCE9L_EsFQBOCz24nEa1yRlDLbby0SFXEOKMUcr8rPI";
         String index;
         String indexValue;
         String count;
@@ -125,8 +124,8 @@ public class GetListAuctionsAPI {
             this.optinal = optinal;
             this.optionalValue = optionalValue;
         }
-        public void setAccessToken(String acessToken) {
-            this.acessToken = acessToken;
+        public void setAccessToken(String acccessToken) {
+            this.accessToken = accessToken;
         }
     }
 
