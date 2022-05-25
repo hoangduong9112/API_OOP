@@ -1,4 +1,5 @@
-import TestAPI.*;
+import TestAPI.TestEditAccountAPI;
+import TestAPI.TestLoginAPI;
 
 import java.io.IOException;
 

@@ -1,6 +1,9 @@
 package TestAPI;
 
-import Utils.*;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

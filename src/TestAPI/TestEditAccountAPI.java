@@ -1,7 +1,10 @@
 package TestAPI;
 
-import Utils.*;
 import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -24,10 +27,8 @@ public class TestEditAccountAPI {
         URL url = new URL(APIPath.EDIT_ACCOUNT);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-
-            editAccountParams.setAccessToken();
-            System.out.println(editAccountParams.accessToken);
-            connection.addRequestProperty("Authorization", "Bearer " + editAccountParams.accessToken);
+        editAccountParams.setAccessToken();
+        connection.addRequestProperty("Authorization", "Bearer " + editAccountParams.accessToken);
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -128,6 +129,7 @@ public class TestEditAccountAPI {
         String key4;
         String value4;
         String accessToken;
+
         private EditAccountParams(String key1, String value1, String key2, String value2, String key3, String value3, String key4, String value4) {
             this.key1 = key1;
             this.value1 = value1;
@@ -143,7 +145,7 @@ public class TestEditAccountAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-            accessToken = LoginAPI.call();
+                accessToken = LoginAPI.call();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

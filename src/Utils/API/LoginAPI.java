@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class LoginAPI {
 
-     public static String call() throws
+    public static String call() throws
             IOException {
         URL url = new URL(APIPath.LOGIN);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
