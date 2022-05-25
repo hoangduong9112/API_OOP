@@ -14,8 +14,11 @@ public class GetDetailAuctionAPI {
         URL url = new URL(APIPath.getGetDetailAuction());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         System.out.println("AuctionID: "+apiParams.auctionID);
-        if (!apiParams.accessToken.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + apiParams.accessToken);
+        if (!AccessToken.accessTokenValue.equals("")) {
+            connection.addRequestProperty("Authorization", "Bearer " + AccessToken.accessTokenValue);
+            System.out.println("Token: True");
+        }else{
+            System.out.println("Token: Empty");
         }
         connection.setRequestMethod("GET");
 
@@ -44,22 +47,41 @@ public class GetDetailAuctionAPI {
     public static void main() throws
             IOException {
         List<TestCase<APIParams>> listTestCase = new ArrayList<>();
+        if (AccessToken.accessTokenValue.equals("")) {
+            APIParams params1 = new APIParams(1);
+            TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+            listTestCase.add(testCase1);
 
-        APIParams params1 = new APIParams(1);
-        TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
-        listTestCase.add(testCase1);
+            APIParams params2 = new APIParams(2);
+            TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+            listTestCase.add(testCase2);
 
-        APIParams params2 = new APIParams(2);
-        TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
-        listTestCase.add(testCase2);
+            APIParams params3 = new APIParams(4);
+            TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+            listTestCase.add(testCase3);
 
-        APIParams params3 = new APIParams(4);
-        TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
-        listTestCase.add(testCase3);
+            APIParams params4 = new APIParams(5);
+            TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params4);
+            listTestCase.add(testCase4);
+        }else{
+            APIParams params1 = new APIParams(5);
+            TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+            listTestCase.add(testCase1);
 
-        APIParams params4 = new APIParams(5);
-        TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params4);
-        listTestCase.add(testCase4);
+            APIParams params2 = new APIParams(4);
+            TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+            listTestCase.add(testCase2);
+
+            APIParams params3 = new APIParams(1);
+            TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+            listTestCase.add(testCase3);
+
+            APIParams params4 = new APIParams(2);
+            TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params4);
+            listTestCase.add(testCase4);
+        }
+
+
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get Detail Auction API" + ColorTerminal.ANSI_RESET);
 

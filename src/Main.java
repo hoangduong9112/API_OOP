@@ -6,6 +6,7 @@ public class Main {
 //            LoginAPI.main();
             GetListAuctionsByTypeAPI.main();
 //            GetDetailAuctionAPI.main();
+
 //            GetListComments.main();
 //            SignUpAPI.main();
 //            EditAccountAPI.main();

@@ -30,8 +30,11 @@ public class GetListComments {
         URL url = new URL(APIPath.getGetListComments() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!apiParams.accessToken.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + apiParams.accessToken);
+        if (!AccessToken.accessTokenValue.equals("")) {
+            connection.addRequestProperty("Authorization", "Bearer " + AccessToken.accessTokenValue);
+            System.out.println("Token: True");
+        }else{
+            System.out.println("Token: Empty");
         }
         connection.setRequestMethod("GET");
 
@@ -62,22 +65,39 @@ public class GetListComments {
         final String index = "index";
         final String count = "count";
         List<TestCase<APIParams>> listTestCase = new ArrayList<>();
-        APIParams params1 = new APIParams(1, index, "1", count, "5");
-        TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
-        listTestCase.add(testCase1);
+        if (AccessToken.accessTokenValue.equals("")) {
+            APIParams params1 = new APIParams(1, index, "1", count, "5");
+            TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+            listTestCase.add(testCase1);
 
-        APIParams params2 = new APIParams(1, index, "", count, "2");
-        TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
-        listTestCase.add(testCase2);
+            APIParams params2 = new APIParams(1, index, "", count, "2");
+            TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+            listTestCase.add(testCase2);
 
-        APIParams params3 = new APIParams(1, index, "", count, "");
-        TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
-        listTestCase.add(testCase3);
+            APIParams params3 = new APIParams(1, index, "", count, "");
+            TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+            listTestCase.add(testCase3);
 
-        APIParams params4 = new APIParams(1, index, "1", count, "");
-        TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
-        listTestCase.add(testCase4);
+            APIParams params4 = new APIParams(1, index, "1", count, "");
+            TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
+            listTestCase.add(testCase4);
+        }else{
+            APIParams params1 = new APIParams(1, index, "1", count, "5");
+            TestCase<APIParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+            listTestCase.add(testCase1);
 
+            APIParams params2 = new APIParams(1, index, "", count, "2");
+            TestCase<APIParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+            listTestCase.add(testCase2);
+
+            APIParams params3 = new APIParams(1, index, "", count, "");
+            TestCase<APIParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+            listTestCase.add(testCase3);
+
+            APIParams params4 = new APIParams(1, index, "1", count, "");
+            TestCase<APIParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
+            listTestCase.add(testCase4);
+        }
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List List Comments API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<APIParams> testCase : listTestCase) {
