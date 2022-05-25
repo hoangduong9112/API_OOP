@@ -1,3 +1,9 @@
+package TestAPI;
+
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -13,9 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoginAPI {
+public class TestLoginAPI {
 
-    private LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestLoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.LOGIN);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -24,7 +30,6 @@ public class LoginAPI {
         Map<String, String> params = new HashMap<>();
         params.put(loginParams.key1, loginParams.value1);
         params.put(loginParams.key2, loginParams.value2);
-        System.out.println(params);
 
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
@@ -71,7 +76,7 @@ public class LoginAPI {
 
         final String emailKey = "email";
         final String passwordKey = "password";
-        final String correctEmail = "thanh12345@gmail.com";
+        final String correctEmail = "duonghoang@gmail.com";
         final String correctPassword = "123456";
 
         LoginParams params1 = new LoginParams(emailKey, correctEmail, passwordKey, correctPassword);
@@ -101,7 +106,7 @@ public class LoginAPI {
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<LoginParams> testCase : listTestCase) {
-            new LoginAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestLoginAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
