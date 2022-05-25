@@ -1,12 +1,17 @@
 package TestAPI;
 
-import Utils.*;
+import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +22,8 @@ public class TestGetListAuctionsAPI {
         Map<String, String> params = new HashMap<>();
         params.put(getListAuctionsParams.index, getListAuctionsParams.indexValue);
         params.put(getListAuctionsParams.count, getListAuctionsParams.countValue);
-        if(!getListAuctionsParams.optinal.equals("")){
-            params.put(getListAuctionsParams.optinal,getListAuctionsParams.optionalValue);
+        if (!getListAuctionsParams.optinal.equals("")) {
+            params.put(getListAuctionsParams.optinal, getListAuctionsParams.optionalValue);
         }
 
         StringBuilder query = new StringBuilder();
@@ -34,9 +39,9 @@ public class TestGetListAuctionsAPI {
         URL url = new URL(APIPath.getGetListAuctions() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if (!getListAuctionsParams.accessToken.equals("")) {
-            connection.addRequestProperty("Authorization", "Bearer " + getListAuctionsParams.accessToken);
-        }
+        getListAuctionsParams.setAccessToken();
+        connection.addRequestProperty("Authorization", "Bearer " + getListAuctionsParams.accessToken);
+
         connection.setRequestMethod("GET");
 
         try (BufferedReader in = new BufferedReader(
@@ -61,22 +66,23 @@ public class TestGetListAuctionsAPI {
 
 
     }
-    public static void main() throws IOException{
+
+    public static void main() throws IOException {
         List<TestCase<GetListAuctionsParams>> listTestCase = new ArrayList<>();
 
         GetListAuctionsParams params1 = new GetListAuctionsParams(1, "index", "1", "count", "1");
         TestCase<GetListAuctionsParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
-        GetListAuctionsParams params2 = new GetListAuctionsParams(1, "index", "1", "count", "1", "user_id", "3" );
+        GetListAuctionsParams params2 = new GetListAuctionsParams(1, "index", "1", "count", "1", "user_id", "3");
         TestCase<GetListAuctionsParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
         listTestCase.add(testCase2);
 
-        GetListAuctionsParams params3 = new GetListAuctionsParams(1, "index", "1", "count", "1", "category_id", "1" );
+        GetListAuctionsParams params3 = new GetListAuctionsParams(1, "index", "1", "count", "1", "category_id", "1");
         TestCase<GetListAuctionsParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
         listTestCase.add(testCase3);
 
-        GetListAuctionsParams params4 = new GetListAuctionsParams(1, "index", "1", "count", "1", "type", "1" );
+        GetListAuctionsParams params4 = new GetListAuctionsParams(1, "index", "1", "count", "1", "type", "1");
         TestCase<GetListAuctionsParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
         listTestCase.add(testCase4);
 
@@ -88,7 +94,7 @@ public class TestGetListAuctionsAPI {
         TestCase<GetListAuctionsParams> testCase6 = new TestCase<>("1000", "OK", "Unit test 6: Should be successful with correct param", params6);
         listTestCase.add(testCase6);
 
-        GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "","user_id","");
+        GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "", "user_id", "");
         TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1000", "", "Unit test 7: Should be successful with correct param", params7);
         listTestCase.add(testCase7);
 
@@ -104,13 +110,14 @@ public class TestGetListAuctionsAPI {
 
     private static class GetListAuctionsParams {
         int statusID;
-        String accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hdWN0aW9ucy1hcHAtMi5oZXJva3VhcHAuY29tXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjUzNDQwMjkxLCJleHAiOjE2NTM4MDAyOTEsIm5iZiI6MTY1MzQ0MDI5MSwianRpIjoia2lQWVZQVTZ6SmFubGJnYyIsInN1YiI6MzksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.VCE9L_EsFQBOCz24nEa1yRlDLbby0SFXEOKMUcr8rPI";
+        String accessToken;
         String index;
         String indexValue;
         String count;
         String countValue;
         String optinal = "";
         String optionalValue;
+
         private GetListAuctionsParams(int statusID, String index, String indexValue, String count, String countValue) {
             this.statusID = statusID;
             this.index = index;
@@ -118,6 +125,7 @@ public class TestGetListAuctionsAPI {
             this.count = count;
             this.countValue = countValue;
         }
+
         private GetListAuctionsParams(int statusID, String index, String indexValue, String count, String countValue, String optinal, String optionalValue) {
             this.statusID = statusID;
             this.index = index;
@@ -127,7 +135,14 @@ public class TestGetListAuctionsAPI {
             this.optinal = optinal;
             this.optionalValue = optionalValue;
         }
-        public void setAccessToken(String acccessToken) {
+
+        public void setAccessToken() {
+            String accessToken;
+            try {
+                accessToken = LoginAPI.call();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             this.accessToken = accessToken;
         }
     }
