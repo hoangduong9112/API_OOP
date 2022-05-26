@@ -1,7 +1,10 @@
 package TestAPI;
 
-import Utils.*;
 import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -25,8 +28,10 @@ public class TestCreateCommentAPI {
         URL url = new URL(APIPath.getCreateComment());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+
         createCommentParams.setAccessToken();
         connection.addRequestProperty("Authorization", "Bearer " + createCommentParams.accessToken);
+
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -57,7 +62,6 @@ public class TestCreateCommentAPI {
                     content.append(System.lineSeparator());
                 }
             }
-
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -86,10 +90,10 @@ public class TestCreateCommentAPI {
         TestCase<CreateCommentParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
         listTestCase.add(testCase2);
 
+        // data have code 1008
         CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6");
         TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
         listTestCase.add(testCase3);
-
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Create Comment API" + ColorTerminal.ANSI_RESET);
 
