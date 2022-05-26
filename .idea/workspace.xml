@@ -4,11 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="801719e7-d386-4838-81e6-0c9b1d26c0c4" name="Changes" comment="">
+    <list default="true" id="f3feea4d-db33-4209-a2ae-3a4741bf4c9b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestGetListAuctionsAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/API/LoginAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Utils/DataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/APIPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ColorTerminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ColorTerminal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreateBidAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestCreateBidAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreateCommentAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestCreateCommentAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EditAccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestEditAccountAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestLoginAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetListAuctionsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestGetListAuctionsAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/APIPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SignUpAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestSignUpAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/TestCase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +39,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="294BOXgP6GBb4XFYMvZTbqGsN23" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -76,7 +91,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="007867e5-7ebf-487a-a238-a0bf488dc672" name="Changes" comment="" />
+      <changelist id="f3feea4d-db33-4209-a2ae-3a4741bf4c9b" name="Changes" comment="" />
       <created>1652362448061</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

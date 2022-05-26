@@ -17,5 +17,26 @@ public class APIPath {
         GetListAuctions = String.format("https://auctions-app-2.herokuapp.com/api/auctions/%d", statusID);
     }
 
+    // CreateCommentPath
+    private static String CreateComment;
+
+    public static String getCreateComment() {
+        return CreateComment;
+    }
+
+    public static void setCreateComment(int auctionID) {
+        CreateComment = String.format("https://auctions-app-2.herokuapp.com/api/comments/create/%d", auctionID);
+    }
+
+    // CreateBidPath
+    private static String CreateBid;
+
+    public static String getCreateBid() {
+        return CreateBid;
+    }
+
+    public static void setCreateBid(int auctionID) {
+        CreateBid = String.format("https://auctions-app-2.herokuapp.com/api/bids/create/%d", auctionID);
+    }
 
 }
