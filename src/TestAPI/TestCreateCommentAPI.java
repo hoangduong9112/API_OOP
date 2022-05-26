@@ -66,7 +66,6 @@ public class TestCreateCommentAPI {
             Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
-            System.out.println(rp.code);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
             System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
