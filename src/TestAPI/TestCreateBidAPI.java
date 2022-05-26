@@ -1,7 +1,10 @@
 package TestAPI;
 
-import Utils.*;
 import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -78,8 +81,9 @@ public class TestCreateBidAPI {
         final String price = "price";
         final String bidLastID = "bidLastID";
 
+        // Testcase 1 and 3 need to update price higher than old price
 
-        CreateBidParams params1 = new CreateBidParams(5, price, "80000000006", bidLastID, "39");
+        CreateBidParams params1 = new CreateBidParams(5, price, "80000000009", bidLastID, "39");
         TestCase<CreateBidParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
@@ -87,12 +91,12 @@ public class TestCreateBidAPI {
         TestCase<CreateBidParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty price", params2);
         listTestCase.add(testCase2);
 
-        CreateBidParams params3 = new CreateBidParams(5, price, "80000000005", bidLastID, "");
+        CreateBidParams params3 = new CreateBidParams(5, price, "80000000010", bidLastID, "");
         TestCase<CreateBidParams> testCase3 = new TestCase<>("1000", "", "Unit test 3: Should be successful with empty bidLastID", params3);
         listTestCase.add(testCase3);
 
-        CreateBidParams params4 = new CreateBidParams(5, price, "", bidLastID, "");
-        TestCase<CreateBidParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with empty price and bidLastID", params4);
+        CreateBidParams params4 = new CreateBidParams(5, price, "80", bidLastID, "");
+        TestCase<CreateBidParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with lower price", params4);
         listTestCase.add(testCase4);
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Create Bid API" + ColorTerminal.ANSI_RESET);
 

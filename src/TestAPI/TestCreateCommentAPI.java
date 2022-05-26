@@ -1,7 +1,10 @@
 package TestAPI;
 
-import Utils.*;
 import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -25,8 +28,10 @@ public class TestCreateCommentAPI {
         URL url = new URL(APIPath.getCreateComment());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+
         createCommentParams.setAccessToken();
         connection.addRequestProperty("Authorization", "Bearer " + createCommentParams.accessToken);
+
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -57,11 +62,12 @@ public class TestCreateCommentAPI {
                     content.append(System.lineSeparator());
                 }
             }
-
+            System.out.println(content);
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
+            System.out.println(rp.code);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
             System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
@@ -78,18 +84,18 @@ public class TestCreateCommentAPI {
         final String comment_last_id = "comment_last_id";
 
 
-        CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39");
+        CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39", true);
         TestCase<CreateCommentParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
         listTestCase.add(testCase1);
 
-        CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "");
+        CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "", true);
         TestCase<CreateCommentParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
         listTestCase.add(testCase2);
 
-        CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6");
+        // data have code 1008
+        CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6", true);
         TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
         listTestCase.add(testCase3);
-
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Create Comment API" + ColorTerminal.ANSI_RESET);
 
@@ -105,13 +111,15 @@ public class TestCreateCommentAPI {
         String commentLastID;
         String commentLastIDValue;
         String accessToken;
+        Boolean isToken;
 
-        private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue) {
+        private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue, Boolean isToken) {
             this.auctionID = auctionID;
             this.content = content;
             this.contentValue = contentValue;
             this.commentLastID = commentLastID;
             this.commentLastIDValue = commentLastIDValue;
+            this.isToken = isToken;
         }
 
         public void setAccessToken() {
