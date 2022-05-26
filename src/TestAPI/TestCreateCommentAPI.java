@@ -62,7 +62,6 @@ public class TestCreateCommentAPI {
                     content.append(System.lineSeparator());
                 }
             }
-            System.out.println(content);
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -84,16 +83,16 @@ public class TestCreateCommentAPI {
         final String comment_last_id = "comment_last_id";
 
 
-        CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39", true);
+        CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39");
         TestCase<CreateCommentParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
         listTestCase.add(testCase1);
 
-        CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "", true);
+        CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "");
         TestCase<CreateCommentParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
         listTestCase.add(testCase2);
 
         // data have code 1008
-        CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6", true);
+        CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6");
         TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
         listTestCase.add(testCase3);
 
@@ -111,15 +110,13 @@ public class TestCreateCommentAPI {
         String commentLastID;
         String commentLastIDValue;
         String accessToken;
-        Boolean isToken;
 
-        private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue, Boolean isToken) {
+        private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue) {
             this.auctionID = auctionID;
             this.content = content;
             this.contentValue = contentValue;
             this.commentLastID = commentLastID;
             this.commentLastIDValue = commentLastIDValue;
-            this.isToken = isToken;
         }
 
         public void setAccessToken() {
