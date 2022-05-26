@@ -63,12 +63,6 @@ public class TestLoginAPI {
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
-            JsonElement jElement = new JsonParser().parse(content.toString());
-            JsonObject jObject = jElement.getAsJsonObject();
-            if(rp.code.equals("1000")){
-                AccessToken.accessTokenValue = (jObject.getAsJsonObject("data").get("access_token")).toString();
-            }
-
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);

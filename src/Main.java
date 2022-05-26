@@ -6,10 +6,12 @@ public class Main {
     public static void main(String[] args) {
         try {
 
-//            GetListAuctionsByTypeAPI.main();
-//            GetListComments.main();
-
-            TestLoginAPI.main();
+//            TestAPI.GetListAuctionsByTypeAPI.main();
+//            TestAPI.GetListComments.main();
+//            TestAPI.TestGetDetailAuctionAPI.main();
+//            TestAPI.TestGetListAuctionsByTypeAPI.main();
+            TestAPI.TestGetListComments.main();
+//            TestLoginAPI.main();
 //            TestSignUpAPI.main(); // need update test case
 //            TestEditAccountAPI.main(); // need update test case
 
