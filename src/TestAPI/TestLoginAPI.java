@@ -1,3 +1,9 @@
+package TestAPI;
+
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -16,9 +22,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoginAPI {
+public class TestLoginAPI {
 
-    private LoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestLoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.LOGIN);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -27,7 +33,6 @@ public class LoginAPI {
         Map<String, String> params = new HashMap<>();
         params.put(loginParams.key1, loginParams.value1);
         params.put(loginParams.key2, loginParams.value2);
-        System.out.println(params);
 
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
@@ -60,9 +65,6 @@ public class LoginAPI {
 
             JsonElement jElement = new JsonParser().parse(content.toString());
             JsonObject jObject = jElement.getAsJsonObject();
-            if(rp.code.equals("1000")){
-                AccessToken.accessTokenValue = (jObject.getAsJsonObject("data").get("access_token")).toString();
-            }
 
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
@@ -110,7 +112,7 @@ public class LoginAPI {
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Login API" + ColorTerminal.ANSI_RESET);
 
         for (TestCase<LoginParams> testCase : listTestCase) {
-            new LoginAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestLoginAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
