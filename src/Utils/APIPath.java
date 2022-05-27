@@ -39,4 +39,14 @@ public class APIPath {
         CreateBid = String.format("https://auctions-app-2.herokuapp.com/api/bids/create/%d", auctionID);
     }
 
+    // GetListLikesPath
+    private static String GetListLikes;
+
+    public static String getGetListLikes() {
+        return GetListLikes;
+    }
+
+    public static void setGetListLikes(int statusID) {
+        GetListLikes = String.format("https://auctions-app-2.herokuapp.com/api/likes/%d", statusID);
+    }
 }
