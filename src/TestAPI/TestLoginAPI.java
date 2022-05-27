@@ -5,9 +5,6 @@ import Utils.ColorTerminal;
 import Utils.Response;
 import Utils.TestCase;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -62,9 +59,6 @@ public class TestLoginAPI {
 
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
-
-            JsonElement jElement = new JsonParser().parse(content.toString());
-            JsonObject jObject = jElement.getAsJsonObject();
 
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
