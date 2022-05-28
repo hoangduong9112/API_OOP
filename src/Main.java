@@ -6,7 +6,10 @@ public class Main {
     public static void main(String[] args) {
         try {
 //            TestCreateItemAPI.main(); // need update test case
-            TestEditItemAPI.main();
+//            TestEditItemAPI.main();
+            TestAccessMaxBid.main();
+//            TestContactUs.main();
+//            TestLikeAuction.main();
 //            TestInfoItemAPI.main();
 //            TestLoginAPI.main();
 //            TestGetListAuctionsAPI.main();

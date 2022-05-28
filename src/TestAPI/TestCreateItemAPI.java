@@ -27,7 +27,7 @@ public class TestCreateItemAPI {
         URL url = new URL(APIPath.getCreateItem());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
-        if(itemParams.token){
+        if (itemParams.token) {
             itemParams.setAccessToken();
             connection.addRequestProperty("Authorization", "Bearer " + itemParams.accessToken);
         }
@@ -37,7 +37,7 @@ public class TestCreateItemAPI {
         params.put("starting_price", String.valueOf(itemParams.startingPrice));
         params.put("brand_id", String.valueOf(itemParams.brandID));
         params.put("description", itemParams.description);
-        if(itemParams.series != null){
+        if (itemParams.series != null) {
             params.put("series", itemParams.series);
         }
         StringBuilder postData = new StringBuilder();
@@ -96,7 +96,7 @@ public class TestCreateItemAPI {
 //        TestCase<ItemParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful with correct param (have series)", params2);
 //        listTestCase.add(testCase2);
 
-        ItemParams params3 = new ItemParams(5, "Test without login", "123123", "8", "Nice","12345", false);
+        ItemParams params3 = new ItemParams(5, "Test without login", "123123", "8", "Nice", "12345", false);
         TestCase<ItemParams> testCase3 = new TestCase<>("1004", "", "Unit test 3: Should throw error 1004 because user haven't login  ", params3);
         listTestCase.add(testCase3);
 
@@ -120,11 +120,11 @@ public class TestCreateItemAPI {
 //        TestCase<ItemParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should throw error 1001 with series longer than 10", params8);
 //        listTestCase.add(testCase8);
 
-        ItemParams params9 = new ItemParams(5,"Test with invalid ID", "12345", "4", "Helooo", "12345", true);
+        ItemParams params9 = new ItemParams(5, "Test with invalid ID", "12345", "4", "Helooo", "12345", true);
         TestCase<ItemParams> testCase9 = new TestCase<>("9996", "", "Unit test 9: Should throw error 9996 with invalid auction id", params9);
         listTestCase.add(testCase9);
 
-        ItemParams params10 = new ItemParams(5,"Test add item into room full", "12345", "4", "Helooo", "12345", true);
+        ItemParams params10 = new ItemParams(5, "Test add item into room full", "12345", "4", "Helooo", "12345", true);
         TestCase<ItemParams> testCase10 = new TestCase<>("9995", "", "Unit test 10: Should throw error 9995 because room fulled", params10);
         listTestCase.add(testCase10);
 
@@ -143,7 +143,7 @@ public class TestCreateItemAPI {
         String brandID;
         String description;
         String series = null;
-        String [] images;
+        String[] images;
         boolean token;
 
 
@@ -176,7 +176,7 @@ public class TestCreateItemAPI {
             this.token = token;
         }
 
-        private ItemParams(int auctionID, String name, String startingPrice, String brandID, String description, String series,String[] images, boolean token) {
+        private ItemParams(int auctionID, String name, String startingPrice, String brandID, String description, String series, String[] images, boolean token) {
             this.auctionID = auctionID;
             this.name = name;
             this.startingPrice = startingPrice;
@@ -191,7 +191,7 @@ public class TestCreateItemAPI {
             String accessToken;
             try {
                 accessToken = LoginAPI.call();
-            }catch(IOException e){
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             this.accessToken = accessToken;

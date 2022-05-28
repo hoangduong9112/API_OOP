@@ -72,4 +72,25 @@ public class APIPath {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
 
+// Accept max bid
+    private static String accessMaxBid;
+    public static String getAccessMaxBid(){return accessMaxBid;}
+
+    public static void setAccessMaxBid(int auctionID){
+        accessMaxBid = String.format("https://auctions-app-2.herokuapp.com/api/accept/%d", auctionID);
+    }
+
+//    Contact us
+    public static final String contactUs= "https://auctions-app-2.herokuapp.com/api/contactUs";
+
+// Like Auction
+    private static String likeAuction;
+
+    public static String getLikeAuction() {
+        return likeAuction;
+    }
+
+    public static void setLikeAuction(int auctionID) {
+        likeAuction = String.format("https://auctions-app-2.herokuapp.com/api/updateLike/%d", auctionID);
+    }
 }
