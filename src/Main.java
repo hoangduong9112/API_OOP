@@ -1,3 +1,5 @@
+import TestAPI.TestChangePasswordAPI;
+import TestAPI.TestDeleteComment;
 import TestAPI.TestEditAccountAPI;
 import TestAPI.TestLoginAPI;
 
@@ -6,8 +8,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         try {
-            TestLoginAPI.main();
-//            ChangePasswordAPI.main();
+//            TestLoginAPI.main();
+//            TestDeleteComment.main();// need update test case
+            TestChangePasswordAPI.main();
 //            TestSignUpAPI.main(); // need update test case
 //            TestEditAccountAPI.main(); // need update test case
         } catch (IOException e) {
