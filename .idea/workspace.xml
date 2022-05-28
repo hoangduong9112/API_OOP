@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3feea4d-db33-4209-a2ae-3a4741bf4c9b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestCreateCommentAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestCreateCommentAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestEditAccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestEditAccountAPI.java" afterDir="false" />
+    <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +25,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectId" id="294BOXgP6GBb4XFYMvZTbqGsN23" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -40,8 +35,6 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
@@ -57,7 +50,6 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="Utils" />
       <recent name="" />
     </key>
   </component>
@@ -79,7 +71,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f3feea4d-db33-4209-a2ae-3a4741bf4c9b" name="Changes" comment="" />
+      <changelist id="007867e5-7ebf-487a-a238-a0bf488dc672" name="Changes" comment="" />
       <created>1652362448061</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -99,7 +91,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fix: conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: conflicts" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/API_OOP$Main.ic" NAME="Main Coverage Results" MODIFIED="1652363537362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
