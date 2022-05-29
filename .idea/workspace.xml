@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3feea4d-db33-4209-a2ae-3a4741bf4c9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestGetListLikesAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestGetNewsAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestReadNewsAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestTotalLiksOfAuctionAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetListLikesAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestGetListLikesAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetNewsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestGetNewsAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestReadNewsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestReadNewsAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestTotalLiksOfAuctionAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestAPI/TestTotalLikesOfAuctionAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/APIPath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

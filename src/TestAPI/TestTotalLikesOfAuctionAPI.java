@@ -17,14 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestReadNewsAPI {
-    private TestReadNewsAPI(ReadNewsParams readNewsParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
-        APIPath.setTotalLikesOfAuction(readNewsParams.newID);
+public class TestTotalLikesOfAuctionAPI {
+    private TestTotalLikesOfAuctionAPI(TotalLikesOfAuctionParams totalLikesOfAuctionParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
+        APIPath.setTotalLikesOfAuction(totalLikesOfAuctionParams.auctionID);
         URL url = new URL(APIPath.getTotalLikesOfAuction());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        if(readNewsParams.isToken == true){
-            readNewsParams.setAccessToken();
-            connection.addRequestProperty("Authorization", "Bearer " + readNewsParams.accessToken);
+        if(totalLikesOfAuctionParams.isToken){
+            totalLikesOfAuctionParams.setAccessToken();
+            connection.addRequestProperty("Authorization", "Bearer " + totalLikesOfAuctionParams.accessToken);
         }
         connection.setRequestMethod("GET");
         if (connection.getResponseCode() == 302) {
@@ -56,27 +56,27 @@ public class TestReadNewsAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCase<ReadNewsParams>> listTestCase = new ArrayList<>();
+        List<TestCase<TotalLikesOfAuctionParams>> listTestCase = new ArrayList<>();
 
-        ReadNewsParams params1 = new ReadNewsParams(true, 3);
-        TestCase<ReadNewsParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TotalLikesOfAuctionParams params1 = new TotalLikesOfAuctionParams(true, 3);
+        TestCase<TotalLikesOfAuctionParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
-        ReadNewsParams params2 = new ReadNewsParams(false, 3);
-        TestCase<ReadNewsParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
+        TotalLikesOfAuctionParams params2 = new TotalLikesOfAuctionParams(false, 3);
+        TestCase<TotalLikesOfAuctionParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
         listTestCase.add(testCase2);
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Total Likes Of Auction" + "API" + ColorTerminal.ANSI_RESET);
-        for (TestCase<ReadNewsParams> testCase : listTestCase) {
-            new TestReadNewsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        for (TestCase<TotalLikesOfAuctionParams> testCase : listTestCase) {
+            new TestTotalLikesOfAuctionAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 
-    private static class ReadNewsParams {
+    private static class TotalLikesOfAuctionParams {
         String accessToken;
         boolean isToken;
-        int  newID;
-        private ReadNewsParams(boolean isToken, int newID) {
-            this.newID = newID;
+        int auctionID;
+        private TotalLikesOfAuctionParams(boolean isToken, int auctionID) {
+            this.auctionID = auctionID;
             this.isToken = isToken;
         }
 

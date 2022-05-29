@@ -38,15 +38,32 @@ public class APIPath {
     public static void setCreateBid(int auctionID) {
         CreateBid = String.format("https://auctions-app-2.herokuapp.com/api/bids/create/%d", auctionID);
     }
-
+    // LoginFailed Path
+    public static final String loginFailed = "http://auctions-app-2.herokuapp.com/api/loginfailed";
     // GetListLikesPath
     private static String GetListLikes;
-
     public static String getGetListLikes() {
         return GetListLikes;
     }
-
     public static void setGetListLikes(int statusID) {
         GetListLikes = String.format("https://auctions-app-2.herokuapp.com/api/likes/%d", statusID);
+    }
+    // TotalLikesOfAuctionPath
+    private static String TotalLikesOfAuction;
+    public static String getTotalLikesOfAuction() {
+        return TotalLikesOfAuction;
+    }
+    public static void setTotalLikesOfAuction(int auctionID) {
+            TotalLikesOfAuction = String.format("https://auctions-app-2.herokuapp.com/api/totalLikes/%d", auctionID);
+    }
+    // GetNewsPath
+    public static final String GET_NEWS = "https://auctions-app-2.herokuapp.com/api/news";
+    // ReadNewsPath
+    private static String ReadNews;
+    public static String getReadNews() {
+        return ReadNews;
+    }
+    public static void setReadNews(int newID) {
+        ReadNews = String.format("https://auctions-app-2.herokuapp.com/api/news/read/%d", newID);
     }
 }

@@ -35,12 +35,16 @@ public class TestGetListLikesAPI {
         URL url = new URL(APIPath.getGetListLikes() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        getListLikesParams.setAccessToken();
-        connection.addRequestProperty("Authorization", "Bearer " + getListLikesParams.accessToken);
-
-
+        if(getListLikesParams.isToken){
+            getListLikesParams.setAccessToken();
+            connection.addRequestProperty("Authorization", "Bearer " + getListLikesParams.accessToken);
+        }
         connection.setRequestMethod("GET");
-
+        if (connection.getResponseCode() == 302) {
+            url = new URL(APIPath.loginFailed);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+        }
         try (BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()))) {
             String line;
@@ -49,6 +53,7 @@ public class TestGetListLikesAPI {
                 content.append(line);
                 content.append(System.lineSeparator());
             }
+            System.out.println(content.toString());
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
@@ -66,18 +71,20 @@ public class TestGetListLikesAPI {
 
     public static void main() throws IOException {
         List<TestCase<GetListLikesParams>> listTestCase = new ArrayList<>();
+        final String index = "index";
+        final String count = "count";
 
-        GetListLikesParams params1 = new GetListLikesParams(true, 3, "index", "1", "count", "1");
+        GetListLikesParams params1 = new GetListLikesParams(true, 3, index, "1", count, "1");
         TestCase<GetListLikesParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
-        /*GetListLikesParams params2 = new GetListLikesParams(false, 3, "index", "1", "count", "1");
-        TestCase<GetListLikesParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful with correct param", params2);
-        listTestCase.add(testCase2);*/
-        GetListLikesParams params3 = new GetListLikesParams(true, 3, "index", "", "count", "1");
-        TestCase<GetListLikesParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with empty index", params3);
+        GetListLikesParams params2 = new GetListLikesParams(false, 3, index, "1", count, "1");
+        TestCase<GetListLikesParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't login", params2);
+        listTestCase.add(testCase2);
+        GetListLikesParams params3 = new GetListLikesParams(true, 3, index, "", count, "1");
+        TestCase<GetListLikesParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
         listTestCase.add(testCase3);
-        GetListLikesParams params4 = new GetListLikesParams(true, 3, "index", "1", "count", "");
-        TestCase<GetListLikesParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with empty count", params4);
+        GetListLikesParams params4 = new GetListLikesParams(true, 3, index, "1", count, "");
+        TestCase<GetListLikesParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
         listTestCase.add(testCase4);
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List Likes" + "API" + ColorTerminal.ANSI_RESET);
