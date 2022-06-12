@@ -87,15 +87,11 @@ public class TestGetListAuctionsAPI {
         listTestCase.add(testCase4);
 
         GetListAuctionsParams params5 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase5 = new TestCase<>("1000", "OK", "Unit test 5: Should be successful with correct param", params5);
+        TestCase<GetListAuctionsParams> testCase5 = new TestCase<>("1000", "OK", "Unit test 5: Should be successful with empty count", params5);
         listTestCase.add(testCase5);
 
-        GetListAuctionsParams params6 = new GetListAuctionsParams(3, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase6 = new TestCase<>("1000", "OK", "Unit test 6: Should be successful with correct param", params6);
-        listTestCase.add(testCase6);
-
         GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "", "user_id", "");
-        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1000", "", "Unit test 7: Should be successful with correct param", params7);
+        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1000", "", "Unit test 7: Should be successful with empty param", params7);
         listTestCase.add(testCase7);
 
         GetListAuctionsParams params8 = new GetListAuctionsParams(1, "index", "", "count", "");

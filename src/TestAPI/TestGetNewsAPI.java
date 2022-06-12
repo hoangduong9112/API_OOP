@@ -33,7 +33,7 @@ public class TestGetNewsAPI {
         }
         URL url = new URL(APIPath.GET_NEWS + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        if(getNewsParams.isToken){
+        if (getNewsParams.isToken) {
             getNewsParams.setAccessToken();
             connection.addRequestProperty("Authorization", "Bearer " + getNewsParams.accessToken);
         }

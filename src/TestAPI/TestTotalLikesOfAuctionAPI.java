@@ -22,7 +22,7 @@ public class TestTotalLikesOfAuctionAPI {
         APIPath.setTotalLikesOfAuction(totalLikesOfAuctionParams.auctionID);
         URL url = new URL(APIPath.getTotalLikesOfAuction());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        if(totalLikesOfAuctionParams.isToken){
+        if (totalLikesOfAuctionParams.isToken) {
             totalLikesOfAuctionParams.setAccessToken();
             connection.addRequestProperty("Authorization", "Bearer " + totalLikesOfAuctionParams.accessToken);
         }
@@ -62,7 +62,7 @@ public class TestTotalLikesOfAuctionAPI {
         TestCase<TotalLikesOfAuctionParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
         TotalLikesOfAuctionParams params2 = new TotalLikesOfAuctionParams(false, 3);
-        TestCase<TotalLikesOfAuctionParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
+        TestCase<TotalLikesOfAuctionParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful even user haven't logined", params2);
         listTestCase.add(testCase2);
 
         System.out.println(ColorTerminal.ANSI_BLUE + "Testing Total Likes Of Auction" + "API" + ColorTerminal.ANSI_RESET);
@@ -75,6 +75,7 @@ public class TestTotalLikesOfAuctionAPI {
         String accessToken;
         boolean isToken;
         int auctionID;
+
         private TotalLikesOfAuctionParams(boolean isToken, int auctionID) {
             this.auctionID = auctionID;
             this.isToken = isToken;

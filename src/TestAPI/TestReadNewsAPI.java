@@ -22,7 +22,7 @@ public class TestReadNewsAPI {
         APIPath.setTotalLikesOfAuction(readNewsParams.newID);
         URL url = new URL(APIPath.getTotalLikesOfAuction());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        if(readNewsParams.isToken == true){
+        if (readNewsParams.isToken == true) {
             readNewsParams.setAccessToken();
             connection.addRequestProperty("Authorization", "Bearer " + readNewsParams.accessToken);
         }
@@ -65,7 +65,7 @@ public class TestReadNewsAPI {
         TestCase<ReadNewsParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
         listTestCase.add(testCase2);
 
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Total Likes Of Auction" + "API" + ColorTerminal.ANSI_RESET);
+        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Read News" + "API" + ColorTerminal.ANSI_RESET);
         for (TestCase<ReadNewsParams> testCase : listTestCase) {
             new TestReadNewsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
@@ -74,7 +74,8 @@ public class TestReadNewsAPI {
     private static class ReadNewsParams {
         String accessToken;
         boolean isToken;
-        int  newID;
+        int newID;
+
         private ReadNewsParams(boolean isToken, int newID) {
             this.newID = newID;
             this.isToken = isToken;

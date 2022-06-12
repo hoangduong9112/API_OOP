@@ -35,7 +35,7 @@ public class TestGetListLikesAPI {
         URL url = new URL(APIPath.getGetListLikes() + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        if(getListLikesParams.isToken){
+        if (getListLikesParams.isToken) {
             getListLikesParams.setAccessToken();
             connection.addRequestProperty("Authorization", "Bearer " + getListLikesParams.accessToken);
         }
@@ -53,7 +53,6 @@ public class TestGetListLikesAPI {
                 content.append(line);
                 content.append(System.lineSeparator());
             }
-            System.out.println(content.toString());
             Gson g = new Gson();
             Response rp = g.fromJson(content.toString(), Response.class);
 
