@@ -11,7 +11,7 @@ public class Main {
 //            TestGetListAuctionsByTypeAPI.main();
 //            TestGetListComments.main();
 
-//            TestLoginAPI.main();
+            TestLoginAPI.main();
 
 //            TestGetListAuctionsAPI.main();
 //            TestSignUpAPI.main(); // need update test case
@@ -19,7 +19,7 @@ public class Main {
 //            TestCreateBidAPI.main();
 //            TestCreateCommentAPI.main(); // need update test case
 //            TestGetListLikesAPI.main();
-            TestTotalLikesOfAuctionAPI.main();
+//            TestTotalLikesOfAuctionAPI.main();
 //            TestGetNewsAPI.main();
 //            TestReadNewsAPI.main();
 
