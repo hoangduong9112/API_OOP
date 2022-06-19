@@ -1,0 +1,13 @@
+
+a	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a
+java:S1192I"FDefine a constant instead of duplicating this literal "count" 7 times.(Ÿ¸ıÚÿÿÿÿÿ
+a
+java:S1192I"FDefine a constant instead of duplicating this literal "index" 7 times.(Ÿ¸ıÚÿÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÔŸäö
+N	java:S106:"9Replace this use of System.out or System.err by a logger.(„ùµı
+N	java:S106="9Replace this use of System.out or System.err by a logger.(à°£ò
+S	java:S106>"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+N	java:S106e"9Replace this use of System.out or System.err by a logger.(ÎşÉô
+\
+java:S1117ˆ"@Rename "accessToken" which hides the field declared at line 109.(ÖçÂìşÿÿÿÿ
