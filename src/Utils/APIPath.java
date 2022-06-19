@@ -7,6 +7,8 @@ public class APIPath {
     public static final String SIGNUP = "https://auctions-app-2.herokuapp.com/api/signup";
     public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
     public static final String loginFailed = "http://auctions-app-2.herokuapp.com/api/loginfailed";
+    // GetNewsPath
+    public static final String GET_NEWS = "https://auctions-app-2.herokuapp.com/api/news";
     // GetListAuctionsPath
     private static String GetListAuctions;
     //    Get Detail Auction
@@ -23,6 +25,12 @@ public class APIPath {
     private static String editItem;
     //    Get info Item
     private static String infoItem;
+    // GetListLikesPath
+    private static String GetListLikes;
+    // TotalLikesOfAuctionPath
+    private static String TotalLikesOfAuction;
+    // ReadNewsPath
+    private static String ReadNews;
 
     public static String getGetListAuctions() {
         return GetListAuctions;
@@ -56,6 +64,8 @@ public class APIPath {
         getListComments = String.format("https://auctions-app-2.herokuapp.com/api/comments/%d", auctionID);
     }
 
+    // Edit Item
+
     public static String getCreateComment() {
         return CreateComment;
     }
@@ -71,8 +81,6 @@ public class APIPath {
     public static void setCreateBid(int auctionID) {
         CreateBid = String.format("https://auctions-app-2.herokuapp.com/api/bids/create/%d", auctionID);
     }
-
-    // Edit Item
 
     public static String getCreateItem() {
         return createItem;
@@ -97,29 +105,27 @@ public class APIPath {
     public static void setInfoItem(int itemID) {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
-    // GetListLikesPath
-    private static String GetListLikes;
+
     public static String getGetListLikes() {
         return GetListLikes;
     }
+
     public static void setGetListLikes(int statusID) {
         GetListLikes = String.format("https://auctions-app-2.herokuapp.com/api/likes/%d", statusID);
     }
-    // TotalLikesOfAuctionPath
-    private static String TotalLikesOfAuction;
+
     public static String getTotalLikesOfAuction() {
         return TotalLikesOfAuction;
     }
+
     public static void setTotalLikesOfAuction(int auctionID) {
         TotalLikesOfAuction = String.format("https://auctions-app-2.herokuapp.com/api/totalLikes/%d", auctionID);
     }
-    // GetNewsPath
-    public static final String GET_NEWS = "https://auctions-app-2.herokuapp.com/api/news";
-    // ReadNewsPath
-    private static String ReadNews;
+
     public static String getReadNews() {
         return ReadNews;
     }
+
     public static void setReadNews(int newID) {
         ReadNews = String.format("https://auctions-app-2.herokuapp.com/api/news/read/%d", newID);
     }

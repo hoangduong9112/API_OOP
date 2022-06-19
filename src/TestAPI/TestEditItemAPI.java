@@ -1,9 +1,11 @@
 package TestAPI;
-import Utils.*;
 
 import Utils.API.LoginAPI;
+import Utils.APIPath;
+import Utils.ColorTerminal;
+import Utils.Response;
+import Utils.TestCase;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class TestEditItemAPI {
     private TestEditItemAPI(ItemParams ItemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -24,7 +27,7 @@ public class TestEditItemAPI {
         URL url = new URL(APIPath.getEditItem());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
-        if(ItemParams.token){
+        if (ItemParams.token) {
             ItemParams.setAccessToken();
             connection.addRequestProperty("Authorization", "Bearer " + ItemParams.accessToken);
         }
@@ -34,7 +37,7 @@ public class TestEditItemAPI {
         params.put("starting_price", String.valueOf(ItemParams.startingPrice));
         params.put("brand_id", String.valueOf(ItemParams.brandID));
         params.put("description", ItemParams.description);
-        if(ItemParams.series != null){
+        if (ItemParams.series != null) {
             params.put("series", ItemParams.series);
         }
 
@@ -87,35 +90,35 @@ public class TestEditItemAPI {
             IOException {
         List<TestCase<ItemParams>> listTestCase = new ArrayList<>();
 
-        ItemParams params1 = new ItemParams(6,"Test without series and image", "12345", "4", "Do uong ngon", true);
+        ItemParams params1 = new ItemParams(6, "Test without series and image", "12345", "4", "Do uong ngon", true);
         TestCase<ItemParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
-        ItemParams params2 = new ItemParams(6, "Test with series", "123123", "4", "Nice","12345", true);
+        ItemParams params2 = new ItemParams(6, "Test with series", "123123", "4", "Nice", "12345", true);
         TestCase<ItemParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful with correct param (have series)", params2);
         listTestCase.add(testCase2);
 
-        ItemParams params3 = new ItemParams(6, "Test without login", "123123", "4", "Nice","12345", false);
+        ItemParams params3 = new ItemParams(6, "Test without login", "123123", "4", "Nice", "12345", false);
         TestCase<ItemParams> testCase3 = new TestCase<>("1004", "", "Unit test 3: Should throw error 1004 because user haven't login  ", params3);
         listTestCase.add(testCase3);
 
-        ItemParams params4 = new ItemParams(6, "Test with empty brand id", "123123","" , "Nice", true);
+        ItemParams params4 = new ItemParams(6, "Test with empty brand id", "123123", "", "Nice", true);
         TestCase<ItemParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with empty brand id", params4);
         listTestCase.add(testCase4);
 
-        ItemParams params5 = new ItemParams(6,"", "12345", "4", "Do uong ngon", true);
+        ItemParams params5 = new ItemParams(6, "", "12345", "4", "Do uong ngon", true);
         TestCase<ItemParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty name", params5);
         listTestCase.add(testCase5);
 
-        ItemParams params6 = new ItemParams(6,"Test with empty startingPrice", "", "4", "Do uong ngon", true);
+        ItemParams params6 = new ItemParams(6, "Test with empty startingPrice", "", "4", "Do uong ngon", true);
         TestCase<ItemParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty startingPrice", params6);
         listTestCase.add(testCase6);
 
-        ItemParams params7 = new ItemParams(6,"Test with empty description", "12345", "4", "", true);
+        ItemParams params7 = new ItemParams(6, "Test with empty description", "12345", "4", "", true);
         TestCase<ItemParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error 1001 with empty description", params7);
         listTestCase.add(testCase7);
 
-        ItemParams params8 = new ItemParams(6,"Test with long series", "12345", "4", "Helooo", "1234534413231", true);
+        ItemParams params8 = new ItemParams(6, "Test with long series", "12345", "4", "Helooo", "1234534413231", true);
         TestCase<ItemParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should throw error 1001 with series longer than 10", params8);
         listTestCase.add(testCase8);
 
@@ -139,7 +142,7 @@ public class TestEditItemAPI {
 
         boolean token;
 
-        private ItemParams(int itemID, String name, String startingPrice, String brandID, String description, boolean token ) {
+        private ItemParams(int itemID, String name, String startingPrice, String brandID, String description, boolean token) {
             this.itemID = itemID;
             this.name = name;
             this.startingPrice = startingPrice;
@@ -168,7 +171,7 @@ public class TestEditItemAPI {
             this.token = token;
         }
 
-        private ItemParams(int itemID, String name, String startingPrice, String brandID, String description, String series,String[] images, boolean token) {
+        private ItemParams(int itemID, String name, String startingPrice, String brandID, String description, String series, String[] images, boolean token) {
             this.itemID = itemID;
             this.name = name;
             this.startingPrice = startingPrice;
@@ -183,7 +186,7 @@ public class TestEditItemAPI {
             String accessToken;
             try {
                 accessToken = LoginAPI.call();
-            }catch(IOException e){
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             this.accessToken = accessToken;
