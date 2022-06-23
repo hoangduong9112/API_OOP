@@ -23,6 +23,10 @@ public class APIPath {
     private static String editItem;
     //    Get info Item
     private static String infoItem;
+//    Get Slider
+    public static String getSlider = "https://auctions-app-2.herokuapp.com/api/slider";
+
+    public static String search = "https://auctions-app-2.herokuapp.com/api/search";
 
     public static String getGetListAuctions() {
         return GetListAuctions;
@@ -97,5 +101,6 @@ public class APIPath {
     public static void setInfoItem(int itemID) {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
+
 
 }

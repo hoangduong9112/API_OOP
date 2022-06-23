@@ -24,7 +24,7 @@ public class LoginAPI {
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
-        params.put("email", "duonghoang@gmail.com");
+        params.put("email", "devAdmin@gmail.com");
         params.put("password", "123456");
 
         StringBuilder postData = new StringBuilder();
