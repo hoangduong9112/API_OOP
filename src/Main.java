@@ -15,8 +15,10 @@ public class Main {
 //            TestEditAccountAPI.main(); // need update test case
 //            TestCreateBidAPI.main(); // need update test case
 //            TestCreateCommentAPI.main();
-            TestGetSlider.main();
+//            TestGetSlider.main();
 //            TestSearch.main();
+//            TestTotalLikesOfAuction.main();
+            TestGetNews.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

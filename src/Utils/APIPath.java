@@ -28,6 +28,9 @@ public class APIPath {
 
     public static String search = "https://auctions-app-2.herokuapp.com/api/search";
 
+    //    Get News API
+    public static String getNews = "https://auctions-app-2.herokuapp.com/api/news";
+
     public static String getGetListAuctions() {
         return GetListAuctions;
     }
@@ -101,6 +104,15 @@ public class APIPath {
     public static void setInfoItem(int itemID) {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
+
+//    Total likes of auction API
+    private static String totalLikesOfAuction;
+    public static String getTotalLikesOfAuction(){ return totalLikesOfAuction;}
+
+    public static void setTotalLikesOfAuction(int auctionID){
+        totalLikesOfAuction = String.format("https://auctions-app-2.herokuapp.com/api/totalLikes/%d", auctionID);
+    }
+
 
 
 }
