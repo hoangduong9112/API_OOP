@@ -10,7 +10,7 @@ public class Main {
 //            TestGetListComments.main();
 //            TestLoginAPI.main();
 //            TestGetListAuctionsAPI.main();
-//            TestSignUpAPI.main(); // need update test case
+            TestSignUpAPI.main(); // need update test case
 //            TestEditAccountAPI.main(); // need update test case
 //            TestCreateBidAPI.main();
 //            TestCreateCommentAPI.main(); // need update test case
@@ -18,7 +18,7 @@ public class Main {
 //            TestTotalLikesOfAuctionAPI.main();
 //            TestGetNewsAPI.main();
 //            TestReadNewsAPI.main();
-            TestCreateAuctionAPI.main();
+//            TestCreateAuctionAPI.main();
 
         } catch (IOException e) {
             throw new RuntimeException(e);

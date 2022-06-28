@@ -118,11 +118,11 @@ public class TestSignUpAPI {
         TestCase<SignUpParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should throw error 1001 with duplicated email", params8);
         listTestCase.add(testCase8);
 
-        SignUpParams params9 = new SignUpParams(email, "duonghoang14@gmail.com", password, "123456", re_pass, "", address, "hanoi", name, "duong", phone, "09123");
+        SignUpParams params9 = new SignUpParams(email, "duonghoang1004@gmail.com", password, "123456", re_pass, "", address, "hanoi", name, "duong", phone, "09123");
         TestCase<SignUpParams> testCase9 = new TestCase<>("1001", "", "Unit test 9: Should throw error 1001 with empty repass", params9);
         listTestCase.add(testCase9);
 
-        SignUpParams params10 = new SignUpParams(email, "duonghoang15@gmail.com", password, "123456", re_pass, "123", address, "hanoi", name, "duong", phone, "09123");
+        SignUpParams params10 = new SignUpParams(email, "duonghoang1000@gmail.com", password, "123456", re_pass, "123", address, "hanoi", name, "duong", phone, "09123");
         TestCase<SignUpParams> testCase10 = new TestCase<>("1001", "", "Unit test 10: Should throw error 1001 with wrong repass", params10);
         listTestCase.add(testCase10);
 
