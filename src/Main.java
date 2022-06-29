@@ -17,8 +17,8 @@ public class Main {
 //            TestGetListLikesAPI.main();
 //            TestTotalLikesOfAuctionAPI.main();
 //            TestGetNewsAPI.main();
-//            TestReadNewsAPI.main();
-            TestCreateAuctionAPI.main();
+            TestReadNewsAPI.main();
+//            TestCreateAuctionAPI.main();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
