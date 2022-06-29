@@ -1,6 +1,7 @@
 package Utils.API;
 
 import Utils.APIPath;
+import Utils.DataType;
 import Utils.Response;
 import com.google.gson.Gson;
 
@@ -54,7 +55,7 @@ public class LoginAPI {
             }
 
             Gson g = new Gson();
-            Response rp = g.fromJson(content.toString(), Response.class);
+            Response<DataType> rp = g.fromJson(content.toString(), Response.class);
             String accessToken = rp.data.access_token;
             return accessToken;
         } finally {
