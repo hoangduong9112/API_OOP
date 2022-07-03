@@ -1,9 +1,9 @@
 package utils;
 
 public class Response<T> {
-    public String code;
-    public String message;
-    public T data;
+    private String code;
+    private String message;
+    private T data;
 
     public String getCode() {
         return code;
