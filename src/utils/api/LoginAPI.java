@@ -1,14 +1,17 @@
 package utils.api;
 
+import com.google.gson.reflect.TypeToken;
 import utils.APIPath;
 import utils.data_type.DataType;
 import utils.Response;
 import com.google.gson.Gson;
+import utils.data_type.LoginDataType;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -58,7 +61,8 @@ public final class LoginAPI {
             }
 
             Gson g = new Gson();
-            Response<DataType> rp = g.fromJson(content.toString(), Response.class);
+            Type response = new TypeToken<Response<LoginDataType>>() {}.getType();
+            Response<DataType> rp = g.fromJson(content.toString(), response);
             return rp.getData().accessToken;
         } finally {
             connection.disconnect();

@@ -20,8 +20,10 @@ import java.util.List;
 import java.util.Map;
 
 public class TestLoginAPI {
-
-    private TestLoginAPI(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
+    private TestLoginAPI() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
+    private static void test(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.getLoginURL());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -125,7 +127,7 @@ public class TestLoginAPI {
         System.out.println(ColorTerminal.getAnsiBlue() + "Testing Login API" + ColorTerminal.getAnsiReset());
 
         for (TestCase<LoginParams> testCase : listTestCase) {
-            new TestLoginAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            TestLoginAPI.test(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
 

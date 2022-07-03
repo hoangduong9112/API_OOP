@@ -7,7 +7,6 @@ public class Main {
         try {
             TestLoginAPI.main();
 
-
 //            TestGetDetailAuctionAPI.main();
 //            TestGetListAuctionsByTypeAPI.main();
 //            TestGetListComments.main();
