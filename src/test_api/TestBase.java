@@ -92,15 +92,19 @@ public class TestBase {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if(accessToken != null) connection.addRequestProperty("Authorization", "Bearer " + accessToken);
         connection.setRequestMethod("POST");
+
         StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (postData.length() != 0) {
-                postData.append('&');
+        if (params != null) {
+            for (Map.Entry<String, String> param : params.entrySet()) {
+                if (postData.length() != 0) {
+                    postData.append('&');
+                }
+                postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
+                postData.append('=');
+                postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
             }
-            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
         }
+
         byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
         connection.setDoOutput(true);
         try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {

@@ -13,7 +13,9 @@ public class Main {
 //            TestCreateCommentAPI.main();
 //            TestGetListComments.main();
 //            TestGetListAuctionsAPI.main();
-            TestGetDetailAuctionAPI.main();
+//            TestGetDetailAuctionAPI.main();
+
+            TestLogOutAPI.main();
 
 //            TestCreateItemAPI.main(); // need update test case
 //            TestEditAccountAPI.main(); // need update test case
