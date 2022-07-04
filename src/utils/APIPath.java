@@ -9,7 +9,7 @@ public class APIPath {
     public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
     public static final String LOGIN_FAILED = "http://auctions-app-2.herokuapp.com/api/loginfailed";
     public static final String GET_NEWS = "https://auctions-app-2.herokuapp.com/api/news";
-    public static final String CREATE_AUCTION = "https://auctions-app-2.herokuapp.com/api/auctions/create";
+    private static final String CREATE_AUCTION = "https://auctions-app-2.herokuapp.com/api/auctions/create";
     public static final String GET_SLIDER = "https://auctions-app-2.herokuapp.com/api/slider";
     public static final String SEARCH = "https://auctions-app-2.herokuapp.com/api/search";
     private static String getListAuctions;
@@ -28,6 +28,10 @@ public class APIPath {
     public static String getLoginURL() {
         return LOGIN_URL;
     }
+    public static String getCreateAuctionURL() {
+        return CREATE_AUCTION;
+    }
+
     public static String getGetListAuctions() {
         return getListAuctions;
     }

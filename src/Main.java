@@ -5,7 +5,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         try {
-            TestLoginAPI.main();
+//            TestLoginAPI.main();
+            TestCreateAuctionAPI.main();
+
 
 //            TestGetDetailAuctionAPI.main();
 //            TestGetListAuctionsByTypeAPI.main();
@@ -19,7 +21,6 @@ public class Main {
 //            TestTotalLikesOfAuctionAPI.main();
 //            TestGetNewsAPI.main();
 //            TestReadNewsAPI.main();
-//            TestCreateAuctionAPI.main();
 //            TestGetSlider.main();
 //            TestSearch.main();
 //            TestTotalLikesOfAuction.main();

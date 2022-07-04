@@ -87,10 +87,11 @@ public class TestBase {
         }
     }
 
-    public static String postMethod(String urlBase, Map<String, String> params) throws
+    public static String postMethod(String urlBase, Map<String, String> params, String accessToken) throws
             IOException {
         URL url = new URL(urlBase);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        if(accessToken != null) connection.addRequestProperty("Authorization", "Bearer " + accessToken);
         connection.setRequestMethod("POST");
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
