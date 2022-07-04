@@ -6,7 +6,9 @@ public class Main {
     public static void main(String[] args) {
         try {
 //            TestLoginAPI.main();
-            TestCreateAuctionAPI.main();
+//            TestCreateAuctionAPI.main();
+              TestGetListBids.main();
+
 
 
 //            TestGetDetailAuctionAPI.main();
@@ -25,7 +27,6 @@ public class Main {
 //            TestSearch.main();
 //            TestTotalLikesOfAuction.main();
 //            TestGetNews.main();
-//            TestGetListBids.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
