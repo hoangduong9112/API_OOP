@@ -1,14 +1,12 @@
 package test_api;
 
 
-import utils.APIPath;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import utils.APIPath;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,50 +17,40 @@ public class TestGetListComments extends TestBase {
         Map<String, String> params = new HashMap<>();
         params.put(apiParams.index, apiParams.indexValue);
         params.put(apiParams.count, apiParams.countValue);
-        System.out.println("AuctionID: " + apiParams.auctionID + ", Index: " + apiParams.indexValue + ", Count: " + apiParams.countValue);
-        StringBuilder query = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (query.length() != 0) {
-                query.append('&');
-            }
-            query.append(param.getKey());
-            query.append('=');
-            query.append(param.getValue());
-        }
 
         APIPath.setGetListComments(apiParams.auctionID);
-        URL url = new URL(APIPath.getGetListComments() + "?" + query);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        if (apiParams.token == true) {
+        String result;
+        if (apiParams.token) {
             apiParams.setAccessToken();
-            connection.addRequestProperty("Authorization", "Bearer " + apiParams.accessToken);
-            System.out.println("Have Token");
+            result = getMethod(APIPath.getGetListComments(), params, apiParams.access_token);
         } else {
-            System.out.println("Don't have token ");
+            result = getMethod(APIPath.getGetListComments(), params, null);
         }
-        connection.setRequestMethod("GET");
-
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()))) {
-            String line;
-            StringBuilder content = new StringBuilder();
-            while ((line = in.readLine()) != null) {
-                content.append(line);
-                content.append(System.lineSeparator());
-            }
-            Gson g = new Gson();
-            Response rp = g.fromJson(content.toString(), Response.class);
-
-            System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
+        Gson g = new Gson();
+        Type response = new TypeToken<Response<GetListCommentsDataType>>() {
+        }.getType();
+        Response<GetListCommentsDataType> rp = g.fromJson(result, response);
+        System.out.println(testDescription);
+        try {
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            if (codeExpectation.equals("1000")) {
+                assert rp.getData().comments.length > 0;
+                assert rp.getData().total > 0;
+            } else assert rp.getData() == null;
             System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
-        } finally {
-            connection.disconnect();
+        } catch (AssertionError e) {
+            System.out.println(getAnsiRed() + "Received");
+            System.out.println("      code: " + rp.getCode());
+            System.out.println("      message: " + rp.getMessage());
+            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiGreen() + "Expect");
+            System.out.println("      code: " + codeExpectation);
+            if (messageExpectation.length() > 0) System.out.println("      message: " + messageExpectation);
+            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiReset());
         }
-
     }
 
     public static void main() throws
@@ -111,7 +99,7 @@ public class TestGetListComments extends TestBase {
     }
 
     private static class APIParams {
-        String accessToken;
+        String access_token;
         String index;
         String indexValue;
         String count;
@@ -136,8 +124,13 @@ public class TestGetListComments extends TestBase {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            this.accessToken = accessToken;
+            this.access_token = accessToken;
         }
+    }
+
+    protected static class GetListCommentsDataType {
+        protected Object[] comments;
+        protected int total;
     }
 
 }

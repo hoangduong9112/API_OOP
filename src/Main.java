@@ -11,22 +11,19 @@ public class Main {
 //            TestGetListBids.main();
 //            TestCreateBidAPI.main(); // need update test case
 //            TestCreateCommentAPI.main();
-            TestGetDetailAuctionAPI.main();
-
-
-//            TestCreateItemAPI.main(); // need update test case
-//            TestGetListAuctionsByTypeAPI.main();
 //            TestGetListComments.main();
 //            TestGetListAuctionsAPI.main();
+            TestGetDetailAuctionAPI.main();
+
+//            TestCreateItemAPI.main(); // need update test case
 //            TestEditAccountAPI.main(); // need update test case
 //            TestGetListLikesAPI.main();
-//            TestTotalLikesOfAuctionAPI.main();
-//            TestGetNewsAPI.main();
 //            TestReadNewsAPI.main();
 //            TestGetSlider.main();
 //            TestSearch.main();
 //            TestTotalLikesOfAuction.main();
 //            TestGetNews.main();
+//            TestGetListAuctionsByTypeAPI.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
