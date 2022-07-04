@@ -1,17 +1,12 @@
 package test_api;
 
 
-import utils.APIPath;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import utils.APIPath;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,53 +17,41 @@ public class TestCreateCommentAPI extends TestBase {
     private TestCreateCommentAPI(CreateCommentParams createCommentParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         APIPath.setCreateComment(createCommentParams.auctionID);
-        URL url = new URL(APIPath.getCreateComment());
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-
-        createCommentParams.setAccessToken();
-        connection.addRequestProperty("Authorization", "Bearer " + createCommentParams.accessToken);
-
-
-        connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
         params.put(createCommentParams.content, createCommentParams.contentValue);
         params.put(createCommentParams.commentLastID, createCommentParams.commentLastIDValue);
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (postData.length() != 0) {
-                postData.append('&');
-            }
-            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
-        }
 
-        byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
-        connection.setDoOutput(true);
-        try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {
-            writer.write(postDataBytes);
-            writer.flush();
-            StringBuilder content;
-            try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(connection.getInputStream()))) {
-                String line;
-                content = new StringBuilder();
-                while ((line = in.readLine()) != null) {
-                    content.append(line);
-                    content.append(System.lineSeparator());
-                }
-            }
-            Gson g = new Gson();
-            Response rp = g.fromJson(content.toString(), Response.class);
+        String result;
+        if (createCommentParams.isToken) {
+            createCommentParams.setAccessToken();
+            result = postMethod(APIPath.getCreateComment(), params, createCommentParams.access_token);
+        } else result = postMethod(APIPath.getCreateComment(), params, null);
 
-            System.out.println(testDescription);
+
+        Gson g = new Gson();
+        Type response = new TypeToken<Response<CreateCommentDataType>>() {
+        }.getType();
+        Response<CreateCommentDataType> rp = g.fromJson(result, response);
+        System.out.println(testDescription);
+        try {
             assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            if (codeExpectation.equals("1000")) {
+                if (rp.getData().comments != null) assert rp.getData().comments.length >0;
+                else assert rp.getData().code.equals("1008");
+            } else assert rp.getData() == null;
             System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
-        } finally {
-            connection.disconnect();
+        } catch (AssertionError e) {
+            System.out.println(getAnsiRed() + "Received");
+            System.out.println("      code: " + rp.getCode());
+            System.out.println("      message: " + rp.getMessage());
+            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiGreen() + "Expect");
+            System.out.println("      code: " + codeExpectation);
+            if (messageExpectation.length() > 0) System.out.println("      message: " + messageExpectation);
+            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiReset());
         }
     }
 
@@ -79,17 +62,16 @@ public class TestCreateCommentAPI extends TestBase {
         final String comment_last_id = "comment_last_id";
 
 
-        CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39");
+        CreateCommentParams params1 = new CreateCommentParams(1, content, "And love", comment_last_id, "39", true);
         TestCase<CreateCommentParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
         listTestCase.add(testCase1);
 
-        CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "");
+        CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "", true);
         TestCase<CreateCommentParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
         listTestCase.add(testCase2);
 
-        // data have code 1008
-        CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6");
-        TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
+        CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6", true);
+        TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with status =4", params3);
         listTestCase.add(testCase3);
 
         System.out.println(getAnsiBlue() + "Testing Create Comment API" + getAnsiReset());
@@ -105,14 +87,16 @@ public class TestCreateCommentAPI extends TestBase {
         String contentValue;
         String commentLastID;
         String commentLastIDValue;
-        String accessToken;
+        String access_token;
+        boolean isToken;
 
-        private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue) {
+        private CreateCommentParams(int auctionID, String content, String contentValue, String commentLastID, String commentLastIDValue, boolean isToken) {
             this.auctionID = auctionID;
             this.content = content;
             this.contentValue = contentValue;
             this.commentLastID = commentLastID;
             this.commentLastIDValue = commentLastIDValue;
+            this.isToken = isToken;
         }
 
         public void setAccessToken() {
@@ -122,8 +106,12 @@ public class TestCreateCommentAPI extends TestBase {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            this.accessToken = accessToken;
+            this.access_token = accessToken;
         }
+    }
+    protected static class CreateCommentDataType{
+        protected String code;
+        protected Object[] comments;
     }
 
 }
