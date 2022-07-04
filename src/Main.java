@@ -5,13 +5,14 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         try {
+            TestChangePasswordAPI.main();
 //            TestLoginAPI.main();
 //            TestSignUpAPI.main(); // need update test case
 //            TestCreateAuctionAPI.main(); // need update test case
 //            TestGetListBids.main();
 //            TestCreateBidAPI.main(); // need update test case
 //            TestCreateCommentAPI.main();
-            TestGetDetailAuctionAPI.main();
+//            TestGetDetailAuctionAPI.main();
 
 
 //            TestCreateItemAPI.main(); // need update test case

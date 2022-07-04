@@ -12,6 +12,8 @@ public class APIPath {
     private static final String CREATE_AUCTION = "https://auctions-app-2.herokuapp.com/api/auctions/create";
     public static final String GET_SLIDER = "https://auctions-app-2.herokuapp.com/api/slider";
     public static final String SEARCH = "https://auctions-app-2.herokuapp.com/api/search";
+    private static final String CHANGE_PASS = "https://auctions-app-2.herokuapp.com/api/changepass";
+
     private static String getListAuctions;
     private static String getDetailAuction;
     private static String getListAuctionsByType;
@@ -126,6 +128,10 @@ public class APIPath {
 
     public static String getSignUp() {
         return SIGNUP;
+    }
+
+    public static String getChangePass() {
+        return CHANGE_PASS;
     }
 }
 

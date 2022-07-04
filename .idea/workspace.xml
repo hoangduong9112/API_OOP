@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
+      <change afterPath="$PROJECT_DIR$/src/test_api/TestChangePasswordAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/0/203b76d082d8edb9de6807bf612734c82b0db265" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/0/60eb73513b5db14114df254aaf3a9efb8cea6e5c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestCreateCommentAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateCommentAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_api/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/APIPath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

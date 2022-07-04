@@ -48,7 +48,7 @@ public class TestBase {
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
-        params.put("email", "duonghoang@gmail.com");
+        params.put("email", "duonghoang130@gmail.com");
         params.put("password", "123456");
 
         StringBuilder postData = new StringBuilder();
