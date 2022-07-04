@@ -1,9 +1,8 @@
 package test_api;
 
-import utils.api.LoginAPI;
+import com.google.gson.reflect.TypeToken;
 import utils.APIPath;
 import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
 import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
@@ -11,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -20,15 +20,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCreateAuctionAPI {
+public class TestCreateAuctionAPI extends TestBase {
 
     private TestCreateAuctionAPI(CreateAuctionParams createAuctionParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
-        URL url = new URL(APIPath.CREATE_AUCTION);
+        URL url = new URL(APIPath.getCreateAuction());
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         createAuctionParams.setAccessToken();
-        connection.addRequestProperty("Authorization", "Bearer " + createAuctionParams.accessToken);
+        connection.addRequestProperty("Authorization", "Bearer " + createAuctionParams.access_token);
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
@@ -64,11 +64,12 @@ public class TestCreateAuctionAPI {
             }
 
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Type response = new TypeToken<Response<CreateAuctionDataType>>() {}.getType();
+            Response<LoginDataType> rp = g.fromJson(content.toString(), response);
             System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -123,7 +124,7 @@ public class TestCreateAuctionAPI {
         String start_date;
         String end_date;
 
-        String accessToken;
+        String access_token;
 
 
         private CreateAuctionParams(int category_id, String title_ni, String start_date, String end_date) {
@@ -136,12 +137,22 @@ public class TestCreateAuctionAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            this.accessToken = accessToken;
+            this.access_token = accessToken;
         }
     }
+    protected static class CreateAuctionDataType{
+        protected String auction_id;
+        protected String title;
+        protected String category_id;
+        protected String selling_user_id;
+        protected String start_date;
+        protected String end_date;
+        protected String status;
+        protected String reason;
 
+    }
 }

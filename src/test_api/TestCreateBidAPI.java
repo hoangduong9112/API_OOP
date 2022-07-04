@@ -1,6 +1,5 @@
 package test_api;
 
-import utils.api.LoginAPI;
 import utils.APIPath;
 import utils.ColorTerminalDeprecate;
 import utils.ResponseDeprecated;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCreateBidAPI {
+public class TestCreateBidAPI extends TestBase {
 
     private TestCreateBidAPI(CreateBidParams createBidParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -67,7 +66,7 @@ public class TestCreateBidAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -127,12 +126,14 @@ public class TestCreateBidAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             this.accessToken = accessToken;
         }
     }
+
+
 
 }

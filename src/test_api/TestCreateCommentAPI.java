@@ -1,6 +1,5 @@
 package test_api;
 
-import utils.api.LoginAPI;
 import utils.APIPath;
 import utils.ColorTerminalDeprecate;
 import utils.ResponseDeprecated;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCreateCommentAPI {
+public class TestCreateCommentAPI extends TestBase{
 
     private TestCreateCommentAPI(CreateCommentParams createCommentParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -66,8 +65,8 @@ public class TestCreateCommentAPI {
             ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
 
             System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
             System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
@@ -121,7 +120,7 @@ public class TestCreateCommentAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
