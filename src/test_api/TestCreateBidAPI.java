@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -65,9 +65,9 @@ public class TestCreateBidAPI {
             Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -76,7 +76,7 @@ public class TestCreateBidAPI {
 
     public static void main() throws
             IOException {
-        List<TestCase<CreateBidParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<CreateBidParams>> listTestCase = new ArrayList<>();
 
         final String price = "price";
         final String bidLastID = "bidLastID";
@@ -84,23 +84,23 @@ public class TestCreateBidAPI {
         // Testcase 1 and 3 need to update price higher than old price
 
         CreateBidParams params1 = new CreateBidParams(5, price, "80000000009", bidLastID, "39");
-        TestCase<CreateBidParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<CreateBidParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         CreateBidParams params2 = new CreateBidParams(5, price, "", bidLastID, "39");
-        TestCase<CreateBidParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty price", params2);
+        TestCaseDeprecated<CreateBidParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error 1001 with empty price", params2);
         listTestCase.add(testCase2);
 
         CreateBidParams params3 = new CreateBidParams(5, price, "80000000010", bidLastID, "");
-        TestCase<CreateBidParams> testCase3 = new TestCase<>("1000", "", "Unit test 3: Should be successful with empty bidLastID", params3);
+        TestCaseDeprecated<CreateBidParams> testCase3 = new TestCaseDeprecated<>("1000", "", "Unit test 3: Should be successful with empty bidLastID", params3);
         listTestCase.add(testCase3);
 
         CreateBidParams params4 = new CreateBidParams(5, price, "80", bidLastID, "");
-        TestCase<CreateBidParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with lower price", params4);
+        TestCaseDeprecated<CreateBidParams> testCase4 = new TestCaseDeprecated<>("1001", "", "Unit test 4: Should throw error 1001 with lower price", params4);
         listTestCase.add(testCase4);
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Create Bid API" + ColorTerminal.getAnsiReset());
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Create Bid API" + ColorTerminalDeprecate.getAnsiReset());
 
-        for (TestCase<CreateBidParams> testCase : listTestCase) {
+        for (TestCaseDeprecated<CreateBidParams> testCase : listTestCase) {
             new TestCreateBidAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

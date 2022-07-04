@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -59,7 +59,7 @@ public class TestGetListLikesAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -69,25 +69,25 @@ public class TestGetListLikesAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCase<GetListLikesParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<GetListLikesParams>> listTestCase = new ArrayList<>();
         final String index = "index";
         final String count = "count";
 
         GetListLikesParams params1 = new GetListLikesParams(true, 3, index, "1", count, "1");
-        TestCase<GetListLikesParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<GetListLikesParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
         GetListLikesParams params2 = new GetListLikesParams(false, 3, index, "1", count, "1");
-        TestCase<GetListLikesParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't login", params2);
+        TestCaseDeprecated<GetListLikesParams> testCase2 = new TestCaseDeprecated<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't login", params2);
         listTestCase.add(testCase2);
         GetListLikesParams params3 = new GetListLikesParams(true, 3, index, "", count, "1");
-        TestCase<GetListLikesParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
+        TestCaseDeprecated<GetListLikesParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
         listTestCase.add(testCase3);
         GetListLikesParams params4 = new GetListLikesParams(true, 3, index, "1", count, "");
-        TestCase<GetListLikesParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
+        TestCaseDeprecated<GetListLikesParams> testCase4 = new TestCaseDeprecated<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
         listTestCase.add(testCase4);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Get List Likes" + "API" + ColorTerminal.getAnsiReset());
-        for (TestCase<GetListLikesParams> testCase : listTestCase) {
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Get List Likes" + "API" + ColorTerminalDeprecate.getAnsiReset());
+        for (TestCaseDeprecated<GetListLikesParams> testCase : listTestCase) {
             new TestGetListLikesAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

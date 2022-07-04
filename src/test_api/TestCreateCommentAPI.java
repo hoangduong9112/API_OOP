@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -68,7 +68,7 @@ public class TestCreateCommentAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -77,27 +77,27 @@ public class TestCreateCommentAPI {
 
     public static void main() throws
             IOException {
-        List<TestCase<CreateCommentParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<CreateCommentParams>> listTestCase = new ArrayList<>();
         final String content = "content";
         final String comment_last_id = "comment_last_id";
 
 
         CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39");
-        TestCase<CreateCommentParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
+        TestCaseDeprecated<CreateCommentParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
         listTestCase.add(testCase1);
 
         CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "");
-        TestCase<CreateCommentParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
+        TestCaseDeprecated<CreateCommentParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
         listTestCase.add(testCase2);
 
         // data have code 1008
         CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6");
-        TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
+        TestCaseDeprecated<CreateCommentParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
         listTestCase.add(testCase3);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Create Comment API" + ColorTerminal.getAnsiReset());
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Create Comment API" + ColorTerminalDeprecate.getAnsiReset());
 
-        for (TestCase<CreateCommentParams> testCase : listTestCase) {
+        for (TestCaseDeprecated<CreateCommentParams> testCase : listTestCase) {
             new TestCreateCommentAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

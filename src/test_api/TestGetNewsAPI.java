@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -58,7 +58,7 @@ public class TestGetNewsAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -68,24 +68,24 @@ public class TestGetNewsAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCase<GetNewsParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<GetNewsParams>> listTestCase = new ArrayList<>();
         final String index = "index";
         final String count = "count";
         GetNewsParams params1 = new GetNewsParams(true, index, "1", count, "1");
-        TestCase<GetNewsParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<GetNewsParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
         GetNewsParams params2 = new GetNewsParams(false, index, "1", count, "1");
-        TestCase<GetNewsParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
+        TestCaseDeprecated<GetNewsParams> testCase2 = new TestCaseDeprecated<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
         listTestCase.add(testCase2);
         GetNewsParams params3 = new GetNewsParams(true, index, "", count, "1");
-        TestCase<GetNewsParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
+        TestCaseDeprecated<GetNewsParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
         listTestCase.add(testCase3);
         GetNewsParams params4 = new GetNewsParams(true, index, "1", count, "");
-        TestCase<GetNewsParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
+        TestCaseDeprecated<GetNewsParams> testCase4 = new TestCaseDeprecated<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
         listTestCase.add(testCase4);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Get News " + "API" + ColorTerminal.getAnsiReset());
-        for (TestCase<GetNewsParams> testCase : listTestCase) {
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Get News " + "API" + ColorTerminalDeprecate.getAnsiReset());
+        for (TestCaseDeprecated<GetNewsParams> testCase : listTestCase) {
             new TestGetNewsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

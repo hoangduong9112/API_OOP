@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -44,7 +44,7 @@ public class TestTotalLikesOfAuctionAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -54,17 +54,17 @@ public class TestTotalLikesOfAuctionAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCase<TotalLikesOfAuctionParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<TotalLikesOfAuctionParams>> listTestCase = new ArrayList<>();
 
         TotalLikesOfAuctionParams params1 = new TotalLikesOfAuctionParams(true, 3);
-        TestCase<TotalLikesOfAuctionParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<TotalLikesOfAuctionParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
         TotalLikesOfAuctionParams params2 = new TotalLikesOfAuctionParams(false, 3);
-        TestCase<TotalLikesOfAuctionParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful even user haven't logined", params2);
+        TestCaseDeprecated<TotalLikesOfAuctionParams> testCase2 = new TestCaseDeprecated<>("1000", "", "Unit test 2: Should be successful even user haven't logined", params2);
         listTestCase.add(testCase2);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Total Likes Of Auction" + "API" + ColorTerminal.getAnsiReset());
-        for (TestCase<TotalLikesOfAuctionParams> testCase : listTestCase) {
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Total Likes Of Auction" + "API" + ColorTerminalDeprecate.getAnsiReset());
+        for (TestCaseDeprecated<TotalLikesOfAuctionParams> testCase : listTestCase) {
             new TestTotalLikesOfAuctionAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

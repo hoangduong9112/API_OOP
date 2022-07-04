@@ -1,12 +1,12 @@
 package utils;
 
-public class TestCase<T> {
+public class TestCaseDeprecated<T> {
     private final T params;
     private final String testDescription;
     private final String codeExpectation;
     private final String messageExpectation;
 
-    public TestCase(String codeExpectation, String messageExpectation, String testDescription, T params) {
+    public TestCaseDeprecated(String codeExpectation, String messageExpectation, String testDescription, T params) {
         this.codeExpectation = codeExpectation;
         this.messageExpectation = messageExpectation;
         this.testDescription = testDescription;

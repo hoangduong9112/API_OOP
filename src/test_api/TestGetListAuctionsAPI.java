@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -58,7 +58,7 @@ public class TestGetListAuctionsAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -68,38 +68,38 @@ public class TestGetListAuctionsAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCase<GetListAuctionsParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<GetListAuctionsParams>> listTestCase = new ArrayList<>();
 
         GetListAuctionsParams params1 = new GetListAuctionsParams(1, "index", "1", "count", "1");
-        TestCase<GetListAuctionsParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<GetListAuctionsParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         GetListAuctionsParams params2 = new GetListAuctionsParams(1, "index", "1", "count", "1", "user_id", "3");
-        TestCase<GetListAuctionsParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+        TestCaseDeprecated<GetListAuctionsParams> testCase2 = new TestCaseDeprecated<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
         listTestCase.add(testCase2);
 
         GetListAuctionsParams params3 = new GetListAuctionsParams(1, "index", "1", "count", "1", "category_id", "1");
-        TestCase<GetListAuctionsParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+        TestCaseDeprecated<GetListAuctionsParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
         listTestCase.add(testCase3);
 
         GetListAuctionsParams params4 = new GetListAuctionsParams(1, "index", "1", "count", "1", "type", "1");
-        TestCase<GetListAuctionsParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
+        TestCaseDeprecated<GetListAuctionsParams> testCase4 = new TestCaseDeprecated<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
         listTestCase.add(testCase4);
 
         GetListAuctionsParams params5 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase5 = new TestCase<>("1000", "OK", "Unit test 5: Should be successful with empty count", params5);
+        TestCaseDeprecated<GetListAuctionsParams> testCase5 = new TestCaseDeprecated<>("1000", "OK", "Unit test 5: Should be successful with empty count", params5);
         listTestCase.add(testCase5);
 
         GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "", "user_id", "");
-        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1000", "", "Unit test 7: Should be successful with empty param", params7);
+        TestCaseDeprecated<GetListAuctionsParams> testCase7 = new TestCaseDeprecated<>("1000", "", "Unit test 7: Should be successful with empty param", params7);
         listTestCase.add(testCase7);
 
         GetListAuctionsParams params8 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCase<GetListAuctionsParams> testCase8 = new TestCase<>("1000", "", "Unit test 8: Should be successful with correct param", params8);
+        TestCaseDeprecated<GetListAuctionsParams> testCase8 = new TestCaseDeprecated<>("1000", "", "Unit test 8: Should be successful with correct param", params8);
         listTestCase.add(testCase8);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Get List Auction API" + ColorTerminal.getAnsiReset());
-        for (TestCase<GetListAuctionsParams> testCase : listTestCase) {
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Get List Auction API" + ColorTerminalDeprecate.getAnsiReset());
+        for (TestCaseDeprecated<GetListAuctionsParams> testCase : listTestCase) {
             new TestGetListAuctionsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
