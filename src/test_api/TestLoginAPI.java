@@ -20,7 +20,7 @@ public class TestLoginAPI extends TestBase  {
             Map<String, String> params = new HashMap<>();
             params.put(loginParams.key1, loginParams.value1);
             params.put(loginParams.key2, loginParams.value2);
-            String result = postMethod(APIPath.getLoginURL(), params);
+            String result = postMethod(APIPath.getLoginURL(), params, null);
             Gson g = new Gson();
             Type response = new TypeToken<Response<LoginDataType>>() {}.getType();
             Response<LoginDataType> rp = g.fromJson(result, response);

@@ -87,10 +87,11 @@ public class TestBase {
         }
     }
 
-    public static String postMethod(String urlBase, Map<String, String> params) throws
+    public static String postMethod(String urlBase, Map<String, String> params, String accessToken) throws
             IOException {
         URL url = new URL(urlBase);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        if(accessToken != null) connection.addRequestProperty("Authorization", "Bearer " + accessToken);
         connection.setRequestMethod("POST");
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, String> param : params.entrySet()) {
@@ -115,6 +116,37 @@ public class TestBase {
                     content.append(line);
                     content.append(System.lineSeparator());
                 }
+            }
+            return content.toString();
+        } finally {
+            connection.disconnect();
+        }
+    }
+    public static String getMethod(String urlBase, Map<String, String> params, String accessToken) throws
+            IOException {
+        StringBuilder query = new StringBuilder();
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            if (query.length() != 0) {
+                query.append('&');
+            }
+            query.append(param.getKey());
+            query.append('=');
+            query.append(param.getValue());
+        }
+        URL url = new URL(urlBase  + "?" + query);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        if (accessToken != null) {
+            connection.addRequestProperty("Authorization", "Bearer " + accessToken);
+        }
+        connection.setRequestMethod("GET");
+        try (BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()))) {
+            String line;
+            StringBuilder content = new StringBuilder();
+
+            while ((line = in.readLine()) != null) {
+                content.append(line);
+                content.append(System.lineSeparator());
             }
             return content.toString();
         } finally {
