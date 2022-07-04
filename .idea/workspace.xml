@@ -4,40 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/8/280332d6167c5992a95f496da08db1206f0c8a2e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/f/2f6806bc844b5b1cc3facc93d3bcb1f4a42f7281" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/e/4eed002165cb13939f152cf97a9948940159fd64" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/3/639b2cb87cadaa95685c7fe419039b412325a87c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/d/6d0e6480afd980d7dd4d1faaa0a1bd07db03875e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/88cd94dbd89fd6eb24a0b4b3e970fda95069d04e" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/8/d8a531fb495f7a890d0027b18263355888e18731" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/e/de38e3656f921819673de5919565528bc31f774b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/d/edac569f473e0776df3c617a5e24c5fae8d4b821" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/6/f69ba224b452b4711407aefabc71e332a8a9deca" beforeDir="false" />
+    <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestCreateAuctionAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateAuctionAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestCreateBidAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateBidAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestCreateCommentAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateCommentAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestCreateItemAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateItemAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestEditAccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestEditAccountAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestEditItemAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestEditItemAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetDetailAuctionAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetDetailAuctionAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetListAuctionsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListAuctionsAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetListAuctionsByTypeAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListAuctionsByTypeAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetListBids.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListBids.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetListComments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListComments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetListLikesAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListLikesAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetNews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetNews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetNewsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetNewsAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetSlider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestReadNewsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestReadNewsAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_api/TestSignUpAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestSignUpAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestTotalLikesOfAuction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestTotalLikesOfAuction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestTotalLikesOfAuctionAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestTotalLikesOfAuctionAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/APIPath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
