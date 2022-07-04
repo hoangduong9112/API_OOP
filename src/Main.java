@@ -7,8 +7,8 @@ public class Main {
         try {
 //            TestLoginAPI.main();
 //            TestCreateAuctionAPI.main();
-              TestGetListBids.main();
-
+//            TestGetListBids.main();
+            TestCreateBidAPI.main();
 
 
 //            TestGetDetailAuctionAPI.main();
@@ -17,7 +17,6 @@ public class Main {
 //            TestGetListAuctionsAPI.main();
 //            TestSignUpAPI.main(); // need update test case
 //            TestEditAccountAPI.main(); // need update test case
-//            TestCreateBidAPI.main();
 //            TestCreateCommentAPI.main(); // need update test case
 //            TestGetListLikesAPI.main();
 //            TestTotalLikesOfAuctionAPI.main();

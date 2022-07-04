@@ -81,7 +81,7 @@ public class TestCreateBidAPI extends TestBase {
 
         // Testcase 1 and 3 need to update price higher than old price
 
-        CreateBidParams params1 = new CreateBidParams(5, price, "80000000009", bidLastID, "39");
+        CreateBidParams params1 = new CreateBidParams(5, price, "800000000103", bidLastID, "39");
         TestCase<CreateBidParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
@@ -89,7 +89,7 @@ public class TestCreateBidAPI extends TestBase {
         TestCase<CreateBidParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty price", params2);
         listTestCase.add(testCase2);
 
-        CreateBidParams params3 = new CreateBidParams(5, price, "80000000010", bidLastID, "");
+        CreateBidParams params3 = new CreateBidParams(5, price, "800000000104", bidLastID, "");
         TestCase<CreateBidParams> testCase3 = new TestCase<>("1000", "", "Unit test 3: Should be successful with empty bidLastID", params3);
         listTestCase.add(testCase3);
 

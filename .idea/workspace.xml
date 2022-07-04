@@ -7,8 +7,7 @@
     <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetListBids.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListBids.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_api/TestCreateBidAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateBidAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
