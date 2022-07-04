@@ -11,9 +11,10 @@ public class Main {
 //            TestGetListBids.main();
 //            TestCreateBidAPI.main(); // need update test case
 //            TestCreateCommentAPI.main();
+            TestGetDetailAuctionAPI.main();
 
-            TestCreateItemAPI.main(); // need update test case
-//            TestGetDetailAuctionAPI.main();
+
+//            TestCreateItemAPI.main(); // need update test case
 //            TestGetListAuctionsByTypeAPI.main();
 //            TestGetListComments.main();
 //            TestGetListAuctionsAPI.main();
