@@ -10,22 +10,22 @@ public class Main {
 //            TestCreateAuctionAPI.main(); // need update test case
 //            TestGetListBids.main();
 //            TestCreateBidAPI.main(); // need update test case
-            TestCreateCommentAPI.main();
+//            TestCreateCommentAPI.main();
+//              TestGetListComments.main();
+            TestGetListAuctionsAPI.main();
 
 //            TestCreateItemAPI.main(); // need update test case
 //            TestGetDetailAuctionAPI.main();
-//            TestGetListAuctionsByTypeAPI.main();
-//            TestGetListComments.main();
-//            TestGetListAuctionsAPI.main();
+//
 //            TestEditAccountAPI.main(); // need update test case
 //            TestGetListLikesAPI.main();
-//            TestTotalLikesOfAuctionAPI.main();
 //            TestGetNewsAPI.main();
 //            TestReadNewsAPI.main();
 //            TestGetSlider.main();
 //            TestSearch.main();
 //            TestTotalLikesOfAuction.main();
 //            TestGetNews.main();
+//            TestGetListAuctionsByTypeAPI.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
