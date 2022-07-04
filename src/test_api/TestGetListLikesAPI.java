@@ -1,10 +1,8 @@
 package test_api;
 
-import utils.api.LoginAPI;
+
 import utils.APIPath;
-import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
-import utils.TestCaseDeprecated;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -17,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestGetListLikesAPI {
+public class TestGetListLikesAPI extends TestBase{
     private TestGetListLikesAPI(GetListLikesParams getListLikesParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
         Map<String, String> params = new HashMap<>();
         params.put(getListLikesParams.index, getListLikesParams.indexValue);
@@ -54,12 +52,12 @@ public class TestGetListLikesAPI {
                 content.append(System.lineSeparator());
             }
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -69,26 +67,26 @@ public class TestGetListLikesAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCaseDeprecated<GetListLikesParams>> listTestCase = new ArrayList<>();
+        List<TestCase<GetListLikesParams>> listTestCase = new ArrayList<>();
         final String index = "index";
         final String count = "count";
 
         GetListLikesParams params1 = new GetListLikesParams(true, 3, index, "1", count, "1");
-        TestCaseDeprecated<GetListLikesParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase<GetListLikesParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
         GetListLikesParams params2 = new GetListLikesParams(false, 3, index, "1", count, "1");
-        TestCaseDeprecated<GetListLikesParams> testCase2 = new TestCaseDeprecated<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't login", params2);
+        TestCase<GetListLikesParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't login", params2);
         listTestCase.add(testCase2);
         GetListLikesParams params3 = new GetListLikesParams(true, 3, index, "", count, "1");
-        TestCaseDeprecated<GetListLikesParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
+        TestCase<GetListLikesParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with empty index", params3);
         listTestCase.add(testCase3);
         GetListLikesParams params4 = new GetListLikesParams(true, 3, index, "1", count, "");
-        TestCaseDeprecated<GetListLikesParams> testCase4 = new TestCaseDeprecated<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
+        TestCase<GetListLikesParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with empty count", params4);
         listTestCase.add(testCase4);
 
-        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Get List Likes" + "API" + ColorTerminalDeprecate.getAnsiReset());
-        for (TestCaseDeprecated<GetListLikesParams> testCase : listTestCase) {
-            new TestGetListLikesAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        System.out.println(getAnsiBlue() + "Testing Get List Likes" + "API" + getAnsiReset());
+        for (TestCase<GetListLikesParams> testCase : listTestCase) {
+            new TestGetListLikesAPI(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 
@@ -113,7 +111,7 @@ public class TestGetListLikesAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

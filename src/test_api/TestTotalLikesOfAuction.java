@@ -1,8 +1,9 @@
-package TestAPI;
+package test_api;
 
-import Utils.*;
-import Utils.API.LoginAPI;
+
 import com.google.gson.Gson;
+import utils.APIPath;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestTotalLikesOfAuction {
+public class TestTotalLikesOfAuction extends TestBase {
 
     private TestTotalLikesOfAuction(ItemParams itemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -44,7 +45,7 @@ public class TestTotalLikesOfAuction {
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
 
-            System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -79,10 +80,10 @@ public class TestTotalLikesOfAuction {
         TestCase<ItemParams> testCase6 = new TestCase<>("1000", "OK", "Unit test 6: Should be successful without token", params6);
         listTestCase.add(testCase6);
 //
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get Total Likes Of Auction API" + ColorTerminal.ANSI_RESET);
+        System.out.println(getAnsiBlue() + "Testing Get Total Likes Of Auction API" + getAnsiReset());
 //
         for (TestCase<ItemParams> testCase : listTestCase) {
-            new TestTotalLikesOfAuction(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestTotalLikesOfAuction(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
     private static class ItemParams {
@@ -99,7 +100,7 @@ public class TestTotalLikesOfAuction {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

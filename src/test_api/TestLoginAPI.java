@@ -4,15 +4,8 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import utils.APIPath;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,43 +17,13 @@ public class TestLoginAPI extends TestBase  {
     }
     private static void test(LoginParams loginParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
-        URL url = new URL(APIPath.getLoginURL());
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        connection.setRequestMethod("POST");
-        Map<String, String> params = new HashMap<>();
-        params.put(loginParams.key1, loginParams.value1);
-        params.put(loginParams.key2, loginParams.value2);
-
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (postData.length() != 0) {
-                postData.append('&');
-            }
-            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
-        }
-
-        byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
-        connection.setDoOutput(true);
-        try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {
-            writer.write(postDataBytes);
-            writer.flush();
-            StringBuilder content;
-            try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(connection.getInputStream()))) {
-                String line;
-                content = new StringBuilder();
-                while ((line = in.readLine()) != null) {
-                    content.append(line);
-                    content.append(System.lineSeparator());
-                }
-            }
-
+            Map<String, String> params = new HashMap<>();
+            params.put(loginParams.key1, loginParams.value1);
+            params.put(loginParams.key2, loginParams.value2);
+            String result = postMethod(APIPath.getLoginURL(), params);
             Gson g = new Gson();
             Type response = new TypeToken<Response<LoginDataType>>() {}.getType();
-            Response<LoginDataType> rp = g.fromJson(content.toString(), response);
+            Response<LoginDataType> rp = g.fromJson(result, response);
             System.out.println(testDescription);
             try {
                 assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
@@ -85,9 +48,6 @@ public class TestLoginAPI extends TestBase  {
                 System.out.println("      data: " + rp.getData());
                 System.out.println(getAnsiReset());
             }
-        } finally {
-            connection.disconnect();
-        }
     }
 
     public static void main() throws
