@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
-      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestCreateAuctionAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/APIPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/ColorTerminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ColorTerminal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/api/LoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/LoginAPI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="294BOXgP6GBb4XFYMvZTbqGsN23" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -53,6 +56,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="utils" />
       <recent name="TestAPI" />
       <recent name="Utils" />
       <recent name="" />
