@@ -1,6 +1,5 @@
 package test_api;
 
-import utils.api.LoginAPI;
 import utils.APIPath;
 import utils.ColorTerminalDeprecate;
 import utils.ResponseDeprecated;

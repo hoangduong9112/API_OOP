@@ -1,0 +1,23 @@
+
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+a
+java:S1192a"KDefine a constant instead of duplicating this literal "TestTitle2" 4 times.(í”û
+t
+java:S1192S"YDefine a constant instead of duplicating this literal "2022-10-05T14:48:00.000Z" 5 times.(Å£îœıÿÿÿÿ
+t
+java:S1192S"YDefine a constant instead of duplicating this literal "2022-10-06T14:48:00.000Z" 5 times.(Å£îœıÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Äöûÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Äöûÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Äöûÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„Äöûÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÔŸäö
+N	java:S106D"9Replace this use of System.out or System.err by a logger.(„ùµı
+N	java:S106G"9Replace this use of System.out or System.err by a logger.(à°£ò
+S	java:S106H"9Replace this use of System.out or System.err by a logger.(ªÓ¼áşÿÿÿÿ
+S	java:S106r"9Replace this use of System.out or System.err by a logger.(Á¢•Ëüÿÿÿÿ
+p	java:S116y"VRename this field "category_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºŸÛÌûÿÿÿÿ
+m	java:S116z"SRename this field "title_ni" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éà™—ÿÿÿÿÿ
+i	java:S116{"URename this field "start_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­øı4
+m	java:S116|"SRename this field "end_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«©¾—şÿÿÿÿ
+\
+java:S1117‰"@Rename "accessToken" which hides the field declared at line 126.(ÖçÂìşÿÿÿÿ

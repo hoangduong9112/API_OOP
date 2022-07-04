@@ -1,21 +1,21 @@
 package test_api;
 
-import utils.api.LoginAPI;
+import com.google.gson.reflect.TypeToken;
 import utils.APIPath;
 import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
 import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestTotalLikesOfAuctionAPI {
+public class TestTotalLikesOfAuctionAPI extends TestBase {
     private TestTotalLikesOfAuctionAPI(TotalLikesOfAuctionParams totalLikesOfAuctionParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
         APIPath.setTotalLikesOfAuction(totalLikesOfAuctionParams.auctionID);
         URL url = new URL(APIPath.getTotalLikesOfAuction());
@@ -38,12 +38,14 @@ public class TestTotalLikesOfAuctionAPI {
                 content.append(line);
                 content.append(System.lineSeparator());
             }
+
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Type response = new TypeToken<Response<TotalLikesOfAuctionType>>() {}.getType();
+            Response<TotalLikesOfAuctionType> rp = g.fromJson(content.toString(), response);
 
             System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
             System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
@@ -82,13 +84,16 @@ public class TestTotalLikesOfAuctionAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
             this.accessToken = accessToken;
         }
     }
-
+    protected static class TotalLikesOfAuctionType {
+        protected String auction_id;
+        protected int total_liked;
+    }
 }
 
