@@ -5,7 +5,7 @@ public class APIPath {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
     private static final String LOGIN_URL = "https://auctions-app-2.herokuapp.com/api/login";
-    public static final String SIGNUP = "https://auctions-app-2.herokuapp.com/api/signup";
+    private static final String SIGNUP = "https://auctions-app-2.herokuapp.com/api/signup";
     public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
     public static final String LOGIN_FAILED = "http://auctions-app-2.herokuapp.com/api/loginfailed";
     public static final String GET_NEWS = "https://auctions-app-2.herokuapp.com/api/news";
@@ -122,6 +122,10 @@ public class APIPath {
 
     public static void setReadNews(int newID) {
         readNews = String.format("https://auctions-app-2.herokuapp.com/api/news/read/%d", newID);
+    }
+
+    public static String getSignUp() {
+        return SIGNUP;
     }
 }
 

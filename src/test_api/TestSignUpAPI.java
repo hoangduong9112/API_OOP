@@ -1,16 +1,11 @@
 package test_api;
 
+import com.google.gson.reflect.TypeToken;
 import utils.APIPath;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +15,6 @@ public class TestSignUpAPI extends TestBase {
 
     private TestSignUpAPI(SignUpParams signUpParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
-        URL url = new URL(APIPath.SIGNUP);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
         params.put(signUpParams.key1, signUpParams.value1);
         params.put(signUpParams.key2, signUpParams.value2);
@@ -31,42 +22,35 @@ public class TestSignUpAPI extends TestBase {
         params.put(signUpParams.key4, signUpParams.value4);
         params.put(signUpParams.key5, signUpParams.value5);
         params.put(signUpParams.key6, signUpParams.value6);
-        StringBuilder postData = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (postData.length() != 0) {
-                postData.append('&');
-            }
-            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
-            postData.append('=');
-            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
-        }
 
-        byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
-        connection.setDoOutput(true);
-        try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {
-            writer.write(postDataBytes);
-            writer.flush();
-            StringBuilder content;
-            try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(connection.getInputStream()))) {
-                String line;
-                content = new StringBuilder();
-                while ((line = in.readLine()) != null) {
-                    content.append(line);
-                    content.append(System.lineSeparator());
-                }
-            }
+        String result = postMethod(APIPath.getSignUp(), params);
+        Gson g = new Gson();
+        Type response = new TypeToken<Response<SignUpDataType>>() {}.getType();
+        Response<SignUpDataType> rp = g.fromJson(result, response);
+        System.out.println(testDescription);
 
-            Gson g = new Gson();
-            Response rp = g.fromJson(content.toString(), Response.class);
-
-            System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
+        try {
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            if (codeExpectation.equals("1000")) {
+                assert rp.getData().name != null;
+                assert rp.getData().phone != null;
+                assert rp.getData().email != null;
+                assert rp.getData().avatar != null;
+                assert rp.getData().role == 2;
+            } else assert rp.getData() == null;
             System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
-        } finally {
-            connection.disconnect();
+        } catch(AssertionError e) {
+            System.out.println(getAnsiRed() + "Received");
+            System.out.println("      code: " + rp.getCode());
+            System.out.println("      message: " + rp.getMessage());
+            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiGreen() + "Expect");
+            System.out.println("      code: " + codeExpectation);
+            if(messageExpectation.length() > 0) System.out.println("      message: " + messageExpectation);
+            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiReset());
         }
     }
 
@@ -83,7 +67,7 @@ public class TestSignUpAPI extends TestBase {
 
         //Need to update new email to run test
 
-        SignUpParams params1 = new SignUpParams(email, "duonghoang@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
+        SignUpParams params1 = new SignUpParams(email, "duonghoang326@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
         TestCase<SignUpParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
@@ -95,8 +79,8 @@ public class TestSignUpAPI extends TestBase {
         TestCase<SignUpParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
-        SignUpParams params4 = new SignUpParams(email, "duonghoang1@gmail.com", password, "123456", re_pass, "123456", address, "", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
+        SignUpParams params4 = new SignUpParams(email, "duonghoang327@gmail.com", password, "123456", re_pass, "123456", address, "", name, "duong", phone, "09123");
+        TestCase<SignUpParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with empty address", params4);
         listTestCase.add(testCase4);
 
         SignUpParams params5 = new SignUpParams(email, "", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
@@ -159,6 +143,14 @@ public class TestSignUpAPI extends TestBase {
             this.key6 = key6;
             this.value6 = value6;
         }
+    }
+
+    protected static class SignUpDataType {
+        protected String name;
+        protected String email;
+        protected String phone;
+        protected String avatar;
+        protected int role;
     }
 
 }
