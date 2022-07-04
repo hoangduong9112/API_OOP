@@ -21,6 +21,11 @@ public class APIPath {
     public static String getSlider = "https://auctions-app-2.herokuapp.com/api/slider";
 
     public static String search = "https://auctions-app-2.herokuapp.com/api/search";
+
+
+    public static String getNews = "https://auctions-app-2.herokuapp.com/api/news";
+
+
     private static String getListLikes;
     private static String totalLikesOfAuction;
     private static String readNews;
@@ -29,6 +34,7 @@ public class APIPath {
     }
     public static String getGetListAuctions() {
         return getListAuctions;
+
     }
     public static void setGetListAuctions(int statusID) {
         getListAuctions = String.format("https://auctions-app-2.herokuapp.com/api/auctions/%d", statusID);
@@ -92,10 +98,13 @@ public class APIPath {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
 
+    private static String getListBids;
 
+    public static String getGetListBids(){ return getListBids; }
 
-
-
+    public static void setGetListBids(int auctionID){
+        getListBids = String.format("https://auctions-app-2.herokuapp.com/api/bids/%d", auctionID);
+    }
     public static String getGetListLikes() {
         return getListLikes;
     }

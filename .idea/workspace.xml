@@ -4,6 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
+    <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment=""></list>
+      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestGetNews.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestAPI/TestTotalLikesOfAuction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/APIPath.java" afterDir="false" />
+
     <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
       <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/3/43a64fab37881ac06ab40e9125c53093483d9203" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/9/69dcaa18695d12f8b7823a587f524656e3ff3348" afterDir="false" />
@@ -47,6 +55,7 @@
       <change beforePath="$PROJECT_DIR$/src/test_api/TestGetSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetSlider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_api/TestSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/APIPath.java" afterDir="false" />
+>>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,6 +132,9 @@
       <updated>1652362448061</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

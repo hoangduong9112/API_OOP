@@ -22,6 +22,9 @@ public class Main {
 //            TestCreateAuctionAPI.main();
 //            TestGetSlider.main();
 //            TestSearch.main();
+//            TestTotalLikesOfAuction.main();
+//            TestGetNews.main();
+//            TestGetListBids.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
