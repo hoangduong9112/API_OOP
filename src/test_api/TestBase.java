@@ -21,8 +21,10 @@ public class TestBase {
     private static final String ANSI_GREEN = "\u001B[32m";
     private static final String ANSI_BLUE = "\u001B[34m";
     private static final String ANSI_RED = "\u001B[31m";
+
     protected TestBase() {
     }
+
     public static String getAnsiReset() {
         return ANSI_RESET;
     }
@@ -38,6 +40,7 @@ public class TestBase {
     public static String getAnsiRed() {
         return ANSI_RED;
     }
+
     protected static String callLogin() throws
             IOException {
         URL url = new URL(APIPath.getLoginURL());
@@ -75,9 +78,45 @@ public class TestBase {
             }
 
             Gson g = new Gson();
-            Type response = new TypeToken<Response<LoginDataType>>() {}.getType();
+            Type response = new TypeToken<Response<LoginDataType>>() {
+            }.getType();
             Response<LoginDataType> rp = g.fromJson(content.toString(), response);
             return rp.getData().access_token;
+        } finally {
+            connection.disconnect();
+        }
+    }
+
+    public static String postMethod(String urlBase, Map<String, String> params) throws
+            IOException {
+        URL url = new URL(urlBase);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        StringBuilder postData = new StringBuilder();
+        for (Map.Entry<String, String> param : params.entrySet()) {
+            if (postData.length() != 0) {
+                postData.append('&');
+            }
+            postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
+            postData.append('=');
+            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
+        }
+        byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
+        connection.setDoOutput(true);
+        try (DataOutputStream writer = new DataOutputStream(connection.getOutputStream())) {
+            writer.write(postDataBytes);
+            writer.flush();
+            StringBuilder content;
+            try (BufferedReader in = new BufferedReader(
+                    new InputStreamReader(connection.getInputStream()))) {
+                String line;
+                content = new StringBuilder();
+                while ((line = in.readLine()) != null) {
+                    content.append(line);
+                    content.append(System.lineSeparator());
+                }
+            }
+            return content.toString();
         } finally {
             connection.disconnect();
         }
@@ -91,7 +130,9 @@ public class TestBase {
         protected String exp;
     }
 
-    protected record TestCase<T>(String codeExpectation, String messageExpectation, String testDescription, T params) { }
+    protected record TestCase<T>(String codeExpectation, String messageExpectation, String testDescription, T params) {
+    }
+
     protected static class Response<T> {
         protected String code;
         protected String message;
@@ -104,6 +145,7 @@ public class TestBase {
         public String getMessage() {
             return message;
         }
+
         public T getData() {
             return data;
         }

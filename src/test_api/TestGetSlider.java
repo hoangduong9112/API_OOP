@@ -1,4 +1,4 @@
-package TestAPI;
+package test_api;
 
 
 import com.google.gson.Gson;
@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestGetSlider {
+public class TestGetSlider extends TestBase {
     private TestGetSlider(ItemParams itemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         URL url = new URL(APIPath.GET_SLIDER);
@@ -43,7 +43,7 @@ public class TestGetSlider {
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
 
-            System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
             System.out.println(connection.getResponseCode());
         } finally {
@@ -79,10 +79,10 @@ public class TestGetSlider {
         TestCase<ItemParams> testCase6 = new TestCase<>("1000", "OK", "Unit test 6: Should be successful with token", params6);
         listTestCase.add(testCase6);
 //
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get Slider API" + ColorTerminal.ANSI_RESET);
+        System.out.println(getAnsiBlue() + "Testing Get Slider API" + getAnsiReset());
 //
         for (TestCase<ItemParams> testCase : listTestCase) {
-            new TestGetSlider(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestGetSlider(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
     private static class ItemParams {
@@ -96,7 +96,7 @@ public class TestGetSlider {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

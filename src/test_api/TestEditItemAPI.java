@@ -1,10 +1,8 @@
 package test_api;
 
-import utils.api.LoginAPI;
+
 import utils.APIPath;
-import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
-import utils.TestCaseDeprecated;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -20,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestEditItemAPI {
+public class TestEditItemAPI extends TestBase{
     private TestEditItemAPI(ItemParams ItemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         APIPath.setEditItem(ItemParams.itemID);
@@ -74,12 +72,12 @@ public class TestEditItemAPI {
             }
 
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -88,45 +86,45 @@ public class TestEditItemAPI {
 
     public static void main() throws
             IOException {
-        List<TestCaseDeprecated<ItemParams>> listTestCase = new ArrayList<>();
+        List<TestCase<ItemParams>> listTestCase = new ArrayList<>();
 
         ItemParams params1 = new ItemParams(6, "Test without series and image", "12345", "4", "Do uong ngon", true);
-        TestCaseDeprecated<ItemParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase<ItemParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         ItemParams params2 = new ItemParams(6, "Test with series", "123123", "4", "Nice", "12345", true);
-        TestCaseDeprecated<ItemParams> testCase2 = new TestCaseDeprecated<>("1000", "", "Unit test 2: Should be successful with correct param (have series)", params2);
+        TestCase<ItemParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful with correct param (have series)", params2);
         listTestCase.add(testCase2);
 
         ItemParams params3 = new ItemParams(6, "Test without login", "123123", "4", "Nice", "12345", false);
-        TestCaseDeprecated<ItemParams> testCase3 = new TestCaseDeprecated<>("1004", "", "Unit test 3: Should throw error 1004 because user haven't login  ", params3);
+        TestCase<ItemParams> testCase3 = new TestCase<>("1004", "", "Unit test 3: Should throw error 1004 because user haven't login  ", params3);
         listTestCase.add(testCase3);
 
         ItemParams params4 = new ItemParams(6, "Test with empty brand id", "123123", "", "Nice", true);
-        TestCaseDeprecated<ItemParams> testCase4 = new TestCaseDeprecated<>("1001", "", "Unit test 4: Should throw error 1001 with empty brand id", params4);
+        TestCase<ItemParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with empty brand id", params4);
         listTestCase.add(testCase4);
 
         ItemParams params5 = new ItemParams(6, "", "12345", "4", "Do uong ngon", true);
-        TestCaseDeprecated<ItemParams> testCase5 = new TestCaseDeprecated<>("1001", "", "Unit test 5: Should throw error 1001 with empty name", params5);
+        TestCase<ItemParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty name", params5);
         listTestCase.add(testCase5);
 
         ItemParams params6 = new ItemParams(6, "Test with empty startingPrice", "", "4", "Do uong ngon", true);
-        TestCaseDeprecated<ItemParams> testCase6 = new TestCaseDeprecated<>("1001", "", "Unit test 6: Should throw error 1001 with empty startingPrice", params6);
+        TestCase<ItemParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty startingPrice", params6);
         listTestCase.add(testCase6);
 
         ItemParams params7 = new ItemParams(6, "Test with empty description", "12345", "4", "", true);
-        TestCaseDeprecated<ItemParams> testCase7 = new TestCaseDeprecated<>("1001", "", "Unit test 7: Should throw error 1001 with empty description", params7);
+        TestCase<ItemParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error 1001 with empty description", params7);
         listTestCase.add(testCase7);
 
         ItemParams params8 = new ItemParams(6, "Test with long series", "12345", "4", "Helooo", "1234534413231", true);
-        TestCaseDeprecated<ItemParams> testCase8 = new TestCaseDeprecated<>("1001", "", "Unit test 8: Should throw error 1001 with series longer than 10", params8);
+        TestCase<ItemParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should throw error 1001 with series longer than 10", params8);
         listTestCase.add(testCase8);
 
 
-        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Edit Item API" + ColorTerminalDeprecate.getAnsiReset());
+        System.out.println(getAnsiBlue() + "Testing Edit Item API" + getAnsiReset());
 //
-        for (TestCaseDeprecated<ItemParams> testCase : listTestCase) {
-            new TestEditItemAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        for (TestCase<ItemParams> testCase : listTestCase) {
+            new TestEditItemAPI(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 
@@ -185,7 +183,7 @@ public class TestEditItemAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

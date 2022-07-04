@@ -1,4 +1,4 @@
-package TestAPI;
+package test_api;
 
 
 import com.google.gson.Gson;
@@ -11,9 +11,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class TestGetListBids {
+public class TestGetListBids extends TestBase {
     private TestGetListBids(ItemParams itemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         Map<String, String> params = new HashMap<>();
@@ -56,7 +57,7 @@ public class TestGetListBids {
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
 
-            System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -90,11 +91,11 @@ public class TestGetListBids {
         ItemParams params6 = new ItemParams(1,"1", "2",false);
         TestCase<ItemParams> testCase6 = new TestCase<>("1000", "OK", "Unit test 6: Should be successful with empty token", params6);
         listTestCase.add(testCase6);
-//
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get List Bids API" + ColorTerminal.ANSI_RESET);
-//
+
+        System.out.println(getAnsiBlue() + "Testing Get List Bids API" + getAnsiReset());
+
         for (TestCase<ItemParams> testCase : listTestCase) {
-            new TestGetListBids(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestGetListBids(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
     private static class ItemParams {
@@ -115,7 +116,7 @@ public class TestGetListBids {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

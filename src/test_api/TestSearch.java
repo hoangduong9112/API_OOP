@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestSearch {
+public class TestSearch extends TestBase {
     private TestSearch(ItemParams itemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
         Map<String, String> params = new HashMap<>();
@@ -58,7 +58,7 @@ public class TestSearch {
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
 
-            System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
             System.out.println(connection.getResponseCode());
         } finally {
@@ -94,10 +94,10 @@ public class TestSearch {
         TestCase<ItemParams> testCase6 = new TestCase<>("9998", "検索できません", "Unit test 6: Should throw error 9998 with both empty type and key", params6);
         listTestCase.add(testCase6);
 //
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Search API" + ColorTerminal.ANSI_RESET);
+        System.out.println(getAnsiBlue() + "Testing Search API" + getAnsiReset());
 //
         for (TestCase<ItemParams> testCase : listTestCase) {
-            new TestSearch(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestSearch(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
     private static class ItemParams {
@@ -115,7 +115,7 @@ public class TestSearch {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken =callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

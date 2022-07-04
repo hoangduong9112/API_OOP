@@ -1,10 +1,8 @@
 package test_api;
 
-import utils.api.LoginAPI;
+
 import utils.APIPath;
-import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
-import utils.TestCaseDeprecated;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -17,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestGetListAuctionsAPI {
+public class TestGetListAuctionsAPI extends TestBase  {
     private TestGetListAuctionsAPI(GetListAuctionsParams getListAuctionsParams, String testDescription, String codeExpectation, String messageExpectation) throws IOException {
         Map<String, String> params = new HashMap<>();
         params.put(getListAuctionsParams.index, getListAuctionsParams.indexValue);
@@ -53,12 +51,12 @@ public class TestGetListAuctionsAPI {
                 content.append(System.lineSeparator());
             }
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -68,39 +66,39 @@ public class TestGetListAuctionsAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCaseDeprecated<GetListAuctionsParams>> listTestCase = new ArrayList<>();
+        List<TestCase<GetListAuctionsParams>> listTestCase = new ArrayList<>();
 
         GetListAuctionsParams params1 = new GetListAuctionsParams(1, "index", "1", "count", "1");
-        TestCaseDeprecated<GetListAuctionsParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase<GetListAuctionsParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         GetListAuctionsParams params2 = new GetListAuctionsParams(1, "index", "1", "count", "1", "user_id", "3");
-        TestCaseDeprecated<GetListAuctionsParams> testCase2 = new TestCaseDeprecated<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
+        TestCase<GetListAuctionsParams> testCase2 = new TestCase<>("1000", "OK", "Unit test 2: Should be successful with correct param", params2);
         listTestCase.add(testCase2);
 
         GetListAuctionsParams params3 = new GetListAuctionsParams(1, "index", "1", "count", "1", "category_id", "1");
-        TestCaseDeprecated<GetListAuctionsParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
+        TestCase<GetListAuctionsParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct param", params3);
         listTestCase.add(testCase3);
 
         GetListAuctionsParams params4 = new GetListAuctionsParams(1, "index", "1", "count", "1", "type", "1");
-        TestCaseDeprecated<GetListAuctionsParams> testCase4 = new TestCaseDeprecated<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
+        TestCase<GetListAuctionsParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with correct param", params4);
         listTestCase.add(testCase4);
 
         GetListAuctionsParams params5 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCaseDeprecated<GetListAuctionsParams> testCase5 = new TestCaseDeprecated<>("1000", "OK", "Unit test 5: Should be successful with empty count", params5);
+        TestCase<GetListAuctionsParams> testCase5 = new TestCase<>("1000", "OK", "Unit test 5: Should be successful with empty count", params5);
         listTestCase.add(testCase5);
 
         GetListAuctionsParams params7 = new GetListAuctionsParams(1, "index", "", "count", "", "user_id", "");
-        TestCaseDeprecated<GetListAuctionsParams> testCase7 = new TestCaseDeprecated<>("1000", "", "Unit test 7: Should be successful with empty param", params7);
+        TestCase<GetListAuctionsParams> testCase7 = new TestCase<>("1000", "", "Unit test 7: Should be successful with empty param", params7);
         listTestCase.add(testCase7);
 
         GetListAuctionsParams params8 = new GetListAuctionsParams(1, "index", "", "count", "");
-        TestCaseDeprecated<GetListAuctionsParams> testCase8 = new TestCaseDeprecated<>("1000", "", "Unit test 8: Should be successful with correct param", params8);
+        TestCase<GetListAuctionsParams> testCase8 = new TestCase<>("1000", "", "Unit test 8: Should be successful with correct param", params8);
         listTestCase.add(testCase8);
 
-        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Get List Auction API" + ColorTerminalDeprecate.getAnsiReset());
-        for (TestCaseDeprecated<GetListAuctionsParams> testCase : listTestCase) {
-            new TestGetListAuctionsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        System.out.println(getAnsiBlue() + "Testing Get List Auction API" + getAnsiReset());
+        for (TestCase<GetListAuctionsParams> testCase : listTestCase) {
+            new TestGetListAuctionsAPI(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 
@@ -135,7 +133,7 @@ public class TestGetListAuctionsAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

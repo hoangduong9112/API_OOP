@@ -1,8 +1,9 @@
-package TestAPI;
+package test_api;
 
-import Utils.*;
-import Utils.API.LoginAPI;
+
 import com.google.gson.Gson;
+import utils.APIPath;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestGetNews {
+public class TestGetNews extends TestBase {
 
     private TestGetNews(ItemParams itemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -32,7 +33,7 @@ public class TestGetNews {
             query.append('=');
             query.append(param.getValue());
         }
-        URL url = new URL(APIPath.getNews + "?" + query);
+        URL url = new URL(APIPath.GET_NEWS + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (itemParams.token) {
             itemParams.setAccessToken();
@@ -44,7 +45,7 @@ public class TestGetNews {
 
         connection.setRequestMethod("GET");
         if (connection.getResponseCode() == 302) {
-            url = new URL(APIPath.loginFailed);
+            url = new URL(APIPath.LOGIN_FAILED);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
         }
@@ -63,7 +64,7 @@ public class TestGetNews {
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
 
-            System.out.println(ColorTerminal.ANSI_GREEN + "Pass" + ColorTerminal.ANSI_RESET);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -98,10 +99,10 @@ public class TestGetNews {
 //        TestCase<ItemParams> testCase6 = new TestCase<>("1004", "", "Unit test 6: Should be successful with empty token", params6);
 //        listTestCase.add(testCase6);
 //
-        System.out.println(ColorTerminal.ANSI_BLUE + "Testing Get News API" + ColorTerminal.ANSI_RESET);
+        System.out.println(getAnsiBlue() + "Testing Get News API" + getAnsiReset());
 //
         for (TestCase<ItemParams> testCase : listTestCase) {
-            new TestGetNews(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            new TestGetNews(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
     private static class ItemParams {
@@ -120,7 +121,7 @@ public class TestGetNews {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

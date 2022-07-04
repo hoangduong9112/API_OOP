@@ -1,10 +1,8 @@
 package test_api;
 
-import utils.api.LoginAPI;
+
 import utils.APIPath;
-import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
-import utils.TestCaseDeprecated;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -20,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCreateAuctionAPI {
+public class TestCreateAuctionAPI extends TestBase {
 
     private TestCreateAuctionAPI(CreateAuctionParams createAuctionParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -64,11 +62,11 @@ public class TestCreateAuctionAPI {
             }
 
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -77,43 +75,43 @@ public class TestCreateAuctionAPI {
 
     public static void main() throws
             IOException {
-        List<TestCaseDeprecated<CreateAuctionParams>> listTestCase = new ArrayList<>();
+        List<TestCase<CreateAuctionParams>> listTestCase = new ArrayList<>();
 
         // need to update and new title
         CreateAuctionParams params1 = new CreateAuctionParams(5, "TestTitle4", "2022-10-05T14:48:00.000Z", "2022-10-06T14:48:00.000Z");
-        TestCaseDeprecated<CreateAuctionParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase<CreateAuctionParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         // need to title similar to test case 1
 
         CreateAuctionParams params2 = new CreateAuctionParams(6, "TestTitle4", "2022-10-05T14:48:00.000Z", "2022-10-06T14:48:00.000Z");
-        TestCaseDeprecated<CreateAuctionParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error with code 1001 with exist title", params2);
+        TestCase<CreateAuctionParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error with code 1001 with exist title", params2);
         listTestCase.add(testCase2);
 
         CreateAuctionParams params3 = new CreateAuctionParams(5, "", "2022-10-05T14:48:00.000Z", "2022-10-06T14:48:00.000Z");
-        TestCaseDeprecated<CreateAuctionParams> testCase3 = new TestCaseDeprecated<>("1001", "", "Unit test 3: Should throw error with code 1001 with empty title", params3);
+        TestCase<CreateAuctionParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error with code 1001 with empty title", params3);
         listTestCase.add(testCase3);
 
         CreateAuctionParams params4 = new CreateAuctionParams(5, "TestTitle2", "", "2022-10-06T14:48:00.000Z");
-        TestCaseDeprecated<CreateAuctionParams> testCase4 = new TestCaseDeprecated<>("1001", "", "Unit test 4: Should throw error with code 1001 with empty start_date", params4);
+        TestCase<CreateAuctionParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error with code 1001 with empty start_date", params4);
         listTestCase.add(testCase4);
 
         //need to update startDate is now
         CreateAuctionParams params5 = new CreateAuctionParams(5, "TestTitle2", "2022-06-19T14:48:00.000Z", "2022-10-06T14:48:00.000Z");
-        TestCaseDeprecated<CreateAuctionParams> testCase5 = new TestCaseDeprecated<>("1001", "", "Unit test 5: Should throw error with code 1001 with start_date not 1 day after today", params5);
+        TestCase<CreateAuctionParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error with code 1001 with start_date not 1 day after today", params5);
         listTestCase.add(testCase5);
 
         CreateAuctionParams params6 = new CreateAuctionParams(5, "TestTitle2", "2022-10-05T14:48:00.000Z", "");
-        TestCaseDeprecated<CreateAuctionParams> testCase6 = new TestCaseDeprecated<>("1001", "", "Unit test 6: Should throw error with code 1001 with empty endDate", params6);
+        TestCase<CreateAuctionParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error with code 1001 with empty endDate", params6);
         listTestCase.add(testCase6);
 
         CreateAuctionParams params7 = new CreateAuctionParams(5, "TestTitle2", "2022-10-05T14:48:00.000Z", "2022-10-04T14:48:00.000Z");
-        TestCaseDeprecated<CreateAuctionParams> testCase7 = new TestCaseDeprecated<>("1001", "", "Unit test 7: Should throw error with code 1001 with endDate before startDate", params7);
+        TestCase<CreateAuctionParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error with code 1001 with endDate before startDate", params7);
         listTestCase.add(testCase7);
 
-        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Create Auction API" + ColorTerminalDeprecate.getAnsiReset());
-        for (TestCaseDeprecated<CreateAuctionParams> testCase : listTestCase) {
-            new TestCreateAuctionAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        System.out.println(getAnsiBlue() + "Testing Create Auction API" + getAnsiReset());
+        for (TestCase<CreateAuctionParams> testCase : listTestCase) {
+            new TestCreateAuctionAPI(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 
@@ -136,7 +134,7 @@ public class TestCreateAuctionAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

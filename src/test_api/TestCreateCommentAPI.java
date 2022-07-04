@@ -1,10 +1,7 @@
 package test_api;
 
-import utils.api.LoginAPI;
+
 import utils.APIPath;
-import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
-import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -20,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCreateCommentAPI {
+public class TestCreateCommentAPI extends TestBase {
 
     private TestCreateCommentAPI(CreateCommentParams createCommentParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -63,12 +60,12 @@ public class TestCreateCommentAPI {
                 }
             }
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -77,28 +74,28 @@ public class TestCreateCommentAPI {
 
     public static void main() throws
             IOException {
-        List<TestCaseDeprecated<CreateCommentParams>> listTestCase = new ArrayList<>();
+        List<TestCase<CreateCommentParams>> listTestCase = new ArrayList<>();
         final String content = "content";
         final String comment_last_id = "comment_last_id";
 
 
         CreateCommentParams params1 = new CreateCommentParams(1, content, "ABCDEF", comment_last_id, "39");
-        TestCaseDeprecated<CreateCommentParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
+        TestCase<CreateCommentParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct params", params1);
         listTestCase.add(testCase1);
 
         CreateCommentParams params2 = new CreateCommentParams(1, content, "", comment_last_id, "");
-        TestCaseDeprecated<CreateCommentParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
+        TestCase<CreateCommentParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty content", params2);
         listTestCase.add(testCase2);
 
         // data have code 1008
         CreateCommentParams params3 = new CreateCommentParams(2, content, "1234", comment_last_id, "6");
-        TestCaseDeprecated<CreateCommentParams> testCase3 = new TestCaseDeprecated<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
+        TestCase<CreateCommentParams> testCase3 = new TestCase<>("1000", "OK", "Unit test 3: Should be successful with correct params", params3);
         listTestCase.add(testCase3);
 
-        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Create Comment API" + ColorTerminalDeprecate.getAnsiReset());
+        System.out.println(getAnsiBlue() + "Testing Create Comment API" + getAnsiReset());
 
-        for (TestCaseDeprecated<CreateCommentParams> testCase : listTestCase) {
-            new TestCreateCommentAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        for (TestCase<CreateCommentParams> testCase : listTestCase) {
+            new TestCreateCommentAPI(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 
@@ -121,7 +118,7 @@ public class TestCreateCommentAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

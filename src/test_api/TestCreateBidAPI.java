@@ -1,10 +1,8 @@
 package test_api;
 
-import utils.api.LoginAPI;
+
 import utils.APIPath;
-import utils.ColorTerminalDeprecate;
-import utils.ResponseDeprecated;
-import utils.TestCaseDeprecated;
+
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -20,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestCreateBidAPI {
+public class TestCreateBidAPI extends TestBase {
 
     private TestCreateBidAPI(CreateBidParams createBidParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
@@ -62,12 +60,12 @@ public class TestCreateBidAPI {
             }
 
             Gson g = new Gson();
-            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
+            Response rp = g.fromJson(content.toString(), Response.class);
 
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
-            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
+            System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -76,7 +74,7 @@ public class TestCreateBidAPI {
 
     public static void main() throws
             IOException {
-        List<TestCaseDeprecated<CreateBidParams>> listTestCase = new ArrayList<>();
+        List<TestCase<CreateBidParams>> listTestCase = new ArrayList<>();
 
         final String price = "price";
         final String bidLastID = "bidLastID";
@@ -84,24 +82,24 @@ public class TestCreateBidAPI {
         // Testcase 1 and 3 need to update price higher than old price
 
         CreateBidParams params1 = new CreateBidParams(5, price, "80000000009", bidLastID, "39");
-        TestCaseDeprecated<CreateBidParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCase<CreateBidParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         CreateBidParams params2 = new CreateBidParams(5, price, "", bidLastID, "39");
-        TestCaseDeprecated<CreateBidParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error 1001 with empty price", params2);
+        TestCase<CreateBidParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty price", params2);
         listTestCase.add(testCase2);
 
         CreateBidParams params3 = new CreateBidParams(5, price, "80000000010", bidLastID, "");
-        TestCaseDeprecated<CreateBidParams> testCase3 = new TestCaseDeprecated<>("1000", "", "Unit test 3: Should be successful with empty bidLastID", params3);
+        TestCase<CreateBidParams> testCase3 = new TestCase<>("1000", "", "Unit test 3: Should be successful with empty bidLastID", params3);
         listTestCase.add(testCase3);
 
         CreateBidParams params4 = new CreateBidParams(5, price, "80", bidLastID, "");
-        TestCaseDeprecated<CreateBidParams> testCase4 = new TestCaseDeprecated<>("1001", "", "Unit test 4: Should throw error 1001 with lower price", params4);
+        TestCase<CreateBidParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with lower price", params4);
         listTestCase.add(testCase4);
-        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Create Bid API" + ColorTerminalDeprecate.getAnsiReset());
+        System.out.println(getAnsiBlue() + "Testing Create Bid API" + getAnsiReset());
 
-        for (TestCaseDeprecated<CreateBidParams> testCase : listTestCase) {
-            new TestCreateBidAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+        for (TestCase<CreateBidParams> testCase : listTestCase) {
+            new TestCreateBidAPI(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 
@@ -127,7 +125,7 @@ public class TestCreateBidAPI {
         public void setAccessToken() {
             String accessToken;
             try {
-                accessToken = LoginAPI.call();
+                accessToken = callLogin();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
