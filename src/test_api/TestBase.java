@@ -48,7 +48,7 @@ public class TestBase {
 
         connection.setRequestMethod("POST");
         Map<String, String> params = new HashMap<>();
-        params.put("email", "duonghoang@gmail.com");
+        params.put("email", "devAdmin@gmail.com");
         params.put("password", "123456");
 
         StringBuilder postData = new StringBuilder();
@@ -78,8 +78,7 @@ public class TestBase {
             }
 
             Gson g = new Gson();
-            Type response = new TypeToken<Response<LoginDataType>>() {
-            }.getType();
+            Type response = new TypeToken<Response<LoginDataType>>() {}.getType();
             Response<LoginDataType> rp = g.fromJson(content.toString(), response);
             return rp.getData().access_token;
         } finally {
