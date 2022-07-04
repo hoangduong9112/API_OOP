@@ -18,10 +18,12 @@ public class APIPath {
     private static String createItem;
     private static String editItem;
     private static String infoItem;
+    public static String getSlider = "https://auctions-app-2.herokuapp.com/api/slider";
+
+    public static String search = "https://auctions-app-2.herokuapp.com/api/search";
     private static String getListLikes;
     private static String totalLikesOfAuction;
     private static String readNews;
-
     public static String getLoginURL() {
         return LOGIN_URL;
     }
@@ -90,6 +92,10 @@ public class APIPath {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
 
+
+
+
+
     public static String getGetListLikes() {
         return getListLikes;
     }
@@ -116,3 +122,4 @@ public class APIPath {
     public static final String CREATE_AUCTION = "https://auctions-app-2.herokuapp.com/api/auctions/create";
 
 }
+

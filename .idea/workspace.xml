@@ -5,12 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f825dfc-0cdc-4e70-a9f8-fbc355fc40e0" name="Changes" comment="fix: conflicts">
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/3/43a64fab37881ac06ab40e9125c53093483d9203" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/9/69dcaa18695d12f8b7823a587f524656e3ff3348" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/b/9b6298329e891c515914d123adbb9769d4f27468" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/2/e24e98e26597b850a3732f54fe4f87c3b4f5c712" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/9/f96ab65aac75920a0458c95ec272d19d7c2f39ad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/e/fe61e7ab6d947e59da3e0f943e96618848ed68d7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_api/TestCreateAuctionAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_api/TestGetListLikesAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_api/TestGetNewsAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_api/TestReadNewsAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test_api/TestTotalLikesOfAuctionAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/ColorTerminal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/data_type/DataType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/data_type/LoginDataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_6_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/ColorTerminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/ColorTerminal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/api/LoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/LoginAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestCreateBidAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateBidAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestCreateCommentAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateCommentAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestCreateItemAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestCreateItemAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestEditAccountAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestEditAccountAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestEditItemAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestEditItemAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetDetailAuctionAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetDetailAuctionAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetListAuctionsAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListAuctionsAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetListAuctionsByTypeAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListAuctionsByTypeAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetListComments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetListComments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestGetSlider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestInfoItemAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestInfoItemAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestLoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestLoginAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestSearch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestAPI/TestSignUpAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestSignUpAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/API/LoginAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/api/LoginAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/APIPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/ColorTerminal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/DataType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/TestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/TestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_api/TestGetSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestGetSlider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_api/TestSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_api/TestSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/APIPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/APIPath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

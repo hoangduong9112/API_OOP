@@ -20,6 +20,8 @@ public class Main {
 //            TestGetNewsAPI.main();
 //            TestReadNewsAPI.main();
 //            TestCreateAuctionAPI.main();
+//            TestGetSlider.main();
+//            TestSearch.main();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
