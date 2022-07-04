@@ -113,6 +113,14 @@ public class APIPath {
         totalLikesOfAuction = String.format("https://auctions-app-2.herokuapp.com/api/totalLikes/%d", auctionID);
     }
 
+//    Get List Bids
+    private static String getListBids;
+
+    public static String getGetListBids(){ return getListBids; }
+
+    public static void setGetListBids(int auctionID){
+        getListBids = String.format("https://auctions-app-2.herokuapp.com/api/bids/%d", auctionID);
+    }
 
 
 }
