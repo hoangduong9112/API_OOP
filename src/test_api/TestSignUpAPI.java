@@ -23,7 +23,7 @@ public class TestSignUpAPI extends TestBase {
         params.put(signUpParams.key5, signUpParams.value5);
         params.put(signUpParams.key6, signUpParams.value6);
 
-        String result = postMethod(APIPath.getSignUp(), params);
+        String result = postMethod(APIPath.getSignUp(), params, null);
         Gson g = new Gson();
         Type response = new TypeToken<Response<SignUpDataType>>() {}.getType();
         Response<SignUpDataType> rp = g.fromJson(result, response);
