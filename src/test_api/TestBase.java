@@ -123,16 +123,19 @@ public class TestBase {
     }
     public static String getMethod(String urlBase, Map<String, String> params, String accessToken) throws
             IOException {
-        StringBuilder query = new StringBuilder();
-        for (Map.Entry<String, String> param : params.entrySet()) {
-            if (query.length() != 0) {
-                query.append('&');
+        URL url;
+        if(params != null) {
+            StringBuilder query = new StringBuilder();
+            for (Map.Entry<String, String> param : params.entrySet()) {
+                if (query.length() != 0) {
+                    query.append('&');
+                }
+                query.append(param.getKey());
+                query.append('=');
+                query.append(param.getValue());
             }
-            query.append(param.getKey());
-            query.append('=');
-            query.append(param.getValue());
-        }
-        URL url = new URL(urlBase  + "?" + query);
+            url = new URL(urlBase + "?" + query);
+        }else url = new URL(urlBase);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (accessToken != null) {
             connection.addRequestProperty("Authorization", "Bearer " + accessToken);

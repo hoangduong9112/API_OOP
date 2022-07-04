@@ -12,10 +12,10 @@ public class Main {
 //            TestCreateBidAPI.main(); // need update test case
 //            TestCreateCommentAPI.main();
 //            TestGetListComments.main();
-            TestGetListAuctionsAPI.main();
+//            TestGetListAuctionsAPI.main();
+            TestGetDetailAuctionAPI.main();
 
 //            TestCreateItemAPI.main(); // need update test case
-//            TestGetDetailAuctionAPI.main();
 //            TestEditAccountAPI.main(); // need update test case
 //            TestGetListLikesAPI.main();
 //            TestReadNewsAPI.main();
