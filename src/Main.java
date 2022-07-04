@@ -13,16 +13,17 @@ public class Main {
 //            TestCreateCommentAPI.main();
 //            TestGetListComments.main();
 //            TestGetListAuctionsAPI.main();
-            TestGetDetailAuctionAPI.main();
-
-//            TestCreateItemAPI.main(); // need update test case
-//            TestEditAccountAPI.main(); // need update test case
-//            TestGetListLikesAPI.main();
-//            TestReadNewsAPI.main();
+//            TestGetDetailAuctionAPI.main();
+            TestReadNewsAPI.main();
 //            TestGetSlider.main();
 //            TestSearch.main();
 //            TestTotalLikesOfAuction.main();
 //            TestGetNews.main();
+
+
+//            TestCreateItemAPI.main(); // need update test case
+//            TestEditAccountAPI.main(); // need update test case
+//            TestGetListLikesAPI.main();
 //            TestGetListAuctionsByTypeAPI.main();
         } catch (IOException e) {
             throw new RuntimeException(e);

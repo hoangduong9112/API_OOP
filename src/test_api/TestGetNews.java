@@ -2,6 +2,7 @@ package test_api;
 
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import utils.APIPath;
 
 
@@ -33,41 +34,41 @@ public class TestGetNews extends TestBase {
             query.append('=');
             query.append(param.getValue());
         }
-        URL url = new URL(APIPath.GET_NEWS + "?" + query);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        String result;
         if (itemParams.token) {
             itemParams.setAccessToken();
-            System.out.println("Have token");
-            connection.addRequestProperty("Authorization", "Bearer " + itemParams.accessToken);
+            System.out.println("Have Token");
+            result = getMethod(APIPath.GET_NEWS + "?" + query, null, itemParams.accessToken);
         } else {
-            System.out.println("Don't have token");
+            System.out.println("Don't have token ");
+            result = getMethod(APIPath.GET_NEWS + "?" + query, null, null);
         }
+        Gson g = new Gson();
 
-        connection.setRequestMethod("GET");
-        if (connection.getResponseCode() == 302) {
-            url = new URL(APIPath.LOGIN_FAILED);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-        }
-        try (BufferedReader in = new BufferedReader(
-                new InputStreamReader(connection.getInputStream()))) {
-            String line;
-            StringBuilder content = new StringBuilder();
-
-            while ((line = in.readLine()) != null) {
-                content.append(line);
-                content.append(System.lineSeparator());
-            }
-            Gson g = new Gson();
-            Response rp = g.fromJson(content.toString(), Response.class);
-            System.out.println(testDescription);
-            assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
-            assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-
+        Type response = new TypeToken<Response<GetNewsDataType>>() {
+        }.getType();
+        Response<GetNewsDataType> rp = g.fromJson(result, response);
+        System.out.println(testDescription);
+        try {
+            assert codeExpectation.length() <= 0 || rp.getCode().equals(codeExpectation);
+            assert messageExpectation.length() <= 0 || rp.getMessage().equals(messageExpectation);
+            if (codeExpectation.equals("1000")) {
+                assert rp.getData().news.length >= 0;
+                assert rp.getData().total != null;
+            } else assert rp.getData() == null;
             System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
             System.out.println();
-        } finally {
-            connection.disconnect();
+        } catch (AssertionError e) {
+            System.out.println(getAnsiRed() + "Received");
+            System.out.println("      code: " + rp.getCode());
+            System.out.println("      message: " + rp.getMessage());
+//            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiGreen() + "Expect");
+            System.out.println("      code: " + codeExpectation);
+            if (messageExpectation.length() > 0) System.out.println("      message: " + messageExpectation);
+//            System.out.println("      data: " + rp.getData());
+            System.out.println(getAnsiReset());
         }
     }
 
@@ -91,13 +92,13 @@ public class TestGetNews extends TestBase {
         TestCase<ItemParams> testCase4 = new TestCase<>("1000", "OK", "Unit test 4: Should be successful with empty count, index (Have token)", params4);
         listTestCase.add(testCase4);
 
-//        ItemParams params5 = new ItemParams("2","1",false);
-//        TestCase<ItemParams> testCase5 = new TestCase<>("1004", "", "Unit test 5: Should thrown error with empty token", params5);
-//        listTestCase.add(testCase5);
-//
-//        ItemParams params6 = new ItemParams("1", "2",false);
-//        TestCase<ItemParams> testCase6 = new TestCase<>("1004", "", "Unit test 6: Should be successful with empty token", params6);
-//        listTestCase.add(testCase6);
+        ItemParams params5 = new ItemParams("2","1",false);
+        TestCase<ItemParams> testCase5 = new TestCase<>("1004", "Chưa đăng nhập", "Unit test 5: Should thrown error because user haven't login", params5);
+        listTestCase.add(testCase5);
+
+        ItemParams params6 = new ItemParams("1", "2",false);
+        TestCase<ItemParams> testCase6 = new TestCase<>("1004", "Chưa đăng nhập", "Unit test 6: Should thrown error because user haven't login", params6);
+        listTestCase.add(testCase6);
 //
         System.out.println(getAnsiBlue() + "Testing Get News API" + getAnsiReset());
 //
@@ -127,5 +128,10 @@ public class TestGetNews extends TestBase {
             }
             this.accessToken = accessToken;
         }
+    }
+
+    protected static class GetNewsDataType{
+        protected Object[] news;
+        protected String total;
     }
 }
