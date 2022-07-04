@@ -1,9 +1,9 @@
 package test_api;
 
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -66,7 +66,7 @@ public class TestSignUpAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -75,7 +75,7 @@ public class TestSignUpAPI {
 
     public static void main() throws
             IOException {
-        List<TestCase<SignUpParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<SignUpParams>> listTestCase = new ArrayList<>();
 
         final String email = "email";
         final String password = "password";
@@ -87,49 +87,49 @@ public class TestSignUpAPI {
         //Need to update new email to run test
 
         SignUpParams params1 = new SignUpParams(email, "duonghoang@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<SignUpParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         SignUpParams params2 = new SignUpParams(email, "duonghoang123@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "", phone, "09123");
-        TestCase<SignUpParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty name", params2);
+        TestCaseDeprecated<SignUpParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error 1001 with empty name", params2);
         listTestCase.add(testCase2);
 
         SignUpParams params3 = new SignUpParams(email, "duonghoang124@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "");
-        TestCase<SignUpParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
+        TestCaseDeprecated<SignUpParams> testCase3 = new TestCaseDeprecated<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
         SignUpParams params4 = new SignUpParams(email, "duonghoang1@gmail.com", password, "123456", re_pass, "123456", address, "", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
+        TestCaseDeprecated<SignUpParams> testCase4 = new TestCaseDeprecated<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
         listTestCase.add(testCase4);
 
         SignUpParams params5 = new SignUpParams(email, "", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
+        TestCaseDeprecated<SignUpParams> testCase5 = new TestCaseDeprecated<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
         listTestCase.add(testCase5);
 
         SignUpParams params6 = new SignUpParams(email, "duonghoang125@gmail.com", password, "", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
+        TestCaseDeprecated<SignUpParams> testCase6 = new TestCaseDeprecated<>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
         listTestCase.add(testCase6);
 
         SignUpParams params7 = new SignUpParams(email, "123", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error 1001 with incorrect format email", params7);
+        TestCaseDeprecated<SignUpParams> testCase7 = new TestCaseDeprecated<>("1001", "", "Unit test 7: Should throw error 1001 with incorrect format email", params7);
         listTestCase.add(testCase7);
 
         SignUpParams params8 = new SignUpParams(email, "duonghoang100@gmail.com", password, "123456", re_pass, "123456", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should throw error 1001 with duplicated email", params8);
+        TestCaseDeprecated<SignUpParams> testCase8 = new TestCaseDeprecated<>("1001", "", "Unit test 8: Should throw error 1001 with duplicated email", params8);
         listTestCase.add(testCase8);
 
         SignUpParams params9 = new SignUpParams(email, "duonghoang14@gmail.com", password, "123456", re_pass, "", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase9 = new TestCase<>("1001", "", "Unit test 9: Should throw error 1001 with empty repass", params9);
+        TestCaseDeprecated<SignUpParams> testCase9 = new TestCaseDeprecated<>("1001", "", "Unit test 9: Should throw error 1001 with empty repass", params9);
         listTestCase.add(testCase9);
 
         SignUpParams params10 = new SignUpParams(email, "duonghoang15@gmail.com", password, "123456", re_pass, "123", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<SignUpParams> testCase10 = new TestCase<>("1001", "", "Unit test 10: Should throw error 1001 with wrong repass", params10);
+        TestCaseDeprecated<SignUpParams> testCase10 = new TestCaseDeprecated<>("1001", "", "Unit test 10: Should throw error 1001 with wrong repass", params10);
         listTestCase.add(testCase10);
 
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing SignUp API" + ColorTerminal.getAnsiReset());
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing SignUp API" + ColorTerminalDeprecate.getAnsiReset());
 
-        for (TestCase<SignUpParams> testCase : listTestCase) {
+        for (TestCaseDeprecated<SignUpParams> testCase : listTestCase) {
             new TestSignUpAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

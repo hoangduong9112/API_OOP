@@ -1,9 +1,8 @@
 package test_api;
 
 import com.google.gson.reflect.TypeToken;
-import utils.*;
 import com.google.gson.Gson;
-import utils.data_type.LoginDataType;
+import utils.APIPath;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -19,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestLoginAPI {
+public class TestLoginAPI extends TestBase  {
     private TestLoginAPI() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
@@ -73,18 +72,18 @@ public class TestLoginAPI {
                     assert rp.getData().expires_in != null;
                     assert rp.getData().token_type != null;
                 } else assert rp.getData() == null;
-                System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+                System.out.println(getAnsiGreen() + "Pass" + getAnsiReset());
                 System.out.println();
             } catch(AssertionError e) {
-                System.out.println(ColorTerminal.getAnsiRed() + "Received");
+                System.out.println(getAnsiRed() + "Received");
                 System.out.println("      code: " + rp.getCode());
                 System.out.println("      message: " + rp.getMessage());
                 System.out.println("      data: " + rp.getData());
-                System.out.println(ColorTerminal.getAnsiGreen() + "Expect");
+                System.out.println(getAnsiGreen() + "Expect");
                 System.out.println("      code: " + codeExpectation);
                 if(messageExpectation.length() > 0) System.out.println("      message: " + messageExpectation);
                 System.out.println("      data: " + rp.getData());
-                System.out.println(ColorTerminal.getAnsiReset());
+                System.out.println(getAnsiReset());
             }
         } finally {
             connection.disconnect();
@@ -124,10 +123,10 @@ public class TestLoginAPI {
         TestCase<LoginParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty password", params6);
         listTestCase.add(testCase6);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Login API" + ColorTerminal.getAnsiReset());
+        System.out.println(getAnsiBlue() + "Testing Login API" + getAnsiReset());
 
         for (TestCase<LoginParams> testCase : listTestCase) {
-            TestLoginAPI.test(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
+            TestLoginAPI.test(testCase.params(), testCase.testDescription(), testCase.codeExpectation(), testCase.messageExpectation());
         }
     }
 

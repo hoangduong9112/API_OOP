@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -67,7 +67,7 @@ public class TestEditAccountAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -76,7 +76,7 @@ public class TestEditAccountAPI {
 
     public static void main() throws
             IOException {
-        List<TestCase<EditAccountParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<EditAccountParams>> listTestCase = new ArrayList<>();
 
         final String email = "email";
         final String address = "address";
@@ -85,36 +85,36 @@ public class TestEditAccountAPI {
         //Test case 1 and 4 should be run independently with 1 other email
 
         EditAccountParams params1 = new EditAccountParams(email, "duonghoang120@gmail.com", address, "hanoi1", name, "duong1", phone, "091231");
-        TestCase<EditAccountParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<EditAccountParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         EditAccountParams params2 = new EditAccountParams(email, "duonghoang123@gmail.com", address, "hanoi", name, "", phone, "09123");
-        TestCase<EditAccountParams> testCase2 = new TestCase<>("1001", "", "Unit test 2: Should throw error 1001 with empty name", params2);
+        TestCaseDeprecated<EditAccountParams> testCase2 = new TestCaseDeprecated<>("1001", "", "Unit test 2: Should throw error 1001 with empty name", params2);
         listTestCase.add(testCase2);
 
         EditAccountParams params3 = new EditAccountParams(email, "duonghoang124@gmail.com", address, "hanoi", name, "duong", phone, "");
-        TestCase<EditAccountParams> testCase3 = new TestCase<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
+        TestCaseDeprecated<EditAccountParams> testCase3 = new TestCaseDeprecated<>("1001", "", "Unit test 3: Should throw error 1001 with empty phone", params3);
         listTestCase.add(testCase3);
 
         EditAccountParams params4 = new EditAccountParams(email, "duonghoang123@gmail.com", address, "", name, "duong", phone, "09123");
-        TestCase<EditAccountParams> testCase4 = new TestCase<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
+        TestCaseDeprecated<EditAccountParams> testCase4 = new TestCaseDeprecated<>("1000", "", "Unit test 4: Should be successful with empty address", params4);
         listTestCase.add(testCase4);
 
         EditAccountParams params5 = new EditAccountParams(email, "", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<EditAccountParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
+        TestCaseDeprecated<EditAccountParams> testCase5 = new TestCaseDeprecated<>("1001", "", "Unit test 5: Should throw error 1001 with empty email", params5);
         listTestCase.add(testCase5);
 
         EditAccountParams params6 = new EditAccountParams(email, "123", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<EditAccountParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with incorrect format email", params6);
+        TestCaseDeprecated<EditAccountParams> testCase6 = new TestCaseDeprecated<>("1001", "", "Unit test 6: Should throw error 1001 with incorrect format email", params6);
         listTestCase.add(testCase6);
 
         EditAccountParams params7 = new EditAccountParams(email, "duonghoang100@gmail.com", address, "hanoi", name, "duong", phone, "09123");
-        TestCase<EditAccountParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error 1001 with duplicated email", params7);
+        TestCaseDeprecated<EditAccountParams> testCase7 = new TestCaseDeprecated<>("1001", "", "Unit test 7: Should throw error 1001 with duplicated email", params7);
         listTestCase.add(testCase7);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Edit Account API" + ColorTerminal.getAnsiReset());
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Edit Account API" + ColorTerminalDeprecate.getAnsiReset());
 
-        for (TestCase<EditAccountParams> testCase : listTestCase) {
+        for (TestCaseDeprecated<EditAccountParams> testCase : listTestCase) {
             new TestEditAccountAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

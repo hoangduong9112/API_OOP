@@ -1,0 +1,11 @@
+
+s
+java:S1104"XMake access_token a static final constant or non-public and provide accessors if needed.(½¯²ÿÿÿÿÿ
+k
+java:S1104"PMake user a static final constant or non-public and provide accessors if needed.(ÜÂ©şøÿÿÿÿ
+q
+java:S1104"VMake token_type a static final constant or non-public and provide accessors if needed.(Æ„×Ÿúÿÿÿÿ
+l
+java:S1104"VMake expires_in a static final constant or non-public and provide accessors if needed.(™Ïà‘
+j
+java:S1104"OMake exp a static final constant or non-public and provide accessors if needed.(Ïä¹¯ıÿÿÿÿ

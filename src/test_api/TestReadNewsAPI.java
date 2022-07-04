@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -44,7 +44,7 @@ public class TestReadNewsAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -54,17 +54,17 @@ public class TestReadNewsAPI {
     }
 
     public static void main() throws IOException {
-        List<TestCase<ReadNewsParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<ReadNewsParams>> listTestCase = new ArrayList<>();
 
         ReadNewsParams params1 = new ReadNewsParams(true, 3);
-        TestCase<ReadNewsParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<ReadNewsParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
         ReadNewsParams params2 = new ReadNewsParams(false, 3);
-        TestCase<ReadNewsParams> testCase2 = new TestCase<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
+        TestCaseDeprecated<ReadNewsParams> testCase2 = new TestCaseDeprecated<>("1004", "", "Unit test 2: Should throw error 1004 because user haven't logined", params2);
         listTestCase.add(testCase2);
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Read News" + "API" + ColorTerminal.getAnsiReset());
-        for (TestCase<ReadNewsParams> testCase : listTestCase) {
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Read News" + "API" + ColorTerminalDeprecate.getAnsiReset());
+        for (TestCaseDeprecated<ReadNewsParams> testCase : listTestCase) {
             new TestReadNewsAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }

@@ -2,9 +2,9 @@ package test_api;
 
 import utils.api.LoginAPI;
 import utils.APIPath;
-import utils.ColorTerminal;
+import utils.ColorTerminalDeprecate;
 import utils.Response;
-import utils.TestCase;
+import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -79,7 +79,7 @@ public class TestEditItemAPI {
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);
             assert messageExpectation.length() <= 0 || rp.message.equals(messageExpectation);
-            System.out.println(ColorTerminal.getAnsiGreen() + "Pass" + ColorTerminal.getAnsiReset());
+            System.out.println(ColorTerminalDeprecate.getAnsiGreen() + "Pass" + ColorTerminalDeprecate.getAnsiReset());
             System.out.println();
         } finally {
             connection.disconnect();
@@ -88,44 +88,44 @@ public class TestEditItemAPI {
 
     public static void main() throws
             IOException {
-        List<TestCase<ItemParams>> listTestCase = new ArrayList<>();
+        List<TestCaseDeprecated<ItemParams>> listTestCase = new ArrayList<>();
 
         ItemParams params1 = new ItemParams(6, "Test without series and image", "12345", "4", "Do uong ngon", true);
-        TestCase<ItemParams> testCase1 = new TestCase<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
+        TestCaseDeprecated<ItemParams> testCase1 = new TestCaseDeprecated<>("1000", "OK", "Unit test 1: Should be successful with correct param", params1);
         listTestCase.add(testCase1);
 
         ItemParams params2 = new ItemParams(6, "Test with series", "123123", "4", "Nice", "12345", true);
-        TestCase<ItemParams> testCase2 = new TestCase<>("1000", "", "Unit test 2: Should be successful with correct param (have series)", params2);
+        TestCaseDeprecated<ItemParams> testCase2 = new TestCaseDeprecated<>("1000", "", "Unit test 2: Should be successful with correct param (have series)", params2);
         listTestCase.add(testCase2);
 
         ItemParams params3 = new ItemParams(6, "Test without login", "123123", "4", "Nice", "12345", false);
-        TestCase<ItemParams> testCase3 = new TestCase<>("1004", "", "Unit test 3: Should throw error 1004 because user haven't login  ", params3);
+        TestCaseDeprecated<ItemParams> testCase3 = new TestCaseDeprecated<>("1004", "", "Unit test 3: Should throw error 1004 because user haven't login  ", params3);
         listTestCase.add(testCase3);
 
         ItemParams params4 = new ItemParams(6, "Test with empty brand id", "123123", "", "Nice", true);
-        TestCase<ItemParams> testCase4 = new TestCase<>("1001", "", "Unit test 4: Should throw error 1001 with empty brand id", params4);
+        TestCaseDeprecated<ItemParams> testCase4 = new TestCaseDeprecated<>("1001", "", "Unit test 4: Should throw error 1001 with empty brand id", params4);
         listTestCase.add(testCase4);
 
         ItemParams params5 = new ItemParams(6, "", "12345", "4", "Do uong ngon", true);
-        TestCase<ItemParams> testCase5 = new TestCase<>("1001", "", "Unit test 5: Should throw error 1001 with empty name", params5);
+        TestCaseDeprecated<ItemParams> testCase5 = new TestCaseDeprecated<>("1001", "", "Unit test 5: Should throw error 1001 with empty name", params5);
         listTestCase.add(testCase5);
 
         ItemParams params6 = new ItemParams(6, "Test with empty startingPrice", "", "4", "Do uong ngon", true);
-        TestCase<ItemParams> testCase6 = new TestCase<>("1001", "", "Unit test 6: Should throw error 1001 with empty startingPrice", params6);
+        TestCaseDeprecated<ItemParams> testCase6 = new TestCaseDeprecated<>("1001", "", "Unit test 6: Should throw error 1001 with empty startingPrice", params6);
         listTestCase.add(testCase6);
 
         ItemParams params7 = new ItemParams(6, "Test with empty description", "12345", "4", "", true);
-        TestCase<ItemParams> testCase7 = new TestCase<>("1001", "", "Unit test 7: Should throw error 1001 with empty description", params7);
+        TestCaseDeprecated<ItemParams> testCase7 = new TestCaseDeprecated<>("1001", "", "Unit test 7: Should throw error 1001 with empty description", params7);
         listTestCase.add(testCase7);
 
         ItemParams params8 = new ItemParams(6, "Test with long series", "12345", "4", "Helooo", "1234534413231", true);
-        TestCase<ItemParams> testCase8 = new TestCase<>("1001", "", "Unit test 8: Should throw error 1001 with series longer than 10", params8);
+        TestCaseDeprecated<ItemParams> testCase8 = new TestCaseDeprecated<>("1001", "", "Unit test 8: Should throw error 1001 with series longer than 10", params8);
         listTestCase.add(testCase8);
 
 
-        System.out.println(ColorTerminal.getAnsiBlue() + "Testing Edit Item API" + ColorTerminal.getAnsiReset());
+        System.out.println(ColorTerminalDeprecate.getAnsiBlue() + "Testing Edit Item API" + ColorTerminalDeprecate.getAnsiReset());
 //
-        for (TestCase<ItemParams> testCase : listTestCase) {
+        for (TestCaseDeprecated<ItemParams> testCase : listTestCase) {
             new TestEditItemAPI(testCase.getParams(), testCase.getTestDescription(), testCase.getCodeExpectation(), testCase.getMessageExpectation());
         }
     }
