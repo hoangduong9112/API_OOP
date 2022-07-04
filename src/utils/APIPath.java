@@ -9,9 +9,9 @@ public class APIPath {
     public static final String EDIT_ACCOUNT = "https://auctions-app-2.herokuapp.com/api/edit";
     public static final String LOGIN_FAILED = "http://auctions-app-2.herokuapp.com/api/loginfailed";
     public static final String GET_NEWS = "https://auctions-app-2.herokuapp.com/api/news";
-    public static String getSlider = "https://auctions-app-2.herokuapp.com/api/slider";
-    public static String search = "https://auctions-app-2.herokuapp.com/api/search";
-    public static String getNews = "https://auctions-app-2.herokuapp.com/api/news";
+    public static final String CREATE_AUCTION = "https://auctions-app-2.herokuapp.com/api/auctions/create";
+    public static final String GET_SLIDER = "https://auctions-app-2.herokuapp.com/api/slider";
+    public static final String SEARCH = "https://auctions-app-2.herokuapp.com/api/search";
     private static String getListAuctions;
     private static String getDetailAuction;
     private static String getListAuctionsByType;
@@ -21,18 +21,15 @@ public class APIPath {
     private static String createItem;
     private static String editItem;
     private static String infoItem;
-
-
-
     private static String getListLikes;
     private static String totalLikesOfAuction;
     private static String readNews;
+    private static String getListBids;
     public static String getLoginURL() {
         return LOGIN_URL;
     }
     public static String getGetListAuctions() {
         return getListAuctions;
-
     }
     public static void setGetListAuctions(int statusID) {
         getListAuctions = String.format("https://auctions-app-2.herokuapp.com/api/auctions/%d", statusID);
@@ -87,7 +84,6 @@ public class APIPath {
     public static void setEditItem(int itemID) {
         editItem = String.format("https://auctions-app-2.herokuapp.com/api/items/edit/%d", itemID);
     }
-
     public static String getInfoItem() {
         return infoItem;
     }
@@ -95,9 +91,6 @@ public class APIPath {
     public static void setInfoItem(int itemID) {
         infoItem = String.format("https://auctions-app-2.herokuapp.com/api/items/info/%d", itemID);
     }
-
-    private static String getListBids;
-
     public static String getGetListBids(){ return getListBids; }
 
     public static void setGetListBids(int auctionID){
@@ -126,7 +119,5 @@ public class APIPath {
     public static void setReadNews(int newID) {
         readNews = String.format("https://auctions-app-2.herokuapp.com/api/news/read/%d", newID);
     }
-    public static final String CREATE_AUCTION = "https://auctions-app-2.herokuapp.com/api/auctions/create";
-
 }
 

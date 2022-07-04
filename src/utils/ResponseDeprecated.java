@@ -1,6 +1,6 @@
 package utils;
 
-public class Response<T> {
+public class ResponseDeprecated<T> {
     private String code;
     private String message;
     private T data;

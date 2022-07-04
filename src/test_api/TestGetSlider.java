@@ -1,8 +1,8 @@
 package TestAPI;
 
-import Utils.*;
-import Utils.API.LoginAPI;
+
 import com.google.gson.Gson;
+import utils.APIPath;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.List;
 public class TestGetSlider {
     private TestGetSlider(ItemParams itemParams, String testDescription, String codeExpectation, String messageExpectation) throws
             IOException {
-        URL url = new URL(APIPath.getSlider);
+        URL url = new URL(APIPath.GET_SLIDER);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (itemParams.token) {
             itemParams.setAccessToken();

@@ -3,7 +3,7 @@ package utils.api;
 import com.google.gson.reflect.TypeToken;
 import utils.APIPath;
 import utils.data_type.DataType;
-import utils.Response;
+import utils.ResponseDeprecated;
 import com.google.gson.Gson;
 import utils.data_type.LoginDataType;
 
@@ -19,8 +19,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class LoginAPI {
-    private LoginAPI() {
+public final class LoginAPIDeprecated {
+    private LoginAPIDeprecated() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
@@ -61,8 +61,8 @@ public final class LoginAPI {
             }
 
             Gson g = new Gson();
-            Type response = new TypeToken<Response<LoginDataType>>() {}.getType();
-            Response<DataType> rp = g.fromJson(content.toString(), response);
+            Type response = new TypeToken<ResponseDeprecated<LoginDataType>>() {}.getType();
+            ResponseDeprecated<DataType> rp = g.fromJson(content.toString(), response);
             return rp.getData().accessToken;
         } finally {
             connection.disconnect();
