@@ -3,7 +3,7 @@ package test_api;
 import utils.api.LoginAPI;
 import utils.APIPath;
 import utils.ColorTerminalDeprecate;
-import utils.Response;
+import utils.ResponseDeprecated;
 import utils.TestCaseDeprecated;
 import com.google.gson.Gson;
 
@@ -53,7 +53,7 @@ public class TestGetNewsAPI {
                 content.append(System.lineSeparator());
             }
             Gson g = new Gson();
-            Response rp = g.fromJson(content.toString(), Response.class);
+            ResponseDeprecated rp = g.fromJson(content.toString(), ResponseDeprecated.class);
 
             System.out.println(testDescription);
             assert codeExpectation.length() <= 0 || rp.code.equals(codeExpectation);

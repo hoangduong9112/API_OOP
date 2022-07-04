@@ -1,8 +1,8 @@
-package TestAPI;
+package test_api;
 
-import Utils.*;
-import Utils.API.LoginAPI;
+
 import com.google.gson.Gson;
+import utils.APIPath;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class TestSearch {
             query.append('=');
             query.append(param.getValue());
         }
-        URL url = new URL(APIPath.search + "?" + query);
+        URL url = new URL(APIPath.SEARCH + "?" + query);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (itemParams.token) {
             itemParams.setAccessToken();
