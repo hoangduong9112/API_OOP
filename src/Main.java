@@ -20,7 +20,6 @@ public class Main {
             TestTotalLikesOfAuction.main();
             TestGetNews.main();
             TestCreateItemAPI.main(); // need update test case
-            TestEditAccountAPI.main(); // need update test case
             TestGetListLikesAPI.main();
             TestGetListAuctionsByTypeAPI.main();
         } catch (IOException e) {
