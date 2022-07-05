@@ -141,6 +141,11 @@ public class TestBase {
             connection.addRequestProperty("Authorization", "Bearer " + accessToken);
         }
         connection.setRequestMethod("GET");
+        if (connection.getResponseCode() == 302) {
+            url = new URL(APIPath.LOGIN_FAILED);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+        }
         try (BufferedReader in = new BufferedReader(
                 new InputStreamReader(connection.getInputStream()))) {
             String line;

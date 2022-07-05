@@ -52,7 +52,7 @@ public class APIPath {
     }
 
     public static void setGetListAuctionsByType(int typeId, int statusID) {
-        getListAuctionsByType = String.format("https://auctions-app-2.herokuapp.com/api/auctions/listAuctions/%d/%d", typeId, statusID);
+        getListAuctionsByType = String.format("https://auctions-app-2.herokuapp.com/api/auctions/listAuctions/%d", typeId, statusID);
     }
 
     public static String getGetListComments() {
